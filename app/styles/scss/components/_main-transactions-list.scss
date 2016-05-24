@@ -1,0 +1,33 @@
+#main-transactions-list {
+    .inline {
+        width: 33%;
+
+        &:nth-child(2) {
+            text-align: center;
+            color: $dark-grey;
+        }
+
+        &:last-child {
+            text-align: right;
+            color: $dark-grey;
+        }
+    }
+
+    .text {
+        display: inline-flex;
+    }
+
+    [data-done=true] {
+        text-decoration: line-through;
+    }
+
+    .hashtags {
+        position: absolute;
+        right: 0;
+        display: inline-flex;
+    }
+
+    .hashtag {
+        font-size: 14px;
+    }
+}

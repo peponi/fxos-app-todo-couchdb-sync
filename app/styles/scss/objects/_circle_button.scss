@@ -1,0 +1,55 @@
+$circle-button__size: 48px;
+$circle-button__display-padding: 12px;
+
+.circle-button
+{
+    position: fixed;
+
+    width: $circle-button__size;
+    height: $circle-button__size;
+    margin: 0;
+    padding: 0;
+
+    cursor: pointer;
+    transition: opacity .9s ease;
+
+    opacity: 1;
+    color: $white;
+    border: 0;
+    border-radius: $circle-button__size / 2;
+    outline: none;
+    background-color: $blue-light;
+    box-shadow: -2px 3px 6px 0 $shadow-grey;
+
+    &.on-dark-background
+    {
+        box-shadow: -2px 3px 6px 0 $circle-button-shadow-black;
+    }
+
+    // &:active {
+    //     box-shadow: 0 0 20px -9px $shadow-grey inset;
+    // }
+
+    &.plus,
+    &.minus
+    {
+        font-size: 50px;
+    }
+
+    &.hidden
+    {
+        opacity: 0;
+    }
+
+    &.position-bottom-left
+    {
+        bottom: $circle-button__display-padding;
+        left: $circle-button__display-padding;
+    }
+
+    &.position-bottom-right
+    {
+        right: $circle-button__display-padding;
+        bottom: $circle-button__display-padding;
+    }
+}

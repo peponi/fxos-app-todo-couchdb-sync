@@ -1,0 +1,23 @@
+#couchdb-form
+{
+    /* gaia overwrite */
+    label.pack-switch
+    {
+        height: 3rem;
+    }
+
+    .table
+    {
+        width: 100%;
+    }
+
+    .table-row
+    {
+        height: 5rem;
+    }
+
+    .table-cell:last-child
+    {
+        text-align: right;
+    }
+}

@@ -1,0 +1,34 @@
+/* Lists */
+[data-type='list'] li > a
+{
+    width: calc(100% - 24px);
+}
+
+/* to avoid double background effect on press */
+[data-type=list] li > a:active
+{
+    background-color: transparent;
+}
+
+/* Drawer */
+section[data-type='sidebar'] + section[role='region'] > header:first-child > button,
+section[data-type='sidebar'] + section[role='region'] > header:first-child > a
+{
+    background-position: 3.5rem center;
+}
+
+section[role='region']:not(#drawer)
+{
+    z-index: 0;
+    left: 0;
+
+    padding-left: 0;
+
+    transition: none;
+}
+
+/* Filters */
+[role='tablist'][data-type='filter']
+{
+    margin-bottom: 2rem;
+}

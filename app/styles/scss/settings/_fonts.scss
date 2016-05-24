@@ -1,0 +1,29 @@
+
+// Google Fonts
+//@import url(https://fonts.googleapis.com/css?family=Amatic+SC);
+
+@font-face
+{
+    font-family: 'Amatic SC';
+
+    src: url('../../fonts/AmaticSC-Regular.ttf') format('ttf')
+    // , url('/fonts/nexa_bold-webfont.ttf?1417439024') format('truetype')
+    // , url('/fonts/nexa_bold-webfont.svg?1417439024') format('svg')
+    // , url('/fonts/nexa_bold-webfont.eot?1417439024') format('embedded-opentype')
+    ;
+}
+
+@font-face
+{
+    font-family: 'Amatic SC Bold';
+
+    src: url('../../fonts/AmaticSC-Bold.ttf') format('ttf')
+    // , url('/fonts/nexa_bold-webfont.ttf?1417439024') format('truetype')
+    // , url('/fonts/nexa_bold-webfont.svg?1417439024') format('svg')
+    // , url('/fonts/nexa_bold-webfont.eot?1417439024') format('embedded-opentype')
+    ;
+}
+
+// Font Variables
+$AmaticSC: 'Amatic SC', cursive;
+$AmaticSCBold: 'Amatic SC Bold', cursive;

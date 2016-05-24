@@ -1,0 +1,145 @@
+/**
+ * onoffswitch
+ * 
+ * generated with:
+ * https://proto.io/freebies/onoff
+ * 
+ */
+
+// settings
+$o-onoffswitch-active-text-color: $white;
+$o-onoffswitch-active-background-color: $firefox-orange;
+
+$o-onoffswitch-inactive-text-color: $white;
+$o-onoffswitch-inactive-background-color: $firefox-light-blue;
+
+$o-onoffswitch-switch-background-color: $white;
+$o-onoffswitch-switch-size: 40px;
+
+$o-onoffswitch-font-size: 20px;
+$o-onoffswitch-text-spacing: 12px;
+
+$o-onoffswitch-width: 170px;
+$o-onoffswitch-height: 42px;
+$o-onoffswitch-border-radius: 50px;
+$o-onoffswitch-border-color: $dark-grey;
+
+// clases
+.o-onoffswitch
+{
+    position: relative;
+
+    width: $o-onoffswitch-width;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+}
+
+.o-onoffswitch-checkbox
+{
+    display: none;
+}
+
+.o-onoffswitch-label
+{
+    display: block;
+    overflow: hidden;
+
+    cursor: pointer;
+
+    border: 2px solid $o-onoffswitch-border-color;
+    border-radius: $o-onoffswitch-border-radius;
+}
+
+.o-onoffswitch-inner
+{
+    display: block; width: 200%;
+    margin-left: -100%;
+
+    transition: margin .3s ease-in 0s;
+}
+
+.o-onoffswitch-inner:before,
+.o-onoffswitch-inner:after
+{
+    font-family: Trebuchet, Arial, sans-serif;
+    font-size: $o-onoffswitch-font-size;
+    font-weight: bold;
+    line-height: $o-onoffswitch-height;
+
+    display: block;
+    float: left;
+
+    box-sizing: border-box;
+    width: 50%;
+    height: $o-onoffswitch-height;
+    padding: 0;
+
+    color: white;
+}
+
+.o-onoffswitch-inner
+{
+    &:before
+    {
+        padding-left: $o-onoffswitch-text-spacing;
+
+        content: 'payment';
+
+        color: $o-onoffswitch-active-text-color;
+        background-color: $o-onoffswitch-active-background-color;
+    }
+    &:after
+    {
+        padding-right: $o-onoffswitch-text-spacing;
+
+        content: 'inpayment';
+        text-align: right;
+
+        color: $o-onoffswitch-inactive-text-color;
+        background-color: $o-onoffswitch-inactive-background-color;
+    }
+}
+
+.o-onoffswitch-switch
+{
+    position: absolute;
+    top: 0;
+    right: 124px;bottom: 0;
+
+    display: block;
+
+    width: $o-onoffswitch-switch-size;
+    margin: 1px;
+
+    transition: all .3s ease-in 0s;
+
+    border: 2px solid $o-onoffswitch-border-color;
+    border-radius: $o-onoffswitch-border-radius;
+    background: $o-onoffswitch-switch-background-color;
+}
+
+.o-onoffswitch-checkbox:checked + .o-onoffswitch-label
+{
+    .o-onoffswitch-inner
+    {
+        margin-left: 0;
+    }
+
+    .o-onoffswitch-switch
+    {
+        right: 0;
+    }
+}
+
+
+/**
+ * <div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+    <label class="onoffswitch-label" for="myonoffswitch">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+ */

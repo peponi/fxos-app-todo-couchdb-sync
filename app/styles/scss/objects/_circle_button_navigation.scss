@@ -1,0 +1,526 @@
+
+#index
+{
+    -webkit-transition: blur .3s ease;
+       -moz-transition: blur .3s ease;
+            transition: blur .3s ease;
+
+            filter: blur(0);
+         -o-filter: blur(0);
+        -ms-filter: blur(0);
+       -moz-filter: blur(0);
+    -webkit-filter: blur(0);
+
+
+    // &.blur {
+    //     filter: blur(3px);
+    //     -o-filter: blur(3px);
+    //     -ms-filter: blur(3px);
+    //     -moz-filter: blur(3px);
+    //     -webkit-filter: blur(3px);
+    // }
+}
+
+
+/* -----------------------------------------------------------------------------
+
+    CIRCLE NAV COMPONENT
+
+----------------------------------------------------------------------------- */
+/**
+ * This is the actual nav component. It consists of a nav element with an
+ * unordered list inside, and also a button to toggle the actual navigation.
+ * It's fixed to the bottom-right of the screen, and each of the items are
+ * positioned absolutely inside the parent nav tag. The default set up above is
+ * 5 navigation items. Because all the transforms and such are calculated wrt
+ * this number, you'll need to edit it accordingly depending on how many items
+ * you decide to put in the markup.
+ * 
+ * Example markup:
+ *
+ * <nav class="c-circle-nav">
+ *     <ul class="c-circle-nav__items">
+ *         <li class="c-circle-nav__item">
+ *             <a class="c-circle-nav__link"></a>
+ *         </li>
+ *         <li class="c-circle-nav__item">
+ *             <a class="c-circle-nav__link"></a>
+ *         </li>
+ *         ...
+ *     </ul>
+ * </nav>
+ */
+
+$transition-seconds: .2s;
+
+.c-circle-nav
+{
+    position: fixed;
+    z-index: 1000;
+    right: 12px;
+    bottom: 12px;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 24px;
+
+    @media (min-width: 480px) and (min-height: 480px)
+    {
+        width: 96px;
+        height: 96px;
+
+        border-radius: 48px;
+    }
+
+    &.is-active
+    {
+        box-shadow: -2px 3px 6px 0 $circle-button-shadow-black;
+    }
+
+    /**
+     * We're using the .is-active class, which is added to the nav via JavaScript.
+     * Once the nav is active, the items inherit the properties below. We will
+     * manually write out the transform properties for first and last items, as we
+     * already know their position. For all items in between though, we'll use some
+     * polar-to-cartesian math and some Sass functions to get the positioning.
+     */
+    &.is-active .c-circle-nav__item
+    {
+        -webkit-transition-timing-function: cubic-bezier(.35, .03, .47, 1.59);
+                transition-timing-function: cubic-bezier(.35, .03, .47, 1.59);
+
+        opacity: 1;
+
+        &:nth-child(1)
+        {
+            -webkit-transition-delay: $transition-seconds;
+                    transition-delay: $transition-seconds;
+            -webkit-transform: translate(-144px, 0);
+                -ms-transform: translate(-144px, 0);
+                    transform: translate(-144px, 0);
+
+            @media (min-width: 480px) and (min-height: 480px)
+            {
+                -webkit-transform: translate(-288px, 0);
+                    -ms-transform: translate(-288px, 0);
+                        transform: translate(-288px, 0);
+            }
+        }
+
+        &:nth-child(2)
+        {
+            -webkit-transition-delay: $transition-seconds;
+                    transition-delay: $transition-seconds;
+            -webkit-transform: translate(-134px, -56px);
+                -ms-transform: translate(-134px, -56px);
+                    transform: translate(-134px, -56px);
+
+            @media (min-width: 480px) and (min-height: 480px)
+            {
+                -webkit-transform: translate(-267px, -111px);
+                    -ms-transform: translate(-267px, -111px);
+                        transform: translate(-267px, -111px);
+            }
+        }
+
+        &:nth-child(3)
+        {
+            -webkit-transition-delay: $transition-seconds;
+                    transition-delay: $transition-seconds;
+            -webkit-transform: translate(-102px, -102px);
+                -ms-transform: translate(-102px, -102px);
+                    transform: translate(-102px, -102px);
+
+            @media (min-width: 480px) and (min-height: 480px)
+            {
+                -webkit-transform: translate(-204px, -204px);
+                    -ms-transform: translate(-204px, -204px);
+                        transform: translate(-204px, -204px);
+            }
+        }
+
+        &:nth-child(4)
+        {
+            -webkit-transition-delay: $transition-seconds;
+                    transition-delay: $transition-seconds;
+            -webkit-transform: translate(-56px, -134px);
+                -ms-transform: translate(-56px, -134px);
+                    transform: translate(-56px, -134px);
+
+            @media (min-width: 480px) and (min-height: 480px)
+            {
+                -webkit-transform: translate(-111px, -267px);
+                    -ms-transform: translate(-111px, -267px);
+                        transform: translate(-111px, -267px);
+            }
+        }
+    }
+}
+
+.c-circle-nav__items
+{
+    position: absolute;
+    z-index: 90;
+
+    display: block;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.c-circle-nav__item
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+
+    width: 48px;
+    height: 48px;
+
+    -webkit-transition-timing-function: cubic-bezier(.35, -.59, .47, .97);
+            transition-timing-function: cubic-bezier(.35, -.59, .47, .97);
+    -webkit-transition-duration: $transition-seconds, $transition-seconds;
+            transition-duration: $transition-seconds, $transition-seconds;
+    -webkit-transition-property: -webkit-transform, opacity;
+            transition-property:         transform, opacity;
+
+    opacity: 0;
+    border-radius: 24px;
+
+    @media (min-width: 480px) and (min-height: 480px)
+    {
+        width: 96px;
+        height: 96px;
+
+        border-radius: 48px;
+    }
+
+    &:nth-child(1)
+    {
+        -webkit-transition-delay: $transition-seconds;
+                transition-delay: $transition-seconds;
+    }
+
+    &:nth-child(2)
+    {
+        -webkit-transition-delay: $transition-seconds;
+                transition-delay: $transition-seconds;
+    }
+
+    &:nth-child(3)
+    {
+        -webkit-transition-delay: $transition-seconds;
+                transition-delay: $transition-seconds;
+    }
+
+    &:nth-child(4)
+    {
+        -webkit-transition-delay: $transition-seconds;
+                transition-delay: $transition-seconds;
+    }
+}
+
+
+/**
+ * Let's style the links now. This is just boilerplate stuff, and of course,
+ * you'll probably want to change up the icons to match your needs. In any case,
+ * we'll do it here for the sake of completion.
+ */
+.c-circle-nav.is-active .c-circle-nav__link
+{
+    box-shadow: -2px 3px 6px 0 $circle-button-shadow-black;
+}
+
+.c-circle-nav__link
+{
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 24px;
+    background-color: $blue-light;
+    box-shadow: -2px 2px 15px -1px $border-grey;
+
+    @media (min-width: 480px) and (min-height: 480px)
+    {
+        border-radius: 48px;
+    }
+
+    .img
+    {
+        position: relative;
+        top: 10%;
+        left: 10%;
+
+        display: block;
+
+        width: 80%;
+        max-width: 100%;
+        height: auto;
+
+        fill: $white;
+
+        &.search
+        {
+            top: 18%;
+            left: 20%;
+
+            width: 60%;
+        }
+    }
+}
+
+
+
+/* -----------------------------------------------------------------------------
+
+    THE TOGGLE COMPONENT
+
+----------------------------------------------------------------------------- */
+/**
+ * The toggle is a button element, and as such requires some resets that are
+ * unique to buttons. This button also inherits some funky stuff from my
+ * CSS animating hamburger menu icons demo, which can be found at this url:
+ * https://github.com/callmenick/Animating-Hamburger-Icons
+ */
+.c-circle-nav__toggle
+{
+    font: inherit;
+    font-size: 0;
+
+    position: absolute;
+    z-index: 100;
+
+    display: block;
+
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    padding: 0;
+    /* reset some browser defaults */
+
+    cursor: pointer;
+    -webkit-transition: background $transition-seconds;
+            transition: background $transition-seconds;
+    text-indent: -9999px;
+
+    border: 0;
+    border-radius: 24px;
+    background-color: $blue-light;
+    box-shadow: -2px 3px 6px 0 $shadow-grey;
+
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    $dot-position-left: 11px;
+
+    &:hover,
+    &:focus,
+    &.is-active
+    {
+        outline: none;
+        background-color: $blue-light;
+    }
+
+    @media (min-width: 480px) and (min-height: 480px)
+    {
+        width: 96px;
+        height: 96px;
+
+        border-radius: 48px;
+    }
+
+    span,
+    span::before,
+    span::after
+    {
+        position: absolute;
+
+        display: block;
+
+        height: 4px;
+
+        border-radius: 1px;
+        background: $white;
+
+        @media (min-width: 480px) and (min-height: 480px)
+        {
+            height: 8px;
+
+            border-radius: 2px;
+        }
+    }
+
+    span
+    {
+        top: 22px;
+        left: $dot-position-left * 2;
+
+        width: 4px;
+
+        -webkit-transition: background $transition-seconds;
+                transition: background $transition-seconds;
+
+        @media (min-width: 480px) and (min-height: 480px)
+        {
+            top: 44px;
+            right: 20px;
+            left: 20px;
+        }
+
+        &:before,
+        &:after
+        {
+            left: 0;
+
+            width: 100%;
+
+            content: '';
+            -webkit-transition-delay: $transition-seconds, 0s;
+                    transition-delay: $transition-seconds, 0s;
+            -webkit-transition-duration: $transition-seconds, $transition-seconds;
+                    transition-duration: $transition-seconds, $transition-seconds;
+        }
+
+        &:before
+        {
+            left: -$dot-position-left;
+
+            -webkit-transition-property: top, -webkit-transform;
+                    transition-property: top, transform;
+
+            @media (min-width: 480px) and (min-height: 480px)
+            {
+                top: -16px;
+            }
+        }
+
+        &:after
+        {
+            left: $dot-position-left;
+
+            -webkit-transition-property: bottom, -webkit-transform;
+                    transition-property: bottom, transform;
+
+            @media (min-width: 480px) and (min-height: 480px)
+            {
+                bottom: -16px;
+            }
+        }
+    }
+    /* button active state */
+    &.is-active
+    {
+        box-shadow: -2px 3px 6px 0 $circle-button-shadow-black;
+
+        span
+        {
+            visibility: hidden;
+
+            width: 30px;
+
+            &:before,
+            &:after
+            {
+                -webkit-transition-delay: 0s, $transition-seconds;
+                   -moz-transition-delay: 0s, $transition-seconds;
+                    -ms-transition-delay: 0s, $transition-seconds;
+                     -o-transition-delay: 0s, $transition-seconds;
+                        transition-delay: 0s, $transition-seconds;
+            }
+
+            &:before
+            {
+                left: -12px;
+
+                visibility: visible;
+
+                -webkit-transform: rotate(45deg);
+                    -ms-transform: rotate(45deg);
+                        transform: rotate(45deg);
+            }
+
+            &:after
+            {
+                left: -12px;
+
+                visibility: visible;
+
+                -webkit-transform: rotate(-45deg);
+                    -ms-transform: rotate(-45deg);
+                        transform: rotate(-45deg);
+            }
+        }
+    }
+}
+
+
+
+
+
+/* -----------------------------------------------------------------------------
+
+    THE MASK COMPONENT
+
+----------------------------------------------------------------------------- */
+/**
+ * Here's the mask component, which actually gets created and inserted to the 
+ * DOM via JavaScript. It simply acts as an overlay to draw attention to the 
+ * navigation when it is active. It also uses the .is-acvite state class.
+ */
+
+.c-mask
+{
+    position: fixed;
+    z-index: 900;
+    top: 0;
+    left: 0;
+
+    visibility: hidden;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-transition: opacity    $transition-seconds, visibility    $transition-seconds;
+       -moz-transition: opacity    $transition-seconds, visibility    $transition-seconds;
+        -ms-transition: opacity    $transition-seconds, visibility    $transition-seconds;
+         -o-transition: opacity    $transition-seconds, visibility    $transition-seconds;
+            transition: opacity    $transition-seconds, visibility    $transition-seconds;
+
+    opacity: 0;
+    background-color: rgba(0, 0, 0, .85);
+
+    &.is-active
+    {
+        visibility: visible;
+
+        opacity: 1;
+
+        #c-mask-search
+        {
+            position: absolute;
+            top: 80px;
+
+            width: 90%;
+            margin-left: 5%;
+
+            color: $border-grey;
+            border-color: $border-grey;
+            border-top: 0;
+            border-left: 0;
+            background: transparent;
+
+            &:focus
+            {
+                border-right: 2px solid $blue-light;
+                background: rgba(0,0,0,.4);
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+.x-object-list
+{
+    .inline
+    {
+        width: 50%;
+    }
+
+    .title .inline:last-child
+    {
+        font-size: 1.6rem;
+
+        text-align: right;
+
+        color: $dark-grey;
+    }
+
+    .subtitle .inline:last-child
+    {
+        font-size: 1.5rem;
+
+        text-align: right;
+
+        color: $subtitle-grey;
+    }
+}

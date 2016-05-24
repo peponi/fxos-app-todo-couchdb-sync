@@ -1,0 +1,67 @@
+button:focus
+{
+    outline: none;
+}
+
+.hashtag
+{
+    float: right;
+
+    padding-left: 7px;
+
+    color: $blue-light;
+}
+
+/* burger icon */
+#drawer header a
+{
+    font-size: 22px;
+    font-style: normal;
+
+    color: $white;
+}
+
+[role='dialog'][data-type='action']
+{
+    background: rgba(0,0,0,.8);
+
+    menu
+    {
+        bottom: 0;
+
+        max-height: calc(100% - 7rem);
+
+        > button.action-menu__btn
+        {
+            font-style: normal;
+
+            height: auto;
+            padding-bottom: 1.2rem;
+
+            text-align: left;
+
+            color: $blue-light;
+            border-bottom: 1px solid rgba(87, 87, 87, .85);
+            background: rgba(51,51,51,.7);
+            box-shadow: 0 0 20px 5px rgba(51,51,51,.7);
+
+            .btn__content-line
+            {
+                margin: 0;
+            }
+        }
+    }
+}
+
+section[role='region'] > header:first-child button
+{
+    color: $white;
+    border-left: 1px solid rgba(0,0,0,.03);
+}
+
+#edit-mode [data-type=edit]
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
