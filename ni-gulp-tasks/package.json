@@ -1,0 +1,16 @@
+{
+  "name": "ni-gulp-tasks",
+  "version": "0.1.0",
+  "author": "Notch Interactive Dev Team",
+  "contributors": [
+    {
+      "name": "Notch Interactive",
+      "email": "webmaster@notch-interactive.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/notch-interactive/ni-gulp-tasks"
+  },
+  "private": true
+}

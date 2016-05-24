@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>INSTALL</title>
+</head>
+<body>
+	<!-- <input type="button" onclick="window.navigator.mozApps.install('http://multimedia/webapp_test/manifest.webapp')" value="App install"> -->
+
+	<h1 style="text-align:center">install wallet app</h1>
+
+
+	<button id="manifest" style="height:150px; width:100%; font-size:34px;">Install with manife</button>
+	<button id="pack" style="height:150px; width:100%; font-size:34px;">Install package</button>
+	
+
+	<script>
+		var url = 'http://192.168.0.4:9000/',
+			mozApps = window.navigator.mozApps,
+			d = document,
+			request;
+
+		function install(e) {
+				if(e.target.id === 'manifest') {
+		        	request = mozApps.install(url + 'manifest.webapp');
+		        } else {
+
+		        	console.log(url + 'dist/app_v0.0.5.zip');
+		        	request = mozApps.installPackage(url + 'dist/app_v0.0.5.zip');
+		        }
+
+		        request.onsuccess = function () {
+					// Save the App object that is returned
+					//var appRecord = this.result;
+					alert('Installation successful!');
+				};
+				request.onerror = function () {
+					// Display the error information from the DOMError object
+					alert('Install failed, error: ' + this.error.name);
+				};
+		}
+
+		d.getElementById("manifest").onclick = install;
+		d.getElementById("pack").onclick = install;
+	</script>
+	
+</body>
+</html>
