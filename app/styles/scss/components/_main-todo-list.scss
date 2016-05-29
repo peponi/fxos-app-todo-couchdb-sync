@@ -36,4 +36,25 @@
     .hashtag {
         font-size: 14px;
     }
+
+    $priority-dot-size: 15px;
+
+    .dot {
+        margin-top: $priority-dot-size - 2px;
+        width: $priority-dot-size;
+        height: $priority-dot-size;
+        border-radius: $priority-dot-size;
+
+        &.urgent {
+            background: red;
+        }
+
+        &.height {
+            background: $firefox-orange;
+        }
+
+        &.middle {
+            background: $firefox-light-blue;
+        }
+    }
 }

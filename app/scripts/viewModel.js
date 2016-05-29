@@ -18,9 +18,11 @@ var ViewModel = function() {
     self.priority = [
         {key: 'low'},
         {key: 'middle'},
-        {key: 'hight'},
+        {key: 'height'},
         {key: 'urgent'}
     ];
+
+    self.priorityArray = ['low','middle','height','urgent'];
 
     self.state = {
         currentOpenMenu: 'group-menu',

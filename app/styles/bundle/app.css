@@ -1125,6 +1125,25 @@ section[role='region'][data-position='right'] {
     display: inline-flex; }
   #main-todo-list .hashtag {
     font-size: 14px; }
+  #main-todo-list .dot {
+    margin-top: 13px;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px; }
+    #main-todo-list .dot.urgent {
+      background: red; }
+    #main-todo-list .dot.height {
+      background: #e66000; }
+    #main-todo-list .dot.middle {
+      background: #0095dd; }
 
 #edit-menu p {
   margin-bottom: 10px; }
+
+#edit-menu [data-btn-type="delete"] {
+  position: absolute;
+  bottom: 50px; }
+
+#edit-menu [data-btn-type="done"] {
+  position: absolute;
+  bottom: 0px; }
