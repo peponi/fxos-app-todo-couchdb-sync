@@ -5,6 +5,7 @@ var ViewModel = function() {
         data,
         is,
         d = document,
+        title = '',
         headerGroupMenuBtn = d.querySelector('#drawer h1'),
         todoFormGroupIntput = d.querySelector('#todo-form [name=group]'),
         //circleNav = d.getElementById('c-circle-nav'),
@@ -13,6 +14,13 @@ var ViewModel = function() {
             todo: new TodoModel(),
             group: new GroupModel()
         };
+
+    self.priority = [
+        {key: 'low'},
+        {key: 'middle'},
+        {key: 'hight'},
+        {key: 'urgent'}
+    ];
 
     self.state = {
         currentOpenMenu: 'group-menu',
@@ -148,7 +156,7 @@ var ViewModel = function() {
      */
     self.handleActionBtnClick = (data, e) => {
 
-        var title = e.target.dataset.title;
+        title = e.target.dataset.title;
 
         self.state.currentSelectedGroup = title;
 
@@ -194,7 +202,8 @@ var ViewModel = function() {
     };
 
     self.saveFormData = (data, e) => {
-
+        // i dont need the passed knockout data object data
+        // and use it for click event dataset
         data = e.target.dataset;
         targetForm = d.getElementById(data.targetForm);
         type = data.type;
@@ -237,6 +246,7 @@ var ViewModel = function() {
 
     self.loadFilteredTodos = () => {
         var todos = self.filterTodoForGroup(self.state.currentSelectedGroup);
+        todos = self.orderTodosForPriority(todos);
         self.state.filteredTodos(todos);
     };
 
@@ -246,17 +256,37 @@ var ViewModel = function() {
         });
     };
 
+    self.orderTodosForPriority = (todos) => {
+        return todos.sort(function(t1, t2) {
+            return t1.doc.prio < t2.doc.prio;
+        });
+    };
+
     self.loadAll = function(type, doc) {
         self.state['all' + self.capitalizeWord(type) + 's'](doc.rows);
 
+        // if group-menu has select a new group
+        // filter all todos for this group
         if(type === 'todo') {
             self.loadFilteredTodos();
         }
     };
 
     self.init = function() {
+
+
         model.group.getAll(self.loadAll);
         model.todo.getAll(self.loadAll);
+        model.group.getAll(function(type, doc){
+            if(doc && doc.rows && doc.rows.length) {
+                title = doc.rows[0].doc.title;
+
+                self.state.currentSelectedGroup = title;
+                headerGroupMenuBtn.innerHTML = title;
+
+                self.loadFilteredTodos();
+            }
+        });
     };
 
     self.init();

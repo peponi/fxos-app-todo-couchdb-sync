@@ -111,15 +111,16 @@
                 <h1 data-bind="click:openMenu"
                     data-target-id="group-menu"
                     data-binding-context="header"
-                    role="button">listName</h1>
+                    role="button"></h1>
             </header>
     
             <section class="content scrollable header">
                 <section data-type="list">                
 
-                    <div id="main-transactions-list" data-bind="foreach: state.filteredTodos">
+                    <div id="main-todo-list">
                         <section>
                             <ul date="doc.date">
+                            <!-- ko foreach: state.filteredTodos -->
                                 <li class="payment"
                                     data-bind="click:$root.openMenu, attr: {'data-binding-context': id}"
                                     data-target-id="edit-menu">
@@ -127,6 +128,7 @@
                                     <p class="text" data-bind="text: doc.title, attr: {'data-done': doc.done}"></p>
                                     <p data-bind="text: doc.desc, attr: {'data-done': doc.done}"></p>
                                 </li>
+                            <!-- /ko -->
                             </ul>
                         </section>
                     </div>
@@ -389,11 +391,11 @@
 
             <div id="priority-menu-list" class="menu-list">
                 <section>
-                    <ul data-bind="foreach: [1,2,3,4,5,6]">
+                    <ul data-bind="foreach: priority">
                         <li class="menu-list__item" >
                             <p class="title" 
-                                data-bind=" attr: {'data-title': $index() + 1},
-                                            text: $index() + 1,
+                                data-bind=" attr: {'data-title': $index},
+                                            text: key,
                                             click: $root.handleActionBtnClick"></p>
                         </li>
                     </ul>

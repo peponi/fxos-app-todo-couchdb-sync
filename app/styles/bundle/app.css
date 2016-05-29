@@ -1105,32 +1105,23 @@ section[role='region'][data-position='right'] {
   .menu-list__item:last-child {
     border-bottom: 0; }
 
-#main-transactions-list header {
-  padding: 20px 0 0 20px;
-  border-bottom: 1px solid #ff4e00; }
-
-#main-transactions-list .inline {
-  width: 33%; }
-  #main-transactions-list .inline:nth-child(2) {
-    text-align: center;
-    color: #333; }
-  #main-transactions-list .inline:last-child {
-    text-align: right;
-    color: #333; }
-
-#main-transactions-list .text {
-  display: inline-flex; }
-
-#main-transactions-list [data-done=true] {
-  text-decoration: line-through; }
-
-#main-transactions-list .hashtags {
-  position: absolute;
-  right: 0;
-  display: inline-flex; }
-
-#main-transactions-list .hashtag {
-  font-size: 14px; }
-
-#main-transactions-list .inpayment .amount {
-  color: #00aac5; }
+#main-todo-list {
+  margin-top: 2rem; }
+  #main-todo-list .inline {
+    width: 33%; }
+    #main-todo-list .inline:nth-child(2) {
+      text-align: center;
+      color: #333; }
+    #main-todo-list .inline:last-child {
+      text-align: right;
+      color: #333; }
+  #main-todo-list .text {
+    display: inline-flex; }
+  #main-todo-list [data-done=true] {
+    text-decoration: line-through; }
+  #main-todo-list .hashtags {
+    position: absolute;
+    right: 0;
+    display: inline-flex; }
+  #main-todo-list .hashtag {
+    font-size: 14px; }

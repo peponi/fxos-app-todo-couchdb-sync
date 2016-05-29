@@ -1,14 +1,19 @@
-#main-transactions-list {
+#main-todo-list {
+
+    margin-top: 2rem;
+
     .inline {
         width: 33%;
 
         &:nth-child(2) {
             text-align: center;
+
             color: $dark-grey;
         }
 
         &:last-child {
             text-align: right;
+
             color: $dark-grey;
         }
     }
@@ -24,6 +29,7 @@
     .hashtags {
         position: absolute;
         right: 0;
+
         display: inline-flex;
     }
 

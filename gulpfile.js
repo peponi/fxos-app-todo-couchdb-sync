@@ -89,7 +89,7 @@ gulp.task('lint', [
     'lint:scripts'
 ]);
 
-gulp.task('build:styles', ['format:styles', 'compress:styles']);
+gulp.task('build:styles', [/*'format:styles',*/ 'compress:styles']);
 
 gulp.task('build', [
     'clean:static',
