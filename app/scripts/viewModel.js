@@ -39,6 +39,7 @@ var ViewModel = function() {
         allGroups: ko.observableArray(),
         allTodos: ko.observableArray(),
         filteredTodos: ko.observableArray()
+        //showCheckbox: ko.observable(false)
     };
 
     // Helper
@@ -214,6 +215,13 @@ var ViewModel = function() {
 
         }
     };
+
+    // self.checkDateAndShowChekbox = function(data, e) {
+    //     var passedDateTime = e.target.valueAsNumber / 1000,
+    //         currentDateTime = ~~(new Date().getTime() / 1000);
+    //     var bool = passedDateTime > currentDateTime ? true : false;
+    //     self.state.showCheckbox(bool);
+    // };
 
     self.saveFormData = (data, e) => {
         // i dont need the passed knockout data object data

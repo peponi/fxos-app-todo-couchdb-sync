@@ -1,22 +1,18 @@
 /* gaia overwrites & adaptions */
 
-#index
-{
+#index {
     height: 100%;
 }
 
-[role='dialog'][data-type='action'] > header
-{
+[role='dialog'][data-type='action'] > header {
     padding: 0;
 
-    .inline:first-child
-    {
+    .inline:first-child {
         margin: 0;
         padding-left: 3rem;
     }
 
-    .inline:last-child
-    {
+    .inline:last-child {
         position: absolute;
         right: 1rem;
         left: auto;
@@ -28,26 +24,31 @@
     }
 }
 
-[role='dialog'][data-type='action']
-{
+[role='dialog'][data-type='action'] {
     overflow-y: scroll;
 }
 
-[role='dialog'][data-type='action'] menu > button
-{
+[role='dialog'][data-type='action'] menu > button {
     font-size: 1.9rem;
     font-weight: normal;
     line-height: 2.5rem;
 
-    &:nth-last-child(2)
-    {
+    &:nth-last-child(2) {
         margin-bottom: 1rem;
     }
 }
 
-[data-type='list'] aside img
-{
+[data-type='list'] aside img {
     width: 3rem;
     height: 3rem;
     margin-top: 1.5rem;
 }
+
+// label.pack-checkbox input ~ span:after {
+//     left: 10%;
+//     right: 0;
+// }
+
+// label.pack-checkbox {
+//         width: 3rem;
+// }

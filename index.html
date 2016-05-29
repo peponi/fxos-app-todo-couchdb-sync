@@ -218,8 +218,16 @@
                     </p>
                     <p>
                         <label for="todo-date">Todo Date</label>
-                        <input type="date" name="date" id="todo-date">
+                        <input type="date" name="date">
+                        <!-- <input type="date" name="date" id="todo-date" data-bind="event: {change: checkDateAndShowChekbox} "> -->
                     </p>
+                    <!-- <p data-bind="visible: state.showCheckbox">
+                        <label class="pack-checkbox">
+                            <input type="checkbox" name="calender" id="calender">
+                            <span></span>
+                        </label>
+                        <label for="calender">add to system calender</label>
+                    </p> -->
                 </form>
             </fieldset>
         </section>

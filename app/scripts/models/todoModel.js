@@ -34,6 +34,11 @@ var TodoModel = function() {
             formData.prio = 0;
         }
 
+        // if(formData.calender) {
+        //     console.log('open calender webactivity here');
+        //     delete formData.calender;
+        // }
+
         formData.done = false;
         
         pm.save(type, formData);
