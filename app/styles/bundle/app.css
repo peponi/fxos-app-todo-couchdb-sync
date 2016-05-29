@@ -2,6 +2,15 @@
  * colors based on
  * https://www.mozilla.org/en-US/styleguide/identity/firefoxos/color/
  */
+.color-urgent {
+  color: red; }
+
+.color-height {
+  color: #ff9500; }
+
+.color-middle {
+  color: #0095dd; }
+
 @font-face {
   font-family: 'Amatic SC';
   src: url("../../fonts/AmaticSC-Regular.ttf") format("ttf"); }

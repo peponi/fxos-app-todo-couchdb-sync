@@ -8,7 +8,7 @@ var TodoModel = function() {
     self.map = {
         'low': 0,
         'middle': 1,
-        'hight': 2,
+        'height': 2,
         'urgent': 3
     };
 

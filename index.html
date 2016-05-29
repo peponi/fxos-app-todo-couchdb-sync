@@ -103,10 +103,10 @@
         <section id="drawer" role="region">
             <header class="fixed">
                 <a href="#" id="open-drawer-btn">
-                    <img width="30" height="30" src="" alt="burger icon">
+                    <img width="30" height="30" src="./app/images/icons/png/menu62.png" class="burg-icon" alt="burger icon">
                 </a>
                 <a href="#drawer" id="close-drawer-btn">
-                    <img width="30" height="30" src="" alt="burger icon">
+                    <img width="30" height="30" src="./app/images/icons/png/menu62.png" class="burg-icon" alt="burger icon">
                 </a>
                 <h1 data-bind="click:openMenu"
                     data-target-id="group-menu"
@@ -420,14 +420,14 @@
             <section>
                 <p><strong data-bind="text: state.currentOpenTodo().title"></strong></p>
                 <p data-bind="text: state.currentOpenTodo().desc"></p>
-                <p>Priority: <var data-bind="text: priorityArray[state.currentOpenTodo().prio]"></var></p>
+                <p>Priority: <var data-bind="text: priorityArray[state.currentOpenTodo().prio], css: 'color-' + priorityArray[state.currentOpenTodo().prio]"></var></p>
                 <br><br>
                 <!-- ko if: !state.currentOpenTodo().done -->
-                <button data-bind="click:handleEditMenuBtnClick" data-btn-type="done" class="recommend">done</button>
+                <button data-bind="click:handleEditMenuBtnClick" data-btn-type="done">is done</button>
                 <!-- /ko -->
                 <!-- ko if: state.currentOpenTodo().done -->
                 <button data-bind="click:handleEditMenuBtnClick" data-btn-type="delete" class="danger">delete</button>
-                <button data-bind="click:handleEditMenuBtnClick" data-btn-type="done" class="recommend">not done</button>
+                <button data-bind="click:handleEditMenuBtnClick" data-btn-type="done">is not done</button>
                 <!-- /ko -->
             </section>
                       
