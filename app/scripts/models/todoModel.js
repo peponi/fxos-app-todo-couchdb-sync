@@ -39,6 +39,12 @@ var TodoModel = function() {
         pm.save(type, formData);
     };
 
+    self.get = (id, callback) => {
+        pm.get(type, id, (doc) => {
+            callback(doc);
+        });
+    };
+
     self.getAll = (callback) => {
         pm.getAll(type, (result) => {
             callback(type, result);

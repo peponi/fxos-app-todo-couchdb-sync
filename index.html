@@ -408,7 +408,7 @@
     <section data-position="back" class="fade-out" id="edit-menu">
         <form role="dialog" data-type="action">
             <header>
-                <div class="inline">Edit</div>
+                <div class="inline">Todo Edit</div>
                 <button class="inline"
                         data-bind="click:hideMenu"
                         data-target-id="edit-menu"
@@ -416,8 +416,17 @@
             </header>
            
             <section>
+                <p><strong data-bind="text: state.currentOpenTodo().title"></strong></p>
+                <p data-bind="text: state.currentOpenTodo().desc"></p>
+                <p>Priority: <var data-bind="text: state.currentOpenTodo().prio"></var></p>
+                <br><br>
+                <!-- ko if: !state.currentOpenTodo().done -->
                 <button data-bind="click:handleEditMenuBtnClick" data-btn-type="done">done</button>
+                <!-- /ko -->
+                <!-- ko if: state.currentOpenTodo().done -->
+                <button data-bind="click:handleEditMenuBtnClick" data-btn-type="done">not done</button>
                 <button data-bind="click:handleEditMenuBtnClick" data-btn-type="delete" class="danger">delete</button>
+                <!-- /ko -->
             </section>
                       
         </form>

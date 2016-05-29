@@ -25,6 +25,15 @@ var ViewModel = function() {
     self.state = {
         currentOpenMenu: 'group-menu',
         currentSelectedGroup: '',
+        currentOpenTodo: ko.observable({
+            date: "",
+            desc: "",
+            done: false,
+            group: "",
+            prio: 0,
+            time: "",
+            title: ""
+        }),
         allGroups: ko.observableArray(),
         allTodos: ko.observableArray(),
         filteredTodos: ko.observableArray()
@@ -69,15 +78,18 @@ var ViewModel = function() {
         self.state.menuBindingContext = e.currentTarget.dataset.bindingContext;
         self.state.menuBindingInputName = e.currentTarget.name;
 
-        // if(self.state.currentOpenMenu === 'group-menu') {
-        //     self.showgroupMenu();
-        // } else if (self.state.currentOpenMenu === 'tag-menu') {
-        //     if(e.target.value.substr(-1) === '#' ) {
-        //         self.showActionMenu();
-        //     }
-        // } else {
-            self.showActionMenu();
-        // }
+        if(self.state.currentOpenMenu === 'edit-menu') {
+            // in case of edit-menu is open
+            // bindingContext is an pouchdb id
+            model.todo.get(e.currentTarget.dataset.bindingContext, function(doc) {
+                self.state.currentOpenTodo(doc);
+                console.log(self.state.currentOpenTodo())
+                self.showActionMenu();
+
+            });
+        } else {
+            self.showActionMenu();            
+        }
     };
 
     self.hideMenu = (data, e) => {

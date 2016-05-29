@@ -1125,3 +1125,6 @@ section[role='region'][data-position='right'] {
     display: inline-flex; }
   #main-todo-list .hashtag {
     font-size: 14px; }
+
+#edit-menu p {
+  margin-bottom: 10px; }
