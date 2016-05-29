@@ -2,4 +2,15 @@
 	p {
 		margin-bottom: 10px;
 	}
+
+	[data-btn-type="delete"] {
+		position: absolute;
+		bottom: 50px;
+	}
+
+	[data-btn-type="done"] {
+		position: absolute;
+		bottom: 0px;
+	}
+
 }
