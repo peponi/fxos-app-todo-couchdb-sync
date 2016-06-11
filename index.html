@@ -118,9 +118,34 @@
                 <section data-type="list">                
 
                     <div id="main-todo-list">
-                        <section>
-                            <ul date="doc.date">
-                            <!-- ko foreach: state.filteredTodos -->
+                         <section data-bind="if: state.filteredTodosWithDateInFuture().length > 0">
+                            <header>
+                                <span>Expiry List</span>
+                            </header>
+                            <ul>
+                            <!-- ko foreach: state.filteredTodosWithDateInFuture -->
+                                <li class="payment"
+                                    data-bind="click:$root.openMenu, attr: {'data-binding-context': id}"
+                                    data-target-id="edit-menu">
+                                    <aside>
+                                        <div data-bind="css: 'dot ' + $root.priorityArray[doc.prio]"></div>
+                                    </aside>
+                                    <p class="text" data-bind="text: doc.title, attr: {'data-done': doc.done}"></p>
+                                    <p data-bind="text: doc.desc, attr: {'data-done': doc.done}"></p>
+                                    <aside class="pack-end">
+                                        <small data-bind="text: doc.date"></small>
+                                    </aside>
+                                </li>
+                            <!-- /ko -->
+                            </ul>
+                        </section>
+                        <br><br>
+                        <section data-bind="if: state.filteredDatelessTodos().length > 0">
+                            <header>
+                                <span>Priority List</span>
+                            </header>
+                            <ul>
+                            <!-- ko foreach: state.filteredDatelessTodos -->
                                 <li class="payment"
                                     data-bind="click:$root.openMenu, attr: {'data-binding-context': id}"
                                     data-target-id="edit-menu">

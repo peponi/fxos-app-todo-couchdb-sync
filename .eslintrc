@@ -1,34 +1,16 @@
 {
     "plugins": [
         "scanjs-rules",
-        "no-unsafe-innerhtml"<% if (useComponentFramework == 'react') { %>,
-        "react"<% } %>
-    ],<% if (useESnext) { %>
-    "ecmaVersion": 6,<% } %><% if (useESnextModules) { %>
-    "ecmaFeatures": {
-        "modules": true<% if (useComponentFramework == 'react') { %>,
-        "jsx": true<% } %>
-    },
-    "parserOptions": {
-        "sourceType": "module"
-    },<% } %>
+        "no-unsafe-innerhtml"
+    ],
+
     "env": {
-        "browser": true <% if (useBackend == 'expressjs' || useBackend == 'sailsjs' || useBackend == 'hoodie') { %>,
-        "node": true <% } %><% if (useESnext) { %>,
-        "amd": true,
-        "es6": true <% } %><% if (useTestFramework == 'jasmine') { %>,
-        "jasmine": true <% } %><% if (useFunctionalTesting) { %>,
-        "phantomjs": true <% } %><% if (useJquery) { %>,
-        "jquery": true <% } %>
-    },<% if (useESnext) { %>
-        "ecmaVersion": 6,<% } %>
+        "browser": true
+    },
     "globals": {
         "_": true,
-        "NIJS": true <% if (useJquery) { %>,
         "jQuery": false,
-        "$": true <% } %><% if (useComponentFramework == 'knockout') { %>,
-        "ko": true <% } %><% if (useComponentFramework == 'react') { %>,
-        "React": true <% } %>
+        "ko": true 
         
     },
     "rules": {

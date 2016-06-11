@@ -38,7 +38,8 @@ var ViewModel = function() {
         }),
         allGroups: ko.observableArray(),
         allTodos: ko.observableArray(),
-        filteredTodos: ko.observableArray()
+        filteredTodosWithDateInFuture: ko.observableArray(),
+        filteredDatelessTodos: ko.observableArray()
         //showCheckbox: ko.observable(false)
     };
 
@@ -265,8 +266,10 @@ var ViewModel = function() {
 
     self.loadFilteredTodos = () => {
         var todos = self.filterTodoForGroup(self.state.currentSelectedGroup);
-        todos = self.orderTodosForPriority(todos);
-        self.state.filteredTodos(todos);
+        todos = self.sortOutTodosWithDateInFuture(todos);
+        self.state.filteredTodosWithDateInFuture(self.orderTodosFor('unixTimeStamp', todos.filteredTodosWithDateInFuture, 'DESC'));
+        self.state.filteredDatelessTodos(self.orderTodosFor('prio', todos.filteredDatelessTodos, 'ASC'));
+
     };
 
     self.filterTodoForGroup = (group) => {
@@ -275,10 +278,44 @@ var ViewModel = function() {
         });
     };
 
-    self.orderTodosForPriority = (todos) => {
-        return todos.sort(function(t1, t2) {
-            return t1.doc.prio < t2.doc.prio;
+    self.sortOutTodosWithDateInFuture = (todos) => {
+
+        var todaysDate = ~~(new Date().getTime() / 1000),
+            todoExpDate = todaysDate,
+            filteredTodosWithDateInFuture = [],
+            filteredDatelessTodos = [];
+
+        todos.map(function(todo) {
+            if(todo.doc.date !== '') {
+                todoExpDate = ~~(new Date(fecha.parse(todo.doc.date, 'YYYY-MM-DD')).getTime() / 1000);
+            } else {
+                todoExpDate = todaysDate
+            }
+
+            if(todoExpDate > todaysDate) {
+                todo.doc.unixTimeStamp = todoExpDate;
+                filteredTodosWithDateInFuture.push(todo);
+            } else {
+                filteredDatelessTodos.push(todo);
+            }
         });
+
+        return {
+            filteredTodosWithDateInFuture: filteredTodosWithDateInFuture, 
+            filteredDatelessTodos: filteredDatelessTodos};
+    };
+
+    self.orderTodosFor = (attr, todos, direction) => {
+        
+        if(direction === 'DESC') {
+            return todos.sort(function(t1, t2) {
+                return t1.doc[attr] > t2.doc[attr];
+            });
+        } else {
+            return todos.sort(function(t1, t2) {
+                return t1.doc[attr] < t2.doc[attr];
+            });            
+        }
     };
 
     self.loadAll = function(type, doc) {
@@ -296,7 +333,6 @@ var ViewModel = function() {
         model.group.getAll(self.loadAll);
         model.todo.getAll(self.loadAll);
         model.group.getAll(function(type, doc) {
-            console.log(doc);
             if(doc && doc.rows.length == 0) {
                 // show button & text to create a group
             } else if(doc && doc.rows && doc.rows.length) {
