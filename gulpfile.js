@@ -61,16 +61,16 @@ env.GULP_HTML_DEV_SOURCE        = env.GULP_TEMPLATE_PATH +  '**/*.html';
 var gulpTasksPath = './ni-gulp-tasks/tasks/';
 
 require(gulpTasksPath + 'clean-static');
-//require(gulpTasksPath + 'compress-html');
+require(gulpTasksPath + 'compress-html');
 require(gulpTasksPath + 'compress-scripts');
 require(gulpTasksPath + 'compress-styles');
-//require(gulpTasksPath + 'create-appcache');
+require(gulpTasksPath + 'create-appcache');
 require(gulpTasksPath + 'format-styles');
-//require(gulpTasksPath + 'lint-html');
+require(gulpTasksPath + 'lint-html');
 require(gulpTasksPath + 'lint-scripts');
-//require(gulpTasksPath + 'lint-styles');
-//require(gulpTasksPath + 'reload-page');
-//require(gulpTasksPath + 'replace-html');
+require(gulpTasksPath + 'lint-styles');
+// require(gulpTasksPath + 'reload-page');
+require(gulpTasksPath + 'replace-html');
 require(gulpTasksPath + 'symlink-assets');
 
 /**

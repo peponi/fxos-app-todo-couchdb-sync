@@ -12,7 +12,6 @@ gulp.task('lint:styles', function() {
     return gulp.src(process.env.GULP_CSS_DEV_SOURCE.split(","))
         .pipe(cache('scsslint'))
         .pipe(scsslint({
-            'bundleExec': true,
             'config': 'lint.yml'
         }))
 });
