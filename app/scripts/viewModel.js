@@ -173,20 +173,17 @@ var ViewModel = function() {
 
         title = e.target.dataset.title;
 
-        self.state.currentSelectedGroup = title;
-
         if (self.state.menuBindingContext === "header") {
             headerGroupMenuBtn.innerHTML = title;
             todoFormGroupIntput.value = title;
+            self.state.currentSelectedGroup = title;
         } else {
             var input = d.querySelector('#' + self.state.menuBindingContext + ' [name=' + self.state.menuBindingInputName + ']');
             input.value = title;
         }
         
         self.hideActionMenu();
-
         self.loadFilteredTodos();
-
     };
 
     self.handleGroupDeleteBtnClick = (data, e) => {
@@ -296,11 +293,13 @@ var ViewModel = function() {
 
     self.init = function() {
 
-
         model.group.getAll(self.loadAll);
         model.todo.getAll(self.loadAll);
-        model.group.getAll(function(type, doc){
-            if(doc && doc.rows && doc.rows.length) {
+        model.group.getAll(function(type, doc) {
+            console.log(doc);
+            if(doc && doc.rows.length == 0) {
+                // show button & text to create a group
+            } else if(doc && doc.rows && doc.rows.length) {
                 title = doc.rows[0].doc.title;
 
                 self.state.currentSelectedGroup = title;
