@@ -1,14 +1,13 @@
+'use strict';
 
 var ViewModel = function() {
     var self = this,
         i = 0,
-        data,
         is,
         d = document,
         title = '',
         headerGroupMenuBtn = d.querySelector('#drawer h1'),
         todoFormGroupIntput = d.querySelector('#todo-form [name=group]'),
-        //circleNav = d.getElementById('c-circle-nav'),
         dashboard = d.querySelector('[data-position="current"]'),
         model = {
             todo: new TodoModel(),
@@ -22,34 +21,33 @@ var ViewModel = function() {
         {key: 'urgent'}
     ];
 
-    self.priorityArray = ['low','middle','height','urgent'];
+    self.priorityArray = [ 'low', 'middle', 'height', 'urgent' ];
 
     self.state = {
         currentOpenMenu: 'group-menu',
         currentSelectedGroup: '',
         currentOpenTodo: ko.observable({
-            date: "",
-            desc: "",
+            date: '',
+            desc: '',
             done: false,
-            group: "",
+            group: '',
             prio: 0,
-            time: "",
-            title: ""
+            time: '',
+            title: ''
         }),
         allGroups: ko.observableArray(),
         allTodos: ko.observableArray(),
         filteredTodosWithDateInFuture: ko.observableArray(),
         filteredDatelessTodos: ko.observableArray()
-        //showCheckbox: ko.observable(false)
     };
 
     // Helper
 
-    self.setStatus = (msg) => {
+    self.setStatus = function(msg) {
         utils.status.show(msg);
     };
 
-    self.parseInputToObj = (data) => {
+    self.parseInputToObj = function(data) {
         formData = {};
 
         for (i = data.length; i--; ) {
@@ -63,21 +61,21 @@ var ViewModel = function() {
         return formData;
     };
 
-    self.capitalizeWord = (word) => {
-        return word.substr(0,1).toUpperCase() + word.substr(1);
+    self.capitalizeWord = function(word) {
+        return word.substr(0, 1).toUpperCase() + word.substr(1);
     };
 
     // Menu Functions
 
-    self.showActionMenu = () => {
+    self.showActionMenu = function() {
         d.getElementById(self.state.currentOpenMenu).className = 'fade-in';
     };
 
-    self.hideActionMenu = () => {
+    self.hideActionMenu = function() {
         d.getElementById(self.state.currentOpenMenu).className = 'fade-out';
     };
 
-    self.openMenu = (data, e) => {
+    self.openMenu = function(data, e) {
         self.state.currentOpenMenu = e.currentTarget.dataset.targetId;
         self.state.menuBindingContext = e.currentTarget.dataset.bindingContext;
         self.state.menuBindingInputName = e.currentTarget.name;
@@ -87,7 +85,6 @@ var ViewModel = function() {
             // bindingContext is an pouchdb id
             model.todo.get(e.currentTarget.dataset.bindingContext, function(doc) {
                 self.state.currentOpenTodo(doc);
-                console.log(self.state.currentOpenTodo())
                 self.showActionMenu();
 
             });
@@ -96,25 +93,25 @@ var ViewModel = function() {
         }
     };
 
-    self.hideMenu = (data, e) => {
+    self.hideMenu = function(data, e) {
         e.preventDefault();
 
         // if(self.state.currentOpenMenu === 'account-menu') {
         //     self.hidegroupMenu();
         // } else {
-            self.hideActionMenu();
+        self.hideActionMenu();
         // }
 
         self.state.currentOpenMenu = '';
     };
 
     /**
-     * toggleAccordion will toggle an passed accordion 
+     * toggleAccordion will toggle an passed accordion
+     * @param  {object} data knockout data object
      * @param  {event} e contains the accordion target id
-     * @return {null} no return
      */
-    self.toggleAccordion = (data, e) => {
-        let accordionContent = d.getElementById(e.currentTarget.dataset.targetId),
+    self.toggleAccordion = function(data, e) {
+        var accordionContent = d.getElementById(e.currentTarget.dataset.targetId),
             showAccordion = e.currentTarget.checked;
 
         accordionContent.style.display = showAccordion ? 'block' : 'none';
@@ -123,20 +120,17 @@ var ViewModel = function() {
     /**
      * showAccordionContent will make a default hidden accordion visible
      * @param  {string} targetId DOM id
-     * @return {null} no return
      */
-    self.showAccordionContent = (targetId) => {
-        let accordionContent = d.getElementById(targetId);
+    self.showAccordionContent = function(targetId) {
+        var accordionContent = d.getElementById(targetId);
 
         accordionContent.style.display = 'block';
     };
 
     /**
      * just an auto animatio to return to the dashboard
-     * @param {object} doc is a pouchdb document
-     * @return {null} no return
      */
-    self.offCanvasAutoBack = (doc) => {        
+    self.offCanvasAutoBack = function() {        
 
         // if(self.isFirstAccount && typeof doc !== 'undefined') {
         //     self.hideNoAccountsAvailableSection(doc);
@@ -151,8 +145,8 @@ var ViewModel = function() {
     /**
      * offCanvasAction - control all off canvas slides
      * from side navigation to some section and back
+     * @param  {object} data knockout data object
      * @param {event} e is an event
-     * @return {null} no return
      */
     self.offCanvasAction = function(data, e) {
         data = e.currentTarget.dataset;
@@ -167,14 +161,14 @@ var ViewModel = function() {
     /**
      * handleActionBtnClick - will grep the value of the selection 
      * and write it back to currency field in form where the menu has been opened
-     * @param {string} choice is the choosen action menu button content
-     * @return {null} no return
+     * @param  {object} data knockout data object
+     * @param {event} e is an event
      */
-    self.handleActionBtnClick = (data, e) => {
+    self.handleActionBtnClick = function(data, e) {
 
         title = e.target.dataset.title;
 
-        if (self.state.menuBindingContext === "header") {
+        if (self.state.menuBindingContext === 'header') {
             headerGroupMenuBtn.innerHTML = title;
             todoFormGroupIntput.value = title;
             self.state.currentSelectedGroup = title;
@@ -187,30 +181,26 @@ var ViewModel = function() {
         self.loadFilteredTodos();
     };
 
-    self.handleGroupDeleteBtnClick = (data, e) => {
+    self.handleGroupDeleteBtnClick = function(data) {
         model.group.delete(data.id, function() {
             model.group.getAll(self.loadAll);
         });
     };
 
-    self.handleEditMenuBtnClick = (data, e) => {
+    self.handleEditMenuBtnClick = function(data, e) {
         var btnType = e.currentTarget.dataset.btnType,
             id = self.state.menuBindingContext;
-
-        console.log(btnType);
 
         if( btnType === 'done' ) {
             model.todo.update(id, function(doc){
                 self.hideActionMenu();
                 doc.done = !doc.done;
-                console.log(doc);
                 return doc;
             });
         } else if ( btnType === 'delete' ) {
-            model.todo.delete(id, function(){
+            model.todo.delete(id, function() {
                 self.hideActionMenu();
             });
-
         }
     };
 
@@ -221,7 +211,7 @@ var ViewModel = function() {
     //     self.state.showCheckbox(bool);
     // };
 
-    self.saveFormData = (data, e) => {
+    self.saveFormData = function(data, e) {
         // i dont need the passed knockout data object data
         // and use it for click event dataset
         data = e.target.dataset;
@@ -240,10 +230,10 @@ var ViewModel = function() {
         // and put the hashtag(s) in own fromData attribute
         if(typeof formData.desc !== 'undefined' && formData.desc.indexOf('#') > -1 && type !== 'todo') {
             formData.hashtags = [];
-            let tempArr = formData.desc.split(' ');
+            var tempArr = formData.desc.split(' ');
             formData.desc = '';
 
-            for (let i = tempArr.length; i--;) {
+            for (var i = tempArr.length; i--;) {
                 // if hashtag is set with #
                 // push current saved hashtag to state array
                 // and increment counter in db for ranking
@@ -252,7 +242,7 @@ var ViewModel = function() {
 
                     model.settings.incrementHashtag(tempArr[i].substr(1));
                 } else {
-                    formData.desc += `${tempArr[i]} `;
+                    formData.desc += tempArr[i] + ' ';
                 }
             }
         }
@@ -264,7 +254,7 @@ var ViewModel = function() {
         self.offCanvasAutoBack(formData);
     };
 
-    self.loadFilteredTodos = () => {
+    self.loadFilteredTodos = function() {
         var todos = self.filterTodoForGroup(self.state.currentSelectedGroup);
         todos = self.sortOutTodosWithDateInFuture(todos);
         self.state.filteredTodosWithDateInFuture(self.orderTodosFor('unixTimeStamp', todos.filteredTodosWithDateInFuture, 'DESC'));
@@ -272,13 +262,13 @@ var ViewModel = function() {
 
     };
 
-    self.filterTodoForGroup = (group) => {
-        return self.state.allTodos().filter((todo) => {
+    self.filterTodoForGroup = function(group) {
+        return self.state.allTodos().filter(function(todo) {
             return group === todo.doc.group;
         });
     };
 
-    self.sortOutTodosWithDateInFuture = (todos) => {
+    self.sortOutTodosWithDateInFuture = function(todos) {
 
         var todaysDate = ~~(new Date().getTime() / 1000),
             todoExpDate = todaysDate,
@@ -289,7 +279,7 @@ var ViewModel = function() {
             if(todo.doc.date !== '') {
                 todoExpDate = ~~(new Date(fecha.parse(todo.doc.date, 'YYYY-MM-DD')).getTime() / 1000);
             } else {
-                todoExpDate = todaysDate
+                todoExpDate = todaysDate;
             }
 
             if(todoExpDate > todaysDate) {
@@ -305,7 +295,7 @@ var ViewModel = function() {
             filteredDatelessTodos: filteredDatelessTodos};
     };
 
-    self.orderTodosFor = (attr, todos, direction) => {
+    self.orderTodosFor = function(attr, todos, direction) {
         
         if(direction === 'DESC') {
             return todos.sort(function(t1, t2) {
@@ -333,7 +323,7 @@ var ViewModel = function() {
         model.group.getAll(self.loadAll);
         model.todo.getAll(self.loadAll);
         model.group.getAll(function(type, doc) {
-            if(doc && doc.rows.length == 0) {
+            if(doc && doc.rows.length === 0) {
                 // show button & text to create a group
             } else if(doc && doc.rows && doc.rows.length) {
                 title = doc.rows[0].doc.title;
@@ -347,8 +337,8 @@ var ViewModel = function() {
     };
 
     self.init();
-}
-
+};
+/* eslint-disable eslint-enable camelcase */
 var vm = new ViewModel();
-
+/* eslint-enable eslint-enable camelcase */
 ko.applyBindings(vm);

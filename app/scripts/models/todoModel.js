@@ -1,7 +1,9 @@
 'use strict';
 
 /* Todo Model */
+/* eslint-disable no-unused-vars */
 var TodoModel = function() {
+/* eslint-enable no-unused-vars */
     var type = 'todo',
         self = this;
 
@@ -12,7 +14,7 @@ var TodoModel = function() {
         'urgent': 3
     };
 
-    self.transaction = (formData) => {
+    self.transaction = function (formData) {
         /* if date field is emtpy set current date an time */
         if (formData.date.length <= 0) {
             formData.date = fecha.format(new Date(), 'YYYY-MM-DD');
@@ -44,25 +46,25 @@ var TodoModel = function() {
         pm.save(type, formData);
     };
 
-    self.get = (id, callback) => {
-        pm.get(type, id, (doc) => {
+    self.get = function (id, callback) {
+        pm.get(type, id, function (doc) {
             callback(doc);
         });
     };
 
-    self.getAll = (callback) => {
-        pm.getAll(type, (result) => {
+    self.getAll = function (callback) {
+        pm.getAll(type, function (result) {
             callback(type, result);
         });
     };
 
-    self.update = (id, callback) => {
-        pm.update(type, id, (doc) => {
+    self.update = function (id, callback) {
+        pm.update(type, id, function (doc) {
             return callback(doc);
         });
     };
 
-    self.delete = (id, callback) => {
+    self.delete = function (id, callback) {
         pm.removeId(type, id, callback);
     };
-}
+};

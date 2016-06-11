@@ -1,18 +1,18 @@
-"use strict";
+'use strict';
 
 /**
  * PouchModel
  * @return {function} will return all public functions of the PouchModel
  */
-const PouchModel = function() {
+var PouchModel = function() {
     var self = this,
         db = {
             todo: new PouchDB('todo'),
-            group: new PouchDB('group')//,settings: new PouchDB('settings')
+            group: new PouchDB('group')// ,settings: new PouchDB('settings')
         },
         syncDatabase = {};
 
-    self.initializeCouchDBSync = (doc) => {
+    self.initializeCouchDBSync = function (doc) {
 
         var allDBs = Object.keys(db),
             domain = doc['couchdb-url'].split('/'),
@@ -26,8 +26,7 @@ const PouchModel = function() {
             dbName = allDBs[i];
 
             // url = domain[0] + '//' + userName + ':' + password + '@' + domain[2] + '/' + prefix + dbName;
-            url = `${domain[0]}//${userName}:${password}@${domain[2]}/${prefix}${dbName}`;
-            
+            url = domain[0] + '//' + userName + ':' + password + '@' + domain[2] + '/' + prefix + dbName;
             console.log(url);
 
             // http://pouchdb.com/guides/replication.html
@@ -36,78 +35,79 @@ const PouchModel = function() {
             db[dbName].sync(syncDatabase[dbName], {
             //     live: true,
             //     retry: true
-            }).on('complete', () => {
-              vm.setStatus(`${dbName} has been synct`, 2000);
-              console.log(`${dbName} has been synct`, 2000);
-            }).on('error', () => {
-              vm.setStatus(`${dbName} could not be synct`, 2000);
-              console.log(`${dbName} could not be synct`, 2000);
+            }).on('complete', function() {
+                vm.setStatus(dbName + ' has been synct', 2000);
+                console.log(dbName + ' has been synct', 2000);
+            }).on('error', function() {
+                vm.setStatus(dbName + ' could not be synct', 2000);
+                console.log(dbName + ' could not be synct', 2000);
             });
         }
     };
 
-    self.get = (type, id, callback) => {
+    self.get = function (type, id, callback) {
         db[type].get(id)
         .then(callback)
-        .catch( (err) => err );
+        .catch( function(err) { return err; } );
     };
 
-    self.getAll = (type, callback) => {
+    self.getAll = function (type, callback) {
         /* eslint-disable camelcase */
         db[type].allDocs({ include_docs: true, attachments: false })
         .then(callback)
-        .catch( (err) => err );
+        .catch( function(err) { return err; } );
         /* eslint-enable camelcase */
     };
 
-    self.save = (type, Obj, callback) => {
+    self.save = function (type, Obj, callback) {
         // write unixtime as id
-        Obj._id = `${~~(new Date().getTime() / 1000)}` // cast to string
+        Obj._id = ~~(new Date().getTime() / 1000) + ''; // cast to string
 
-        callback = (typeof callback === undefined) ? (doc) => doc : callback;
+        callback = (typeof callback === undefined) ? function(doc){ return doc; } : callback;
 
         db[type].put(Obj)
         .then(callback)
-        .then ( () => { // show notify
-            vm.setStatus(`${type} has been saved`, 2000);
-        }).catch( (err) => err );
+        .then ( function() { // show notify
+            vm.setStatus(type + ' has been saved', 2000);
+        }).catch( function(err) { return err; } );
     };
 
-    self.removeId = (type, id, callback) => {
+    self.removeId = function (type, id, callback) {
         db[type].get(id)
-        .then( (doc) => { // remove object from db
+        .then( function(doc) { // remove object from db
             db[type].remove(doc);
         })
         .then(callback)
-        .then ( () => { // show notify
-            vm.setStatus(`${type} has been deleted`, 2000);
-        }).then ( () => { // reload all documents to  viewmodel state
+        .then ( function() { // show notify
+            vm.setStatus(type + ' has been deleted', 2000);
+        }).then ( function() { // reload all documents to  viewmodel state
             self.getAll(type, function(doc) {
-                vm.loadAll(type,doc)
+                vm.loadAll(type, doc);
             });
-        }).catch( (err) => err );
+        }).catch( function(err) { return err; } );
     };
 
-    self.update = (type, id, callback, callback2) => {
+    self.update = function(type, id, callback) {
         db[type].get(id)
         .then(callback)
-        .then( (doc) => db[type].put(doc) )
-        .then ( () => { // show notify
-            vm.setStatus(`${type} has been updated`, 2000);
-        }).then ( () => { // reload all documents to  viewmodel state
+        .then( function(doc) { return db[type].put(doc); })
+        .then ( function() { // show notify
+            vm.setStatus(type + ' has been updated', 2000);
+        }).then ( function() { // reload all documents to  viewmodel state
             self.getAll(type, function(doc) {
-                vm.loadAll(type, doc)
+                vm.loadAll(type, doc);
             });
-        }).catch( (err) => err );
+        }).catch( function(err) { return err; } );
     };
 
-    self.nukeAllDataBases = () => {
-        db.todo.destroy().then( () => { console.log('pay has been deleted'); });
-        db.group.destroy().then( () => { console.log('inpay has been deleted'); });
-        //db.settings.destroy().then( () => { console.log('settings has been deleted'); });
+    self.nukeAllDataBases = function() {
+        db.todo.destroy().then( function() { console.log('pay has been deleted'); });
+        db.group.destroy().then( function() { console.log('inpay has been deleted'); });
+        // db.settings.destroy().then( function() { console.log('settings has been deleted'); });
     };
 
     return self;
-}
-
+};
+/* eslint-disable no-unused-vars */
 var pm = new PouchModel();
+/* eslint-enable no-unused-vars */
