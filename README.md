@@ -2,7 +2,7 @@
 
 Build with 
  * [Mozilla buildingfirefoxos.com](https://buildingfirefoxos.com/building-blocks)
- * [Mozilla X-Tags](http://x-tag.github.io/)
+ * [KnockoutJS](http://knockoutjs.com/)
  * [PouchDB](https://pouchdb.com/)
  * [fecha](https://github.com/taylorhakes/fecha)
 
