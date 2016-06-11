@@ -23,7 +23,7 @@ so that I can outsource my brain capacity to the phone
 - [x] todos will be shown in a list
 - [x] todos will be shown filtered by group
 - [x] todos can be ordered by priority
-- [ ] and by date (show date as header group if date is in the future and order by priority all todos with this date under the date header group) 
+- [x] and by date (<strike>show date as header group</strike> if date is in the future and order by priority all todos with this date under the date header group) 
 - [x] priority will be signaled by color
 - [ ] todos can be edit
 - [ ] links in the todo description will be shown as html link in the edit mode
@@ -39,8 +39,6 @@ so that I can outsource my brain capacity to the phone
 - [ ] app will run on android and ios
 
 ### Bugs
-
-- [] todo list is some times empty after some action
 
 ## Install
 ```
