@@ -26,6 +26,7 @@ env.GULP_CSS_DEV_PATH           = env.GULP_DEV_PATH + 'styles/scss/';
 env.GULP_CSS_PROD_PATH          = env.GULP_DEV_PATH + 'styles/bundle/';
 env.GULP_CSS_COMPRESS_SOURCE    = env.GULP_CSS_DEV_PATH + '**/*.scss';
 env.GULP_CSS_DEV_SOURCE         = [
+                                    '!' + env.GULP_CSS_DEV_PATH + '*/gaia/*',
                                     env.GULP_CSS_COMPRESS_SOURCE,
                                 ];
 env.GULP_CSS_USE_MAPS           = true;
@@ -86,7 +87,8 @@ gulp.task('test', [
 ]);
 
 gulp.task('lint', [
-    'lint:scripts'
+    'lint:scripts',
+    'lint:styles'
 ]);
 
 gulp.task('build:styles', [/*'format:styles',*/ 'compress:styles']);
@@ -104,6 +106,6 @@ gulp.task('prod', [
 ]);
 
 gulp.task('watch',['build:styles', 'lint:scripts'], function() {
-    gulp.watch(env.GULP_CSS_COMPRESS_SOURCE, ['build:styles']);
+    gulp.watch(env.GULP_CSS_COMPRESS_SOURCE, ['lint:styles', 'build:styles']);
     gulp.watch(env.GULP_JS_DEV_PATHS + 'apps/**/*', ['lint:scripts']);
 });
