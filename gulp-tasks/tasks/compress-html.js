@@ -7,7 +7,7 @@ var gulp            = require('gulp'),
  */
 
 gulp.task('compress:html', function() {
-  	gulp.src(process.env.GULP_HTML_DEV_SOURCE)
+  	gulp.src(process.env.GULP_PROD_PATH)
 		// option: https://github.com/kangax/html-minifier
 	    .pipe(htmlmin({
 	        collapseWhitespace: true,

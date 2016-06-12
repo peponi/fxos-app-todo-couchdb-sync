@@ -9,12 +9,13 @@ htmlreplace         = require('gulp-html-replace');
 gulp.task('replace:html', function() {
   return gulp.src(process.env.GULP_HTML_DEV_SOURCE)
     .pipe(htmlreplace({
-        'css': 'lib.css',
-        'js': 'app.js',
+        'js-lib': '<script src="app/scripts/lib.js"></script>',
+        'js-app': '<script src="app/scripts/app.js"></script>',
+        'css': '<link rel="stylesheet" type="text/css" href="app/styles/bundle/lib.css">',
         'appcache': {
             src: 'manifest.appcache',
             tpl: '<html manifest="%s">'
         }
     }))
-    .pipe(gulp.dest(prodPath));
+    .pipe(gulp.dest(process.env.GULP_WEBSITE_ROOT + 'build/'));
 });

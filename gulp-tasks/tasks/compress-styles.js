@@ -14,8 +14,7 @@ var gulp            = require('gulp'),
  * Compress Styles
  */
 
-gulp.task('compress:styles', function () {    
-    console.log(process.env.GULP_CSS_COMPRESS_SOURCE, process.env.GULP_CSS_PROD_PATH);
+gulp.task('compress:styles', function () {
     gulp.src(process.env.GULP_CSS_COMPRESS_SOURCE)
         .pipe(
             gulpif(process.env.GULP_CSS_USE_MAPS,
@@ -45,5 +44,10 @@ gulp.task('compress:styles', function () {
                 minifyCSS()
             )
         )
-        .pipe(gulp.dest(process.env.GULP_CSS_PROD_PATH));    
+        .pipe(
+            gulpif(process.env.GULP_ENVIRONMENT === 'development',
+                gulp.dest(process.env.GULP_CSS_PROD_PATH),
+                gulp.dest(process.env.GULP_PROD_PATH + 'styles/bundle/')
+            )
+        );    
 });

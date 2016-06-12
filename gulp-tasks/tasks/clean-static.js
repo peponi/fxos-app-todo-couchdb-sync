@@ -7,6 +7,6 @@ var gulp    = require('gulp'),
  */
 
 gulp.task('clean:static', function () {
-    return gulp.src(process.env.GULP_PROD_PATH + '/')
+    return gulp.src(process.env.GULP_WEBSITE_ROOT + 'build/')
         .pipe(clean());
 });

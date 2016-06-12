@@ -29,12 +29,12 @@ so that I can outsource my brain capacity to the phone
 - [ ] links in the todo description will be shown as html link in the edit mode
 - [ ] it will show a message if a todo has been toggle with an unsolved dependency (other todo is not done)
 - [ ] settings will be loaded on startup (language/couchdb)
-- [ ] it will prefer the system default language
 - [ ] synchronization to a CouchDB works
 - [ ] sharing lists with other user ver couchdb accounts
 - [ ] group delete will show a confirm message and delete all dependet todos 
 - [ ] synchronization to a CouchDB works
 - [ ] transaltion can be added
+- [ ] it will prefer the system default language
 - [ ] LTR/RTL works
 - [ ] app will run on FXOS 1.1
 - [ ] app will run on android and ios

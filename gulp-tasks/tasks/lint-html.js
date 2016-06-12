@@ -9,7 +9,6 @@ var gulp       	= require('gulp'),
  */
 
 gulp.task('lint:html', function() {
-	console.log(process.env.GULP_HTML_DEV_SOURCE);
     return gulp.src(process.env.GULP_HTML_DEV_SOURCE)
         .pipe(cache('htmllint'))
         .pipe(htmllint());

@@ -32,8 +32,8 @@
     <link rel="stylesheet" href="app/building-blocks/util.css">
     <link rel="stylesheet" href="app/building-blocks/fonts.css">
 
-    <link rel="stylesheet" type="text/css" href="app/styles/bundle/app.css">
     <!-- endbuild -->
+    <link rel="stylesheet" type="text/css" href="app/styles/bundle/app.css">
 
     <title>wallet</title>
 </head>
@@ -464,15 +464,18 @@
             </section>         
         </form>
     </section>
-
+    <!-- build:js-lib -->
     <script src="node_modules/knockout/build/output/knockout-latest.js"></script>
     <script src="node_modules/fecha/fecha.min.js"></script>
     <script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
     <script src="app/building-blocks/js/status.js"></script>
+    <!-- endbuild -->
+    <!-- build:js-app -->
     <script src="app/scripts/models/pouchModel.js"></script>
     <script src="app/scripts/models/todoModel.js"></script>
     <script src="app/scripts/models/groupModel.js"></script>
     <script src="app/scripts/viewModel.js"></script>
+    <!-- endbuild -->
 
 </body>
 </html>
