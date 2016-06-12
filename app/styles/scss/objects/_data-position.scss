@@ -1,42 +1,35 @@
-[data-position='right']
-{
+[data-position='right'] {
     position: absolute;
-    z-index: 15;
     z-index: 100; /* -> drawer */
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
 
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
+    transform: translateX(100%);
+    
+    &.current {
+        animation: rightToCurrent .4s forwards;
+    }
+
+    &.right {
+        animation: currentToRight .4s forwards;
+    }
 }
-section[role='region'][data-position='right']
-{
+
+[role='region'][data-position='right'] {
     position: absolute;
 }
-[data-position='right'].current
-{
-    -webkit-animation: rightToCurrent .4s forwards;
-            animation: rightToCurrent .4s forwards;
+
+[data-position='current'].left {
+    animation: currentToLeft .4s forwards;
 }
-[data-position='right'].right
-{
-    -webkit-animation: currentToRight .4s forwards;
-            animation: currentToRight .4s forwards;
+
+[data-position='current'].current {
+    animation: leftToCurrent .4s forwards;
 }
-[data-position='current'].left
-{
-    -webkit-animation: currentToLeft .4s forwards;
-            animation: currentToLeft .4s forwards;
-}
-[data-position='current'].current
-{
-    -webkit-animation: leftToCurrent .4s forwards;
-            animation: leftToCurrent .4s forwards;
-}
-[data-position='back']
-{
+
+[data-position='back'] {
     position: absolute;
     z-index: -1;
     top: 0;
@@ -46,21 +39,19 @@ section[role='region'][data-position='right']
 
     opacity: 0;
     /* z-index: 100; -> drawer */
-}
-[data-position='back'].fade-in
-{
-    z-index: 120;
+    &.fade-in {
+        z-index: 120;
 
-    -webkit-animation: fadeIn .2s forwards;
-            animation: fadeIn .2s forwards;
+        animation: fadeIn .2s forwards;
+    }
+
+    &.fade-out {
+        animation: fadeOut .2s forwards;
+    }
 }
-[data-position='back'].fade-out
-{
-    -webkit-animation: fadeOut .2s forwards;
-            animation: fadeOut .2s forwards;
-}
-[data-position='edit-mode']
-{
+
+
+[data-position='edit-mode'] {
     position: absolute;
     z-index: -1;
     top: -5rem;
@@ -71,15 +62,15 @@ section[role='region'][data-position='right']
     transition: all .3s ease;
 
     opacity: 0;
-}
-[data-position='edit-mode'].edit
-{
-    position: absolute;
-    z-index: 120;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    
+    &.edit {
+        position: absolute;
+        z-index: 120;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
 
-    opacity: 1;
+        opacity: 1;
+    }
 }

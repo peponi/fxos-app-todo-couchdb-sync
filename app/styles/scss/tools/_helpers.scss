@@ -1,29 +1,23 @@
-.center
-{
+.center {
     text-align: center;
 }
 
-.hide
-{
+.hide {
     display: none;
 }
 
-.inline
-{
+.inline {
     display: inline-block;
 }
 
-.table
-{
+.table {
     display: table;
 
-    .table-row
-    {
+    .table-row {
         display: table-row;
     }
 
-    .table-cell
-    {
+    .table-cell {
         display: table-cell;
 
         vertical-align: middle;
@@ -31,8 +25,7 @@
 }
 
 /* Active state */
-.active
-{
+.active {
     color: #fff;
     background-color: #b2f2ff;
 }

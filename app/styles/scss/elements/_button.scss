@@ -1,10 +1,9 @@
-button[type=delete]
-{
+[type=delete] {
     height: 59px;
     margin: 0;
 
     cursor: pointer;
 
     border: 0;
-    background: url(../bower_components/building-blocks/style/input_areas/images/clear.png) no-repeat 50% 50% / 2.4rem auto;
+    background: url("../bower_components/building-blocks/style/input_areas/images/clear.png") no-repeat 50% 50% / 2.4rem auto;
 }

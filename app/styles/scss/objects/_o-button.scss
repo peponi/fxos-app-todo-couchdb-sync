@@ -6,8 +6,7 @@ $button-background-color--active: #b2f2ff;
 $button-background-color--recommend: #00caf2;
 $button-background-color--danger: #e51e1e;
 
-.button
-{
+.button {
     font-family: sans-serif;
     font-size: 1.6rem;
     font-weight: normal;
@@ -34,26 +33,22 @@ $button-background-color--danger: #e51e1e;
     outline: none;
     background: $button-background-color;
 
-    &:-moz-focus-inner
-    {
+    &:-moz-focus-inner {
         border: 0;
         outline: none;
     }
 
-    &:active
-    {
+    &:active {
         color: $white;
         background-color: $button-background-color--active;
     }
 
-    &.recommend
-    {
+    &.recommend {
         color: $white;
         background-color: $button-background-color--recommend;
     }
 
-    &.danger
-    {
+    &.danger {
         color: $white;
         background-color: $button-background-color--danger;
     }

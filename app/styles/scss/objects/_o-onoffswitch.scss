@@ -25,24 +25,19 @@ $o-onoffswitch-border-radius: 50px;
 $o-onoffswitch-border-color: $dark-grey;
 
 // clases
-.o-onoffswitch
-{
+.o-onoffswitch {
     position: relative;
 
     width: $o-onoffswitch-width;
 
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
+    user-select: none;
 }
 
-.o-onoffswitch-checkbox
-{
+.o-onoffswitch-checkbox {
     display: none;
 }
 
-.o-onoffswitch-label
-{
+.o-onoffswitch-label {
     display: block;
     overflow: hidden;
 
@@ -52,49 +47,45 @@ $o-onoffswitch-border-color: $dark-grey;
     border-radius: $o-onoffswitch-border-radius;
 }
 
-.o-onoffswitch-inner
-{
-    display: block; width: 200%;
+.o-onoffswitch-inner {
+    display: block;
+    width: 200%;
     margin-left: -100%;
 
     transition: margin .3s ease-in 0s;
-}
 
-.o-onoffswitch-inner:before,
-.o-onoffswitch-inner:after
-{
-    font-family: Trebuchet, Arial, sans-serif;
-    font-size: $o-onoffswitch-font-size;
-    font-weight: bold;
-    line-height: $o-onoffswitch-height;
+    &:before,
+    &:after {
+        font-family: Trebuchet, Arial, sans-serif;
+        font-size: $o-onoffswitch-font-size;
+        font-weight: bold;
+        line-height: $o-onoffswitch-height;
 
-    display: block;
-    float: left;
+        display: block;
+        float: left;
 
-    box-sizing: border-box;
-    width: 50%;
-    height: $o-onoffswitch-height;
-    padding: 0;
+        box-sizing: border-box;
+        width: 50%;
+        height: $o-onoffswitch-height;
+        padding: 0;
 
-    color: white;
-}
+        color: white;
+    }
 
-.o-onoffswitch-inner
-{
-    &:before
-    {
+
+    &:before {
         padding-left: $o-onoffswitch-text-spacing;
 
-        content: 'payment';
+        content: "payment";
 
         color: $o-onoffswitch-active-text-color;
         background-color: $o-onoffswitch-active-background-color;
     }
-    &:after
-    {
+
+    &:after {
         padding-right: $o-onoffswitch-text-spacing;
 
-        content: 'inpayment';
+        content: "inpayment";
         text-align: right;
 
         color: $o-onoffswitch-inactive-text-color;
@@ -102,11 +93,11 @@ $o-onoffswitch-border-color: $dark-grey;
     }
 }
 
-.o-onoffswitch-switch
-{
+.o-onoffswitch-switch {
     position: absolute;
     top: 0;
-    right: 124px;bottom: 0;
+    right: 124px;
+    bottom: 0;
 
     display: block;
 
@@ -120,15 +111,12 @@ $o-onoffswitch-border-color: $dark-grey;
     background: $o-onoffswitch-switch-background-color;
 }
 
-.o-onoffswitch-checkbox:checked + .o-onoffswitch-label
-{
-    .o-onoffswitch-inner
-    {
+.o-onoffswitch-checkbox:checked + .o-onoffswitch-label {
+    .o-onoffswitch-inner {
         margin-left: 0;
     }
 
-    .o-onoffswitch-switch
-    {
+    .o-onoffswitch-switch {
         right: 0;
     }
 }

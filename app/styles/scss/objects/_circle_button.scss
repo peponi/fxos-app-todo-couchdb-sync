@@ -1,8 +1,7 @@
 $circle-button__size: 48px;
 $circle-button__display-padding: 12px;
 
-.circle-button
-{
+.circle-button {
     position: fixed;
 
     width: $circle-button__size;
@@ -12,6 +11,7 @@ $circle-button__display-padding: 12px;
 
     cursor: pointer;
     transition: opacity .9s ease;
+    text-align: center;
 
     opacity: 1;
     color: $white;
@@ -21,8 +21,7 @@ $circle-button__display-padding: 12px;
     background-color: $blue-light;
     box-shadow: -2px 3px 6px 0 $shadow-grey;
 
-    &.on-dark-background
-    {
+    &.on-dark-background {
         box-shadow: -2px 3px 6px 0 $circle-button-shadow-black;
     }
 
@@ -31,24 +30,20 @@ $circle-button__display-padding: 12px;
     // }
 
     &.plus,
-    &.minus
-    {
+    &.minus {
         font-size: 50px;
     }
 
-    &.hidden
-    {
+    &.hidden {
         opacity: 0;
     }
 
-    &.position-bottom-left
-    {
+    &.position-bottom-left {
         bottom: $circle-button__display-padding;
         left: $circle-button__display-padding;
     }
 
-    &.position-bottom-right
-    {
+    &.position-bottom-right {
         right: $circle-button__display-padding;
         bottom: $circle-button__display-padding;
     }

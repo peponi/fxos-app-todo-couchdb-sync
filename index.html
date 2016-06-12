@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <section id="index" data-position="current">
+    <section id="index" class="index" data-position="current">
         <section data-type="sidebar">
             <header>
                 <menu type="toolbar">
@@ -100,12 +100,12 @@
             </nav>
         </section>
 
-        <section id="drawer" role="region">
+        <section id="drawer" class="drawer" role="region">
             <header class="fixed">
-                <a href="#" id="open-drawer-btn">
+                <a href="#" id="open-drawer-btn" class="open-drawer-btn">
                     <img width="30" height="30" src="./app/images/icons/png/menu62.png" class="burg-icon" alt="burger icon">
                 </a>
-                <a href="#drawer" id="close-drawer-btn">
+                <a href="#drawer" id="close-drawer-btn" class="close-drawer-btn">
                     <img width="30" height="30" src="./app/images/icons/png/menu62.png" class="burg-icon" alt="burger icon">
                 </a>
                 <h1 data-bind="click:openMenu"
@@ -117,7 +117,7 @@
             <section class="content scrollable header">
                 <section data-type="list">                
 
-                    <div id="main-todo-list">
+                    <div id="main-todo-list" class="main-todo-list">
                          <section data-bind="if: state.filteredTodosWithDateInFuture().length > 0">
                             <header>
                                 <span>Expiry List</span>
@@ -322,7 +322,7 @@
 
         <section class="content scrollable header">
             <fieldset>
-                <form id="couchdb-form">
+                <form id="couchdb-form" class="couchdb-form">
                     <div class="table">                        
                         <p class="table-row">
                             <label for="" class="table-cell">Sync to CouchDB</label>
@@ -440,7 +440,7 @@
     </section>
 
     <!--···························· action menu - edit ····························-->
-    <section data-position="back" class="fade-out" id="edit-menu">
+    <section data-position="back" class="fade-out" id="edit-menu" class="edit-menu">
         <form role="dialog" data-type="action">
             <header>
                 <div class="inline">Todo Edit</div>

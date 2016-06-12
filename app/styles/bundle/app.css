@@ -12,11 +12,11 @@
   color: #0095dd; }
 
 @font-face {
-  font-family: 'Amatic SC';
+  font-family: "Amatic SC";
   src: url("../../fonts/AmaticSC-Regular.ttf") format("ttf"); }
 
 @font-face {
-  font-family: 'Amatic SC Bold';
+  font-family: "Amatic SC Bold";
   src: url("../../fonts/AmaticSC-Bold.ttf") format("ttf"); }
 
 button:focus {
@@ -28,7 +28,7 @@ button:focus {
   color: #00aac5; }
 
 /* burger icon */
-#drawer header a {
+.drawer header a {
   font-size: 22px;
   font-style: normal;
   color: #fff; }
@@ -38,7 +38,7 @@ button:focus {
   [role='dialog'][data-type='action'] menu {
     bottom: 0;
     max-height: calc(100% - 7rem); }
-    [role='dialog'][data-type='action'] menu > button.action-menu__btn {
+    [role='dialog'][data-type='action'] menu > .action-menu__btn {
       font-style: normal;
       height: auto;
       padding-bottom: 1.2rem;
@@ -47,44 +47,42 @@ button:focus {
       border-bottom: 1px solid rgba(87, 87, 87, 0.85);
       background: rgba(51, 51, 51, 0.7);
       box-shadow: 0 0 20px 5px rgba(51, 51, 51, 0.7); }
-      [role='dialog'][data-type='action'] menu > button.action-menu__btn .btn__content-line {
-        margin: 0; }
+    [role='dialog'][data-type='action'] menu .btn__content-line {
+      margin: 0; }
 
-section[role='region'] > header:first-child button {
+[role='region'] > header:first-child button {
   color: #fff;
   border-left: 1px solid rgba(0, 0, 0, 0.03); }
 
-#edit-mode [data-type=edit] {
+.edit-mode [data-type=edit] {
   position: absolute;
   top: 0;
   bottom: 0; }
 
 /* gaia overwrites & adaptions */
-#index {
+.index {
   height: 100%; }
-
-[role='dialog'][data-type='action'] > header {
-  padding: 0; }
-  [role='dialog'][data-type='action'] > header .inline:first-child {
-    margin: 0;
-    padding-left: 3rem; }
-  [role='dialog'][data-type='action'] > header .inline:last-child {
-    position: absolute;
-    right: 1rem;
-    left: auto;
-    width: auto;
-    padding: 0 1rem;
-    border-left: 1px solid #666; }
 
 [role='dialog'][data-type='action'] {
   overflow-y: scroll; }
-
-[role='dialog'][data-type='action'] menu > button {
-  font-size: 1.9rem;
-  font-weight: normal;
-  line-height: 2.5rem; }
-  [role='dialog'][data-type='action'] menu > button:nth-last-child(2) {
-    margin-bottom: 1rem; }
+  [role='dialog'][data-type='action'] > header {
+    padding: 0; }
+    [role='dialog'][data-type='action'] > header .inline:first-child {
+      margin: 0;
+      padding-left: 3rem; }
+    [role='dialog'][data-type='action'] > header .inline:last-child {
+      position: absolute;
+      right: 1rem;
+      left: auto;
+      width: auto;
+      padding: 0 1rem;
+      border-left: 1px solid #666; }
+  [role='dialog'][data-type='action'] menu > button {
+    font-size: 1.9rem;
+    font-weight: normal;
+    line-height: 2.5rem; }
+    [role='dialog'][data-type='action'] menu > button:nth-last-child(2) {
+      margin-bottom: 1rem; }
 
 [data-type="list"] aside.pack-end {
   height: 0;
@@ -93,7 +91,7 @@ section[role='region'] > header:first-child button {
   color: #999;
   font-size: 18px; }
 
-[data-type='list'] aside img {
+[data-type="list"] aside img {
   width: 3rem;
   height: 3rem;
   margin-top: 1.5rem; }
@@ -130,7 +128,7 @@ section[role='region'] > header:first-child button {
 form select {
   padding: 8px;
   color: #aaaaaa;
-  background: #fff url(../bower_components/building-blocks/style/input_areas/images/dialog.svg) no-repeat calc(100% - 1rem) calc(100% - 1rem);
+  background: #fff url("../bower_components/building-blocks/style/input_areas/images/dialog.svg") no-repeat calc(100% - 1rem) calc(100% - 1rem);
   background-color: white; }
 
 form label {
@@ -138,7 +136,7 @@ form label {
   font-style: italic;
   color: #aaa; }
 
-input[type=button] {
+[type=button] {
   font-family: sans-serif;
   font-size: 1.6rem;
   line-height: 4rem;
@@ -153,7 +151,7 @@ input[type=button] {
   color: #333;
   border: 0.1rem solid #c7c7c7;
   border-radius: 0;
-  background: #fff url(../../images/input_areas/images/dialog.svg) no-repeat calc(100% - 1rem) calc(100% - 1rem);
+  background: #fff url("../../images/input_areas/images/dialog.svg") no-repeat calc(100% - 1rem) calc(100% - 1rem);
   box-shadow: none;
   /* override the box-shadow from the system (performance issue) */ }
 
@@ -174,35 +172,20 @@ input[type=button] {
     display: inline-block;
     width: 18px;
     height: 18px;
-    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
     animation: sk-bouncedelay 1.4s infinite ease-in-out both;
     border-radius: 100%;
     background-color: #ff9500; }
-
-.spinner .bounce1 {
-  -webkit-animation-delay: -.32s;
-  animation-delay: -.32s; }
-
-.spinner .bounce2 {
-  -webkit-animation-delay: -.16s;
-  animation-delay: -.16s; }
-
-@-webkit-keyframes sk-bouncedelay {
-  0%,
-  80%,
-  100% {
-    -webkit-transform: scale(0); }
-  40% {
-    -webkit-transform: scale(1); } }
+  .spinner .bounce1 {
+    animation-delay: -.32s; }
+  .spinner .bounce2 {
+    animation-delay: -.16s; }
 
 @keyframes sk-bouncedelay {
   0%,
   80%,
   100% {
-    -webkit-transform: scale(0);
     transform: scale(0); }
   40% {
-    -webkit-transform: scale(1);
     transform: scale(1); } }
 
 /* ----------------------------------
@@ -504,9 +487,9 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
   color: #a6a6a6;
   background-color: #e7e7e7; }
 
-#open-drawer-btn,
-#close-drawer-btn {
-  padding-top: 10px; }
+.open-drawer-btn,
+.close-drawer-btn {
+  top: 10px; }
 
 .sidebar-navigation__icon {
   width: 20px;
@@ -565,9 +548,7 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
 .o-onoffswitch {
   position: relative;
   width: 170px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none; }
+  user-select: none; }
 
 .o-onoffswitch-checkbox {
   display: none; }
@@ -584,33 +565,29 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
   width: 200%;
   margin-left: -100%;
   transition: margin .3s ease-in 0s; }
-
-.o-onoffswitch-inner:before,
-.o-onoffswitch-inner:after {
-  font-family: Trebuchet, Arial, sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 42px;
-  display: block;
-  float: left;
-  box-sizing: border-box;
-  width: 50%;
-  height: 42px;
-  padding: 0;
-  color: white; }
-
-.o-onoffswitch-inner:before {
-  padding-left: 12px;
-  content: 'payment';
-  color: #fff;
-  background-color: #e66000; }
-
-.o-onoffswitch-inner:after {
-  padding-right: 12px;
-  content: 'inpayment';
-  text-align: right;
-  color: #fff;
-  background-color: #0095dd; }
+  .o-onoffswitch-inner:before, .o-onoffswitch-inner:after {
+    font-family: Trebuchet, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 42px;
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    width: 50%;
+    height: 42px;
+    padding: 0;
+    color: white; }
+  .o-onoffswitch-inner:before {
+    padding-left: 12px;
+    content: "payment";
+    color: #fff;
+    background-color: #e66000; }
+  .o-onoffswitch-inner:after {
+    padding-right: 12px;
+    content: "inpayment";
+    text-align: right;
+    color: #fff;
+    background-color: #0095dd; }
 
 .o-onoffswitch-switch {
   position: absolute;
@@ -648,6 +625,7 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
   padding: 0;
   cursor: pointer;
   transition: opacity .9s ease;
+  text-align: center;
   opacity: 1;
   color: #fff;
   border: 0;
@@ -668,352 +646,15 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
     right: 12px;
     bottom: 12px; }
 
-#index {
-  -webkit-transition: blur .3s ease;
-  -moz-transition: blur .3s ease;
-  transition: blur .3s ease;
-  filter: blur(0);
-  -o-filter: blur(0);
-  -ms-filter: blur(0);
-  -moz-filter: blur(0);
-  -webkit-filter: blur(0); }
-
-/* -----------------------------------------------------------------------------
-
-    CIRCLE NAV COMPONENT
-
------------------------------------------------------------------------------ */
-/**
- * This is the actual nav component. It consists of a nav element with an
- * unordered list inside, and also a button to toggle the actual navigation.
- * It's fixed to the bottom-right of the screen, and each of the items are
- * positioned absolutely inside the parent nav tag. The default set up above is
- * 5 navigation items. Because all the transforms and such are calculated wrt
- * this number, you'll need to edit it accordingly depending on how many items
- * you decide to put in the markup.
- * 
- * Example markup:
- *
- * <nav class="c-circle-nav">
- *     <ul class="c-circle-nav__items">
- *         <li class="c-circle-nav__item">
- *             <a class="c-circle-nav__link"></a>
- *         </li>
- *         <li class="c-circle-nav__item">
- *             <a class="c-circle-nav__link"></a>
- *         </li>
- *         ...
- *     </ul>
- * </nav>
- */
-.c-circle-nav {
-  position: fixed;
-  z-index: 1000;
-  right: 12px;
-  bottom: 12px;
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
-  /**
-     * We're using the .is-active class, which is added to the nav via JavaScript.
-     * Once the nav is active, the items inherit the properties below. We will
-     * manually write out the transform properties for first and last items, as we
-     * already know their position. For all items in between though, we'll use some
-     * polar-to-cartesian math and some Sass functions to get the positioning.
-     */ }
-  @media (min-width: 480px) and (min-height: 480px) {
-    .c-circle-nav {
-      width: 96px;
-      height: 96px;
-      border-radius: 48px; } }
-  .c-circle-nav.is-active {
-    box-shadow: -2px 3px 6px 0 #111; }
-  .c-circle-nav.is-active .c-circle-nav__item {
-    -webkit-transition-timing-function: cubic-bezier(0.35, 0.03, 0.47, 1.59);
-    transition-timing-function: cubic-bezier(0.35, 0.03, 0.47, 1.59);
-    opacity: 1; }
-    .c-circle-nav.is-active .c-circle-nav__item:nth-child(1) {
-      -webkit-transition-delay: 0.2s;
-      transition-delay: 0.2s;
-      -webkit-transform: translate(-144px, 0);
-      -ms-transform: translate(-144px, 0);
-      transform: translate(-144px, 0); }
-      @media (min-width: 480px) and (min-height: 480px) {
-        .c-circle-nav.is-active .c-circle-nav__item:nth-child(1) {
-          -webkit-transform: translate(-288px, 0);
-          -ms-transform: translate(-288px, 0);
-          transform: translate(-288px, 0); } }
-    .c-circle-nav.is-active .c-circle-nav__item:nth-child(2) {
-      -webkit-transition-delay: 0.2s;
-      transition-delay: 0.2s;
-      -webkit-transform: translate(-134px, -56px);
-      -ms-transform: translate(-134px, -56px);
-      transform: translate(-134px, -56px); }
-      @media (min-width: 480px) and (min-height: 480px) {
-        .c-circle-nav.is-active .c-circle-nav__item:nth-child(2) {
-          -webkit-transform: translate(-267px, -111px);
-          -ms-transform: translate(-267px, -111px);
-          transform: translate(-267px, -111px); } }
-    .c-circle-nav.is-active .c-circle-nav__item:nth-child(3) {
-      -webkit-transition-delay: 0.2s;
-      transition-delay: 0.2s;
-      -webkit-transform: translate(-102px, -102px);
-      -ms-transform: translate(-102px, -102px);
-      transform: translate(-102px, -102px); }
-      @media (min-width: 480px) and (min-height: 480px) {
-        .c-circle-nav.is-active .c-circle-nav__item:nth-child(3) {
-          -webkit-transform: translate(-204px, -204px);
-          -ms-transform: translate(-204px, -204px);
-          transform: translate(-204px, -204px); } }
-    .c-circle-nav.is-active .c-circle-nav__item:nth-child(4) {
-      -webkit-transition-delay: 0.2s;
-      transition-delay: 0.2s;
-      -webkit-transform: translate(-56px, -134px);
-      -ms-transform: translate(-56px, -134px);
-      transform: translate(-56px, -134px); }
-      @media (min-width: 480px) and (min-height: 480px) {
-        .c-circle-nav.is-active .c-circle-nav__item:nth-child(4) {
-          -webkit-transform: translate(-111px, -267px);
-          -ms-transform: translate(-111px, -267px);
-          transform: translate(-111px, -267px); } }
-
-.c-circle-nav__items {
-  position: absolute;
-  z-index: 90;
-  display: block;
-  margin: 0;
-  padding: 0;
-  list-style: none; }
-
-.c-circle-nav__item {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 48px;
-  height: 48px;
-  -webkit-transition-timing-function: cubic-bezier(0.35, -0.59, 0.47, 0.97);
-  transition-timing-function: cubic-bezier(0.35, -0.59, 0.47, 0.97);
-  -webkit-transition-duration: 0.2s, 0.2s;
-  transition-duration: 0.2s, 0.2s;
-  -webkit-transition-property: -webkit-transform, opacity;
-  transition-property: transform, opacity;
-  opacity: 0;
-  border-radius: 24px; }
-  @media (min-width: 480px) and (min-height: 480px) {
-    .c-circle-nav__item {
-      width: 96px;
-      height: 96px;
-      border-radius: 48px; } }
-  .c-circle-nav__item:nth-child(1) {
-    -webkit-transition-delay: 0.2s;
-    transition-delay: 0.2s; }
-  .c-circle-nav__item:nth-child(2) {
-    -webkit-transition-delay: 0.2s;
-    transition-delay: 0.2s; }
-  .c-circle-nav__item:nth-child(3) {
-    -webkit-transition-delay: 0.2s;
-    transition-delay: 0.2s; }
-  .c-circle-nav__item:nth-child(4) {
-    -webkit-transition-delay: 0.2s;
-    transition-delay: 0.2s; }
-
-/**
- * Let's style the links now. This is just boilerplate stuff, and of course,
- * you'll probably want to change up the icons to match your needs. In any case,
- * we'll do it here for the sake of completion.
- */
-.c-circle-nav.is-active .c-circle-nav__link {
-  box-shadow: -2px 3px 6px 0 #111; }
-
-.c-circle-nav__link {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 24px;
-  background-color: #00aac5;
-  box-shadow: -2px 2px 15px -1px #c7c7c7; }
-  @media (min-width: 480px) and (min-height: 480px) {
-    .c-circle-nav__link {
-      border-radius: 48px; } }
-  .c-circle-nav__link .img {
-    position: relative;
-    top: 10%;
-    left: 10%;
-    display: block;
-    width: 80%;
-    max-width: 100%;
-    height: auto;
-    fill: #fff; }
-    .c-circle-nav__link .img.search {
-      top: 18%;
-      left: 20%;
-      width: 60%; }
-
-/* -----------------------------------------------------------------------------
-
-    THE TOGGLE COMPONENT
-
------------------------------------------------------------------------------ */
-/**
- * The toggle is a button element, and as such requires some resets that are
- * unique to buttons. This button also inherits some funky stuff from my
- * CSS animating hamburger menu icons demo, which can be found at this url:
- * https://github.com/callmenick/Animating-Hamburger-Icons
- */
-.c-circle-nav__toggle {
-  font: inherit;
-  font-size: 0;
-  position: absolute;
-  z-index: 100;
-  display: block;
-  width: 48px;
-  height: 48px;
-  margin: 0;
-  padding: 0;
-  /* reset some browser defaults */
-  cursor: pointer;
-  -webkit-transition: background 0.2s;
-  transition: background 0.2s;
-  text-indent: -9999px;
-  border: 0;
-  border-radius: 24px;
-  background-color: #00aac5;
-  box-shadow: -2px 3px 6px 0 #999;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  /* button active state */ }
-  .c-circle-nav__toggle:hover, .c-circle-nav__toggle:focus, .c-circle-nav__toggle.is-active {
-    outline: none;
-    background-color: #00aac5; }
-  @media (min-width: 480px) and (min-height: 480px) {
-    .c-circle-nav__toggle {
-      width: 96px;
-      height: 96px;
-      border-radius: 48px; } }
-  .c-circle-nav__toggle span,
-  .c-circle-nav__toggle span::before,
-  .c-circle-nav__toggle span::after {
-    position: absolute;
-    display: block;
-    height: 4px;
-    border-radius: 1px;
-    background: #fff; }
-    @media (min-width: 480px) and (min-height: 480px) {
-      .c-circle-nav__toggle span,
-      .c-circle-nav__toggle span::before,
-      .c-circle-nav__toggle span::after {
-        height: 8px;
-        border-radius: 2px; } }
-  .c-circle-nav__toggle span {
-    top: 22px;
-    left: 22px;
-    width: 4px;
-    -webkit-transition: background 0.2s;
-    transition: background 0.2s; }
-    @media (min-width: 480px) and (min-height: 480px) {
-      .c-circle-nav__toggle span {
-        top: 44px;
-        right: 20px;
-        left: 20px; } }
-    .c-circle-nav__toggle span:before, .c-circle-nav__toggle span:after {
-      left: 0;
-      width: 100%;
-      content: '';
-      -webkit-transition-delay: 0.2s, 0s;
-      transition-delay: 0.2s, 0s;
-      -webkit-transition-duration: 0.2s, 0.2s;
-      transition-duration: 0.2s, 0.2s; }
-    .c-circle-nav__toggle span:before {
-      left: -11px;
-      -webkit-transition-property: top, -webkit-transform;
-      transition-property: top, transform; }
-      @media (min-width: 480px) and (min-height: 480px) {
-        .c-circle-nav__toggle span:before {
-          top: -16px; } }
-    .c-circle-nav__toggle span:after {
-      left: 11px;
-      -webkit-transition-property: bottom, -webkit-transform;
-      transition-property: bottom, transform; }
-      @media (min-width: 480px) and (min-height: 480px) {
-        .c-circle-nav__toggle span:after {
-          bottom: -16px; } }
-  .c-circle-nav__toggle.is-active {
-    box-shadow: -2px 3px 6px 0 #111; }
-    .c-circle-nav__toggle.is-active span {
-      visibility: hidden;
-      width: 30px; }
-      .c-circle-nav__toggle.is-active span:before, .c-circle-nav__toggle.is-active span:after {
-        -webkit-transition-delay: 0s, 0.2s;
-        -moz-transition-delay: 0s, 0.2s;
-        -ms-transition-delay: 0s, 0.2s;
-        -o-transition-delay: 0s, 0.2s;
-        transition-delay: 0s, 0.2s; }
-      .c-circle-nav__toggle.is-active span:before {
-        left: -12px;
-        visibility: visible;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg); }
-      .c-circle-nav__toggle.is-active span:after {
-        left: -12px;
-        visibility: visible;
-        -webkit-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-        transform: rotate(-45deg); }
-
-/* -----------------------------------------------------------------------------
-
-    THE MASK COMPONENT
-
------------------------------------------------------------------------------ */
-/**
- * Here's the mask component, which actually gets created and inserted to the 
- * DOM via JavaScript. It simply acts as an overlay to draw attention to the 
- * navigation when it is active. It also uses the .is-acvite state class.
- */
-.c-mask {
-  position: fixed;
-  z-index: 900;
-  top: 0;
-  left: 0;
-  visibility: hidden;
-  width: 100%;
-  height: 100%;
-  -webkit-transition: opacity 0.2s, visibility 0.2s;
-  -moz-transition: opacity 0.2s, visibility 0.2s;
-  -ms-transition: opacity 0.2s, visibility 0.2s;
-  -o-transition: opacity 0.2s, visibility 0.2s;
-  transition: opacity 0.2s, visibility 0.2s;
-  opacity: 0;
-  background-color: rgba(0, 0, 0, 0.85); }
-  .c-mask.is-active {
-    visibility: visible;
-    opacity: 1; }
-    .c-mask.is-active #c-mask-search {
-      position: absolute;
-      top: 80px;
-      width: 90%;
-      margin-left: 5%;
-      color: #c7c7c7;
-      border-color: #c7c7c7;
-      border-top: 0;
-      border-left: 0;
-      background: transparent; }
-      .c-mask.is-active #c-mask-search:focus {
-        border-right: 2px solid #00aac5;
-        background: rgba(0, 0, 0, 0.4); }
-
-#couchdb-form {
+.couchdb-form {
   /* gaia overwrite */ }
-  #couchdb-form label.pack-switch {
+  .couchdb-form .pack-switch {
     height: 3rem; }
-  #couchdb-form .table {
+  .couchdb-form .table {
     width: 100%; }
-  #couchdb-form .table-row {
+  .couchdb-form .table-row {
     height: 5rem; }
-  #couchdb-form .table-cell:last-child {
+  .couchdb-form .table-cell:last-child {
     text-align: right; }
 
 /* Lists */
@@ -1025,11 +666,11 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
   background-color: transparent; }
 
 /* Drawer */
-section[data-type='sidebar'] + section[role='region'] > header:first-child > button,
-section[data-type='sidebar'] + section[role='region'] > header:first-child > a {
+[data-type='sidebar'] + [role='region'] > header:first-child > button,
+[data-type='sidebar'] + [role='region'] > header:first-child > a {
   background-position: 3.5rem center; }
 
-section[role='region']:not(#drawer) {
+[role='region']:not(#drawer) {
   z-index: 0;
   left: 0;
   padding-left: 0;
@@ -1041,33 +682,25 @@ section[role='region']:not(#drawer) {
 
 [data-position='right'] {
   position: absolute;
-  z-index: 15;
   z-index: 100;
   /* -> drawer */
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  -webkit-transform: translateX(100%);
   transform: translateX(100%); }
+  [data-position='right'].current {
+    animation: rightToCurrent .4s forwards; }
+  [data-position='right'].right {
+    animation: currentToRight .4s forwards; }
 
-section[role='region'][data-position='right'] {
+[role='region'][data-position='right'] {
   position: absolute; }
 
-[data-position='right'].current {
-  -webkit-animation: rightToCurrent .4s forwards;
-  animation: rightToCurrent .4s forwards; }
-
-[data-position='right'].right {
-  -webkit-animation: currentToRight .4s forwards;
-  animation: currentToRight .4s forwards; }
-
 [data-position='current'].left {
-  -webkit-animation: currentToLeft .4s forwards;
   animation: currentToLeft .4s forwards; }
 
 [data-position='current'].current {
-  -webkit-animation: leftToCurrent .4s forwards;
   animation: leftToCurrent .4s forwards; }
 
 [data-position='back'] {
@@ -1079,15 +712,11 @@ section[role='region'][data-position='right'] {
   left: 0;
   opacity: 0;
   /* z-index: 100; -> drawer */ }
-
-[data-position='back'].fade-in {
-  z-index: 120;
-  -webkit-animation: fadeIn .2s forwards;
-  animation: fadeIn .2s forwards; }
-
-[data-position='back'].fade-out {
-  -webkit-animation: fadeOut .2s forwards;
-  animation: fadeOut .2s forwards; }
+  [data-position='back'].fade-in {
+    z-index: 120;
+    animation: fadeIn .2s forwards; }
+  [data-position='back'].fade-out {
+    animation: fadeOut .2s forwards; }
 
 [data-position='edit-mode'] {
   position: absolute;
@@ -1098,15 +727,14 @@ section[role='region'][data-position='right'] {
   left: 0;
   transition: all .3s ease;
   opacity: 0; }
-
-[data-position='edit-mode'].edit {
-  position: absolute;
-  z-index: 120;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  opacity: 1; }
+  [data-position='edit-mode'].edit {
+    position: absolute;
+    z-index: 120;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1; }
 
 .menu-list {
   position: absolute;
@@ -1121,45 +749,45 @@ section[role='region'][data-position='right'] {
   .menu-list__item:last-child {
     border-bottom: 0; }
 
-#main-todo-list {
+.main-todo-list {
   margin-top: 2rem; }
-  #main-todo-list .inline {
+  .main-todo-list .inline {
     width: 33%; }
-    #main-todo-list .inline:nth-child(2) {
+    .main-todo-list .inline:nth-child(2) {
       text-align: center;
       color: #333; }
-    #main-todo-list .inline:last-child {
+    .main-todo-list .inline:last-child {
       text-align: right;
       color: #333; }
-  #main-todo-list .text {
+  .main-todo-list .text {
     display: inline-flex; }
-  #main-todo-list [data-done=true] {
+  .main-todo-list [data-done=true] {
     text-decoration: line-through; }
-  #main-todo-list .hashtags {
+  .main-todo-list .hashtags {
     position: absolute;
     right: 0;
     display: inline-flex; }
-  #main-todo-list .hashtag {
+  .main-todo-list .hashtag {
     font-size: 14px; }
-  #main-todo-list .dot {
+  .main-todo-list .dot {
     margin-top: 13px;
     width: 15px;
     height: 15px;
     border-radius: 15px; }
-    #main-todo-list .dot.urgent {
+    .main-todo-list .dot.urgent {
       background: red; }
-    #main-todo-list .dot.height {
+    .main-todo-list .dot.height {
       background: #e66000; }
-    #main-todo-list .dot.middle {
+    .main-todo-list .dot.middle {
       background: #0095dd; }
 
-#edit-menu p {
+.edit-menu p {
   margin-bottom: 10px; }
 
-#edit-menu [data-btn-type="delete"] {
+.edit-menu [data-btn-type="delete"] {
   position: absolute;
   bottom: 50px; }
 
-#edit-menu [data-btn-type="done"] {
+.edit-menu [data-btn-type="done"] {
   position: absolute;
-  bottom: 0px; }
+  bottom: 0; }

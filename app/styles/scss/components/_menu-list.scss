@@ -1,5 +1,4 @@
-.menu-list
-{
+.menu-list {
     position: absolute;
     top: 50px;
 
@@ -8,16 +7,14 @@
     width: 100%;
 }
 
-.menu-list__item
-{
+.menu-list__item {
     font-size: 1.6rem;
 
     padding: 15px;
 
     border-bottom: 1px solid $action-menu-border-grey;
 
-    &:last-child
-    {
+    &:last-child {
         border-bottom: 0;
     }
 }

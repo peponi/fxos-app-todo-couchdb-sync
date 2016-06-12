@@ -1,13 +1,12 @@
-form select
-{
+form select {
     padding: 8px;
 
     color: rgb(170, 170, 170);
-    background: #fff url(../bower_components/building-blocks/style/input_areas/images/dialog.svg) no-repeat calc(100% - 1rem) calc(100% - 1rem);
+    background: #fff url("../bower_components/building-blocks/style/input_areas/images/dialog.svg") no-repeat calc(100% - 1rem) calc(100% - 1rem);
     background-color: rgb(255, 255, 255);
 }
-form label
-{
+
+form label {
     font-size: .9em;
     font-style: italic;
 

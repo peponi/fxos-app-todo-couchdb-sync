@@ -1,58 +1,60 @@
 /* gaia overwrites & adaptions */
 
-#index {
+.index {
     height: 100%;
-}
-
-[role='dialog'][data-type='action'] > header {
-    padding: 0;
-
-    .inline:first-child {
-        margin: 0;
-        padding-left: 3rem;
-    }
-
-    .inline:last-child {
-        position: absolute;
-        right: 1rem;
-        left: auto;
-
-        width: auto;
-        padding: 0 1rem;
-
-        border-left: 1px solid  $lighter-grey;
-    }
 }
 
 [role='dialog'][data-type='action'] {
     overflow-y: scroll;
-}
+    
+    > header {
+        padding: 0;
 
-[role='dialog'][data-type='action'] menu > button {
-    font-size: 1.9rem;
-    font-weight: normal;
-    line-height: 2.5rem;
+        .inline:first-child {
+            margin: 0;
+            padding-left: 3rem;
+        }
 
-    &:nth-last-child(2) {
-        margin-bottom: 1rem;
+        .inline:last-child {
+            position: absolute;
+            right: 1rem;
+            left: auto;
+
+            width: auto;
+            padding: 0 1rem;
+
+            border-left: 1px solid  $lighter-grey;
+        }
+    }
+    
+    menu > button {
+        font-size: 1.9rem;
+        font-weight: normal;
+        line-height: 2.5rem;
+
+        &:nth-last-child(2) {
+            margin-bottom: 1rem;
+        }
     }
 }
 
-[data-type="list"] aside.pack-end {
-    height: 0;
-    position: relative;
-    top: -25px;
-    color: $shadow-grey;
-    font-size: 18px;
 
+[data-type="list"] aside {
+    &.pack-end {
+        height: 0;
+        position: relative;
+        top: -25px;
+        color: $shadow-grey;
+        font-size: 18px;
+
+    }
+
+    img {
+        width: 3rem;
+        height: 3rem;
+        margin-top: 1.5rem;
+    }
 }
-
-[data-type='list'] aside img {
-    width: 3rem;
-    height: 3rem;
-    margin-top: 1.5rem;
-}
-
 // label.pack-checkbox input ~ span:after {
 //     left: 10%;
 //     right: 0;
