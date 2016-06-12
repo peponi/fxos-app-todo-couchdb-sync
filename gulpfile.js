@@ -55,6 +55,39 @@ env.GULP_JS_USE_MAPS            = true;
  * HTML Variables
  */
 env.GULP_HTML_DEV_SOURCE        = env.GULP_WEBSITE_ROOT +  'index.html';
+env.GULP_APPCACHE_SOURCE        = [
+    env.GULP_PROD_PATH + 'index.html',
+    env.GULP_PROD_PATH + 'styles/bundle/lib.css',
+    env.GULP_PROD_PATH + 'styles/bundle/app.css',
+    env.GULP_PROD_PATH + 'scripts/lib.js',
+    env.GULP_PROD_PATH + 'scripts/app.js',
+    env.GULP_PROD_PATH + 'images/icons/png/menu62.png',
+    env.GULP_PROD_PATH + 'images/input_areas/images/clear.png',
+    env.GULP_PROD_PATH + 'images/input_areas/images/dialog.svg',
+    env.GULP_PROD_PATH + 'styles/bundle/drawer/images/ui/pattern.png',
+    env.GULP_PROD_PATH + 'styles/bundle/drawer/images/ui/header.png',
+    env.GULP_PROD_PATH + 'styles/bundle/drawer/images/ui/separator.png',
+    env.GULP_PROD_PATH + 'styles/bundle/drawer/images/ui/shadow_header.png',
+    env.GULP_PROD_PATH + 'styles/bundle/drawer/images/ui/pattern_subheader.png',
+    env.GULP_PROD_PATH + 'styles/bundle/drawer/images/ui/shadow.png',
+    env.GULP_PROD_PATH + 'styles/bundle/headers/images/icons/back.png',
+    env.GULP_PROD_PATH + 'styles/bundle/fonts/FiraSans/FiraSans-Light.eot',
+    env.GULP_PROD_PATH + 'styles/bundle/fonts/FiraSans/FiraSans-Light.otf',
+    env.GULP_PROD_PATH + 'styles/bundle/fonts/FiraSans/FiraSans-Light.ttf',
+    env.GULP_PROD_PATH + 'styles/bundle/fonts/FiraSans/FiraSans-Light.woff',
+    env.GULP_PROD_PATH + 'styles/bundle/fonts/FiraSans/FiraSans-Bold.eot',
+    env.GULP_PROD_PATH + 'styles/bundle/fonts/FiraSans/FiraSans-Bold.otf',
+    env.GULP_PROD_PATH + 'styles/bundle/fonts/FiraSans/FiraSans-Bold.ttf',
+    env.GULP_PROD_PATH + 'styles/bundle/fonts/FiraSans/FiraSans-Bold.woff',
+    env.GULP_PROD_PATH + 'styles/bundle/fonts/FiraSans/FiraSans-Regular.eot',
+    env.GULP_PROD_PATH + 'styles/bundle/fonts/FiraSans/FiraSans-Regular.otf',
+    env.GULP_PROD_PATH + 'styles/bundle/fonts/FiraSans/FiraSans-Regular.ttf',
+    env.GULP_PROD_PATH + 'styles/bundle/fonts/FiraSans/FiraSans-Regular.woff',
+    env.GULP_PROD_PATH + 'styles/bundle/input_areas/images/clear.png',
+    env.GULP_PROD_PATH + 'styles/bundle/input_areas/images/dialog.svg',
+    env.GULP_PROD_PATH + 'styles/bundle/switches/images/switch/background_off.png',
+    env.GULP_PROD_PATH + 'styles/bundle/status/images/ui/pattern.png'
+];
 
 
 // defauld environment variables will be overwritten by an existing ./env/<env-file> 
@@ -98,8 +131,8 @@ gulp.task('copy:images', function() {
         .pipe(gulp.dest(env.GULP_ASSETS_PROD_PATH + 'images/'));
 });
 
-gulp.task('copy:building-blocks:styles', function() {
-    gulp.src(env.GULP_ASSETS_DEV_PATH + 'building-blocks/style/**/*')
+gulp.task('copy:building-blocks:images', function() {
+    gulp.src(env.GULP_ASSETS_DEV_PATH + 'images/**/*')
         .pipe(gulp.dest(env.GULP_PROD_PATH + 'styles/bundle/'));
 });
 
@@ -180,7 +213,7 @@ gulp.task('prod', gulpsync.sync([
         'copy:manifest',
         'copy:fonts',
         'copy:images',
-        'copy:building-blocks:styles',
+        'copy:building-blocks:images',
         'copy:building-blocks:fonts'
     ], [
         'concate:scripts:lib',
@@ -192,7 +225,8 @@ gulp.task('prod', gulpsync.sync([
         'compress:html',
         'compress:scripts',
         'compress:styles'
-    ]
+    ],
+    'create:appcache'
 ]));
 
 gulp.task('watch',['build:styles', 'lint:scripts'], function() {

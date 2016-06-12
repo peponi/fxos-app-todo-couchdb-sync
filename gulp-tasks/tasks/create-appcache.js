@@ -7,14 +7,14 @@ var gulp            = require('gulp'),
  */
 
 gulp.task('create:appcache', function() {
-    return gulp.src(process.env.GULP_PROD_PATH + '**/*')
+    console.log(process.env.GULP_APPCACHE_SOURCE.split(','));
+    gulp.src(process.env.GULP_APPCACHE_SOURCE.split(','))
     .pipe(manifest({
         timestamp: true,
         hash: true,
         preferOnline: true,
         network: ['*'],
-        filename: 'manifest.appcache',
-        exclude: ['manifest.appcache', process.env.GULP_JS_PROD_PATHS + 'tests']
+        filename: 'manifest.appcache'
     }))
-    .pipe(gulp.dest(process.env.GULP_PROD_PATH));
+    .pipe(gulp.dest(process.env.GULP_WEBSITE_ROOT + 'build/'));
 });
