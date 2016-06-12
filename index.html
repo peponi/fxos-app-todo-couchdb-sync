@@ -103,10 +103,10 @@
         <section id="drawer" class="drawer" role="region">
             <header class="fixed">
                 <a href="#" id="open-drawer-btn" class="open-drawer-btn">
-                    <img width="30" height="30" src="./app/images/icons/png/menu62.png" class="burg-icon" alt="burger icon">
+                    <img src="./app/images/icons/png/menu62.png" class="burger-icon" alt="burger icon">
                 </a>
                 <a href="#drawer" id="close-drawer-btn" class="close-drawer-btn">
-                    <img width="30" height="30" src="./app/images/icons/png/menu62.png" class="burg-icon" alt="burger icon">
+                    <img src="./app/images/icons/png/menu62.png" class="burger-icon" alt="burger icon">
                 </a>
                 <h1 data-bind="click:openMenu"
                     data-target-id="group-menu"
@@ -118,7 +118,7 @@
                 <section data-type="list">                
 
                     <div id="main-todo-list" class="main-todo-list">
-                         <section data-bind="if: state.filteredTodosWithDateInFuture().length > 0">
+                        <section data-bind="if: state.filteredTodosWithDateInFuture().length > 0">
                             <header>
                                 <span>Expiry</span>
                             </header>
@@ -243,7 +243,7 @@
                     </p>
                     <p>
                         <label for="todo-date">Todo Date</label>
-                        <input type="date" name="date">
+                        <input type="date" name="date" id="todo-date">
                         <!-- <input type="date" name="date" id="todo-date" data-bind="event: {change: checkDateAndShowChekbox} "> -->
                     </p>
                     <!-- <p data-bind="visible: state.showCheckbox">
@@ -325,9 +325,9 @@
                 <form id="couchdb-form" class="couchdb-form">
                     <div class="table">                        
                         <p class="table-row">
-                            <label for="" class="table-cell">Sync to CouchDB</label>
+                            <label for="do-sync-couchdb" class="table-cell">Sync to CouchDB</label>
                             <label class="pack-switch table-cell">
-                                <input type="checkbox" name="do-sync-couchdb"
+                                <input type="checkbox" name="do-sync-couchdb" id="do-sync-couchdb"
                                     data-bind="click:toggleAccordion"
                                     data-target-id="accordion-content">
                                 <span></span>
@@ -337,7 +337,7 @@
                     <div id="accordion-content" class="hide">
                         <div class="table">
                             <p class="table-row accordion-content">
-                                <label class="table-cell" for="couchdb-sync-state">Sync Status</label>
+                                <span class="table-cell">Sync Status</span>
                                 <a class="table-cell" id="couchdb-sync-state">disconnected</a>
                             </p>
                         </div>
@@ -440,7 +440,7 @@
     </section>
 
     <!--···························· action menu - edit ····························-->
-    <section data-position="back" class="fade-out" id="edit-menu" class="edit-menu">
+    <section data-position="back" class="fade-out edit-menu" id="edit-menu">
         <form role="dialog" data-type="action">
             <header>
                 <div class="inline">Todo Edit</div>
@@ -449,7 +449,6 @@
                         data-target-id="edit-menu"
                         role="button">close</button>
             </header>
-           
             <section>
                 <p><strong data-bind="text: state.currentOpenTodo().title"></strong></p>
                 <p data-bind="text: state.currentOpenTodo().desc"></p>
@@ -462,8 +461,7 @@
                 <button data-bind="click:handleEditMenuBtnClick" data-btn-type="delete" class="danger">delete</button>
                 <button data-bind="click:handleEditMenuBtnClick" data-btn-type="done">is not done</button>
                 <!-- /ko -->
-            </section>
-                      
+            </section>         
         </form>
     </section>
 

@@ -72,6 +72,7 @@ var ViewModel = function() {
     };
 
     self.hideActionMenu = function() {
+        console.log(self.state.currentOpenMenu);
         d.getElementById(self.state.currentOpenMenu).className = 'fade-out';
     };
 

@@ -491,6 +491,10 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
 .open-drawer-btn,
 .close-drawer-btn {
   top: 10px; }
+  .open-drawer-btn .burger-icon,
+  .close-drawer-btn .burger-icon {
+    width: 30px;
+    height: 30px; }
 
 .sidebar-navigation__icon {
   width: 20px;

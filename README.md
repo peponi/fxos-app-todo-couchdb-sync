@@ -31,6 +31,7 @@ so that I can outsource my brain capacity to the phone
 - [ ] settings will be loaded on startup (language/couchdb)
 - [ ] it will prefer the system default language
 - [ ] synchronization to a CouchDB works
+- [ ] sharing lists with other user ver couchdb accounts
 - [ ] group delete will show a confirm message and delete all dependet todos 
 - [ ] synchronization to a CouchDB works
 - [ ] transaltion can be added
@@ -41,6 +42,7 @@ so that I can outsource my brain capacity to the phone
 ### Bugs
 
 - [ ] circle-button jumps up while switching the view section
+- [ ] viewModel.js:75 Uncaught TypeError: Cannot set property 'className' of null
 
 ## Install
 ```
