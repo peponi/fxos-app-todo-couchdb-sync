@@ -59,7 +59,7 @@ env.GULP_HTML_DEV_SOURCE        = env.GULP_WEBSITE_ROOT +  'index.html';
 /**
  * Load Gulp Tasks
  */
-var gulpTasksPath = './ni-gulp-tasks/tasks/';
+var gulpTasksPath = './gulp-tasks/tasks/';
 
 require(gulpTasksPath + 'clean-static');
 require(gulpTasksPath + 'compress-html');
