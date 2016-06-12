@@ -49,7 +49,7 @@ env.GULP_JS_USE_MAPS            = true;
 /**
  * HTML Variables
  */
-env.GULP_HTML_DEV_SOURCE        = env.GULP_TEMPLATE_PATH +  '**/*.html';
+env.GULP_HTML_DEV_SOURCE        = env.GULP_WEBSITE_ROOT +  'index.html';
 
 
 // defauld environment variables will be overwritten by an existing ./env/<env-file> 
@@ -88,7 +88,8 @@ gulp.task('test', [
 
 gulp.task('lint', [
     'lint:scripts',
-    'lint:styles'
+    'lint:styles',
+    'lint:html'
 ]);
 
 gulp.task('build:styles', [/*'format:styles',*/ 'compress:styles']);
