@@ -42,10 +42,13 @@
 [data-type="list"] aside {
     &.pack-end {
         height: 0;
-        position: relative;
-        top: -25px;
         color: $shadow-grey;
         font-size: 18px;
+
+        small {
+            position: relative;
+            top: -25px;
+        }
 
     }
 

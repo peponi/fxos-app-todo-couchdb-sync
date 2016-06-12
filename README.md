@@ -40,6 +40,8 @@ so that I can outsource my brain capacity to the phone
 
 ### Bugs
 
+- [ ] circle-button jumps up while switching the view section
+
 ## Install
 ```
 npm install

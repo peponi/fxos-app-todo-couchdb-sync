@@ -48,7 +48,7 @@ var ViewModel = function() {
     };
 
     self.parseInputToObj = function(data) {
-        formData = {};
+        var formData = {};
 
         for (i = data.length; i--; ) {
             if( data[i].type !== 'checkbox') {
@@ -215,15 +215,16 @@ var ViewModel = function() {
         // i dont need the passed knockout data object data
         // and use it for click event dataset
         data = e.target.dataset;
-        targetForm = d.getElementById(data.targetForm);
-        type = data.type;
+
+        var targetForm = d.getElementById(data.targetForm),
+            type = data.type;
 
         // if (targetForm === 'edit-mode-form' ) {
         //     vm.hideEditMode();
         // }
 
         data = targetForm.querySelectorAll('input');
-        formData = self.parseInputToObj(data);
+        var formData = self.parseInputToObj(data);
 
         // FIXME: later with some regex
         // rip out hashtags of description

@@ -86,10 +86,11 @@ button:focus {
 
 [data-type="list"] aside.pack-end {
   height: 0;
-  position: relative;
-  top: -25px;
   color: #999;
   font-size: 18px; }
+  [data-type="list"] aside.pack-end small {
+    position: relative;
+    top: -25px; }
 
 [data-type="list"] aside img {
   width: 3rem;

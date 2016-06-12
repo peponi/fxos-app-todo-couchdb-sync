@@ -10,9 +10,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <link rel="shortcut icon" type="image/png" href="images/icons/icon16x16.png"/>
-    <link rel="apple-touch-startup-image" href="images/icon128x128.png">
-    <link rel="apple-touch-icon-precomposed" href="images/icon128x128.png">
+    <link rel="shortcut icon" type="image/png" href="app/images/icons/icon16x16.png"/>
+    <link rel="apple-touch-startup-image" href="app/images/icon/128x128.png">
+    <link rel="apple-touch-icon-precomposed" href="app/images/icon/128x128.png">
     <link rel="manifest" href="manifest.json">
     
     <!-- build:css -->
@@ -120,7 +120,7 @@
                     <div id="main-todo-list" class="main-todo-list">
                          <section data-bind="if: state.filteredTodosWithDateInFuture().length > 0">
                             <header>
-                                <span>Expiry List</span>
+                                <span>Expiry</span>
                             </header>
                             <ul>
                             <!-- ko foreach: state.filteredTodosWithDateInFuture -->
@@ -142,7 +142,7 @@
                         <br><br>
                         <section data-bind="if: state.filteredDatelessTodos().length > 0">
                             <header>
-                                <span>Priority List</span>
+                                <span>Priority</span>
                             </header>
                             <ul>
                             <!-- ko foreach: state.filteredDatelessTodos -->
