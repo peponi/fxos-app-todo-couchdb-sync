@@ -7,12 +7,12 @@ var gulp            = require('gulp'),
  */
 
 gulp.task('compress:html', function() {
-  	gulp.src(process.env.GULP_PROD_PATH)
+  	gulp.src(process.env.GULP_WEBSITE_ROOT + 'build/index.html')
 		// option: https://github.com/kangax/html-minifier
 	    .pipe(htmlmin({
 	        collapseWhitespace: true,
 	        removeComments: true,
 	        removeAttributeQuotes: true
 	    }))
-	    .pipe(gulp.dest(process.env.GULP_PROD_PATH));
+	    .pipe(gulp.dest(process.env.GULP_WEBSITE_ROOT + 'build/'));
 });

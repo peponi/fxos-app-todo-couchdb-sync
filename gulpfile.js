@@ -222,9 +222,9 @@ gulp.task('prod', gulpsync.sync([
     ], 
     'replace:html',
     [
-        'compress:html',
         'compress:scripts',
-        'compress:styles'
+        'compress:styles',
+        'compress:html'
     ],
     'create:appcache'
 ]));

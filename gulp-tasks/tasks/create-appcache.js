@@ -7,7 +7,6 @@ var gulp            = require('gulp'),
  */
 
 gulp.task('create:appcache', function() {
-    console.log(process.env.GULP_APPCACHE_SOURCE.split(','));
     gulp.src(process.env.GULP_APPCACHE_SOURCE.split(','))
     .pipe(manifest({
         timestamp: true,
