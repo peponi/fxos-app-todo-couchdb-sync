@@ -13,7 +13,7 @@ var gulp        = require('gulp'),
 /**
  * GENERAL VARIABLES
  */
-env.GULP_ENVIRONMENT            = 'live'; // 'development' | 'stage' | 'live'
+env.GULP_ENVIRONMENT            = 'development'; // 'development' | 'stage' | 'live'
 /**
  * GENERAL PATHS
  */

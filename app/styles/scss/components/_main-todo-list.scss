@@ -57,4 +57,8 @@
             background: $firefox-light-blue;
         }
     }
+
+    [data-dependency] {
+        padding-left: 10px;
+    }
 }

@@ -38,7 +38,8 @@ var ViewModel = function() {
         allGroups: ko.observableArray(),
         allTodos: ko.observableArray(),
         filteredTodosWithDateInFuture: ko.observableArray(),
-        filteredDatelessTodos: ko.observableArray()
+        filteredDatelessTodos: ko.observableArray(),
+        currentDependencyDocTitle: ko.observable()
     };
 
     // Helper
@@ -82,13 +83,16 @@ var ViewModel = function() {
         self.state.menuBindingInputName = e.currentTarget.name;
 
         if(self.state.currentOpenMenu === 'edit-menu') {
+
             // in case of edit-menu is open
             // bindingContext is an pouchdb id
             model.todo.get(e.currentTarget.dataset.bindingContext, function(doc) {
                 self.state.currentOpenTodo(doc);
+                self.fillDependencyDoc(doc);
                 self.showActionMenu();
 
             });
+
         } else {
             self.showActionMenu();            
         }
@@ -254,6 +258,22 @@ var ViewModel = function() {
         targetForm.reset();
         
         self.offCanvasAutoBack(formData);
+    };
+
+    self.fillDependencyDoc = function(doc) {
+        var id = doc.dependency;
+
+        doc = self.state.filteredDatelessTodos().find(function(todo) {
+            return todo.id == id;
+        });
+
+        if (!doc) {
+            doc = self.state.filteredTodosWithDateInFuture().find(function(todo) {
+                return todo.id == id;
+            });                
+        }
+
+        self.state.currentDependencyDocTitle(doc.doc.title);
     };
 
     self.loadFilteredTodos = function() {
