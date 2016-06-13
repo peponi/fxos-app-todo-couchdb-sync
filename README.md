@@ -1,15 +1,16 @@
 # Wallet WebApp
 
+It's a WebApp optimzed for [Firefox OS 1.0 up to 2.5](https://www.mozilla.org/de/firefox/os/) 
+
+Goal is to build a todo app who provide sever synchronization, dependencies and prioritization
+
+![screenshot](_assets/screenshot.png)
+
 Build with 
  * [Mozilla buildingfirefoxos.com](https://buildingfirefoxos.com/building-blocks)
  * [KnockoutJS](http://knockoutjs.com/)
  * [PouchDB](https://pouchdb.com/)
  * [fecha](https://github.com/taylorhakes/fecha)
-
-It's a WebApp optimzed for [Firefox OS 1.0 up to 2.5](https://www.mozilla.org/de/firefox/os/) 
-
-Goal is to build a todo app who provide sever synchronization, dependencies and prioritization
-
 
 ## User story
 
