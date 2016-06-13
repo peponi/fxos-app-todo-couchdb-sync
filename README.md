@@ -7,7 +7,7 @@ Goal is to build a todo app who provide sever synchronization, dependencies and 
 ![screenshot](_assets/screenshot.png)
 
 Build with 
- * [Mozilla buildingfirefoxos.com](https://buildingfirefoxos.com/building-blocks)
+ * [Mozilla buildingfirefoxos.com](http://buildingfirefoxos.com/), [github](https://github.com/buildingfirefoxos/Building-Blocks)
  * [KnockoutJS](http://knockoutjs.com/)
  * [PouchDB](https://pouchdb.com/)
  * [fecha](https://github.com/taylorhakes/fecha)
