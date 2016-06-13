@@ -33,7 +33,6 @@ so that I can outsource my brain capacity to the phone
 - [ ] synchronization to a CouchDB works
 - [ ] sharing lists with other user via couchdb accounts
 - [ ] group delete will show a confirm message and delete all dependet todos 
-- [ ] synchronization to a CouchDB works
 - [ ] transaltion can be added
 - [ ] it will prefer the system default language
 - [ ] LTR/RTL works
