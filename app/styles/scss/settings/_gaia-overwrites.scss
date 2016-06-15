@@ -26,6 +26,18 @@
             border-left: 1px solid  $lighter-grey;
         }
     }
+
+    > section {
+
+        &.menu-content {
+            padding-bottom: 60px;
+        }
+
+        &.position-bottom {
+            bottom: 0;
+            top: auto;
+        }
+    }
     
     menu > button {
         font-size: 1.9rem;
@@ -36,6 +48,7 @@
             margin-bottom: 1rem;
         }
     }
+
 }
 
 
