@@ -1,12 +1,12 @@
 {
     "version": "0.6.0",
-    "name": "wallet",
+    "name": "FXOS Todo App",
     "launch_path": "/index.html",
     "description": "app to manage and track private cash flow",
     "icons": {
         "16": "icons/icon16x16.png",
         "48": "icons/icon48x48.png",
-        "64": "icons/icon64x60.png",
+        "64": "icons/icon60x60.png",
         "128": "icons/icon128x128.png"
     },
     "developer": {
