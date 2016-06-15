@@ -156,6 +156,8 @@ var ViewModel = function() {
     self.offCanvasAction = function(data, e) {
         data = e.currentTarget.dataset;
         is = data.direction === 'current';
+
+        location.hash = '';
         
         d.getElementById(data.targetId).className = is ? 'current skin-organic' : 'right skin-organic';        
         dashboard.className = is ? 'left' : 'current';
