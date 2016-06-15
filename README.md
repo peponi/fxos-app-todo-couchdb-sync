@@ -1,18 +1,19 @@
 ![screenshot](_assets/just-do-it.jpg)
 
-# Wallet WebApp
+# Todo WebApp
 
-It's a WebApp optimzed for [Firefox OS 1.0 up to 2.5](https://www.mozilla.org/de/firefox/os/) 
+> It's a WebApp optimzed for [Firefox OS 1.0 up to 2.5](https://www.mozilla.org/de/firefox/os/), but will works on Android and iOS too
+>
+> Goal is to build a todo app who provide sever synchronization, dependencies and prioritization
 
-Goal is to build a todo app who provide sever synchronization, dependencies and prioritization
 
-
-Build with 
- * [Mozilla buildingfirefoxos.com](http://buildingfirefoxos.com), [github](https://github.com/buildingfirefoxos/Building-Blocks)
+## Build with 
+ * [Mozilla buildingfirefoxos.com](http://buildingfirefoxos.com), ([github](https://github.com/buildingfirefoxos/Building-Blocks))
  * [KnockoutJS](http://knockoutjs.com)
  * [PouchDB](https://pouchdb.com)
  * [fecha](https://github.com/taylorhakes/fecha)
  * [google-webfonts-helper](https://google-webfonts-helper.herokuapp.com/fonts) <- thx for this tool
+ * [Launcher Icon Maker](https://appmaker.merq.org/tools) & [iconogen.com](http://iconogen.com)
 
 ## Screenshots
 
@@ -48,7 +49,7 @@ so that I can outsource my brain capacity to the phone
 
 ### Bugs
 
-- [ ] viewModel.js:75 Uncaught TypeError: Cannot set property 'className' of null
+- [ ] **heisenbug** - viewModel.js:75 Uncaught TypeError: Cannot set property 'className' of null
 
 ## Install
 ```

@@ -1,22 +1,22 @@
 {
   "short_name": "FXOS_Todo",
-  "name": "FXOS Todo App CouchDB Sync",
-  "description": "A WebApp to create several todo list with priorisation and dependencies who can synchonized to a CouchDB",
+  "name": "FXOS Todo App",
+  "description": "todo app who provide CouchDB synchronization, dependencies and prioritization",
   "icons": [
     {
-      "src": "icons/icon48x48.png",
+      "src": "app/images/icons/icon-mdpi-48x48.png",
       "type": "image/png",
       "sizes": "48x48"
     },
     {
-      "src": "icons/icon60x60.png",
+      "src": "app/images/icons/icon-xhdpi-96x96.png",
       "type": "image/png",
-      "sizes": "60x60"
+      "sizes": "96x96"
     },
     {
-      "src": "icons/icon128x128.png",
+      "src": "app/images/icons/icon-xxxhdpi-192x192.png",
       "type": "image/png",
-      "sizes": "128x128"
+      "sizes": "192x192"
     }
   ],
   "start_url": "index.html?launcher=true",
