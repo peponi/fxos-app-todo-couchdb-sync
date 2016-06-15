@@ -73,7 +73,6 @@ var ViewModel = function() {
     };
 
     self.hideActionMenu = function() {
-        console.log(self.state.currentOpenMenu);
         d.getElementById(self.state.currentOpenMenu).className = 'fade-out';
     };
 
@@ -83,30 +82,29 @@ var ViewModel = function() {
         self.state.menuBindingInputName = e.currentTarget.name;
 
         if(self.state.currentOpenMenu === 'edit-menu') {
-
             // in case of edit-menu is open
             // bindingContext is an pouchdb id
-            model.todo.get(e.currentTarget.dataset.bindingContext, function(doc) {
-                self.state.currentOpenTodo(doc);
-                self.fillDependencyDoc(doc);
-                self.showActionMenu();
-
+            var id = e.currentTarget.dataset.bindingContext;
+            
+            var doc = self.state.allTodos().filter(function(doc) {
+                return doc.id === id;
             });
 
+            doc = doc[0].doc;
+
+            if (doc.dependency) {
+                self.fillDependencyDoc(doc);
+            }
+
+            self.state.currentOpenTodo(doc);
+            self.showActionMenu();
         } else {
             self.showActionMenu();            
         }
     };
 
     self.hideMenu = function(data, e) {
-        e.preventDefault();
-
-        // if(self.state.currentOpenMenu === 'account-menu') {
-        //     self.hidegroupMenu();
-        // } else {
         self.hideActionMenu();
-        // }
-
         self.state.currentOpenMenu = '';
     };
 

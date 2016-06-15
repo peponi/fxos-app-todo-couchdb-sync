@@ -493,7 +493,7 @@
                         data-target-id="edit-menu"
                         role="button">close</button>
             </header>
-            <section>
+            <section class="menu-content">
                 <p><strong data-bind="text: state.currentOpenTodo().title"></strong></p>
                 <p data-bind="text: state.currentOpenTodo().desc"></p>
                 <p>Priority: <var data-bind="text: priorityArray[state.currentOpenTodo().prio], css: 'color-' + priorityArray[state.currentOpenTodo().prio]"></var></p>
@@ -501,6 +501,8 @@
                 <p>Dependency: <span data-bind="text: state.currentDependencyDocTitle"></span></p>
                 <!-- /ko -->
                 <br><br>
+            </section>
+            <section class="position-bottom">
                 <!-- ko if: !state.currentOpenTodo().done -->
                 <button data-bind="click:handleEditMenuBtnClick" data-btn-type="done">is done</button>
                 <!-- /ko -->
