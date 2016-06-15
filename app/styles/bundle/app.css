@@ -60,9 +60,6 @@ button:focus {
   bottom: 0; }
 
 /* gaia overwrites & adaptions */
-.index {
-  height: 100%; }
-
 [role='dialog'][data-type='action'] {
   overflow-y: scroll; }
   [role='dialog'][data-type='action'] > header {
@@ -707,11 +704,12 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
 [role='region'][data-position='right'] {
   position: absolute; }
 
-[data-position='current'].left {
-  animation: currentToLeft .4s forwards; }
-
-[data-position='current'].current {
-  animation: leftToCurrent .4s forwards; }
+[data-position='current'] {
+  height: 100%; }
+  [data-position='current'].left {
+    animation: currentToLeft .4s forwards; }
+  [data-position='current'].current {
+    animation: leftToCurrent .4s forwards; }
 
 [data-position='back'] {
   position: absolute;

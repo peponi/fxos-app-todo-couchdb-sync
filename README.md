@@ -41,7 +41,6 @@ so that I can outsource my brain capacity to the phone
 
 ### Bugs
 
-- [ ] circle-button jumps up while switching the view section
 - [ ] viewModel.js:75 Uncaught TypeError: Cannot set property 'className' of null
 
 ## Install

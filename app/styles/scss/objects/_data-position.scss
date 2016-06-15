@@ -21,13 +21,18 @@
     position: absolute;
 }
 
-[data-position='current'].left {
-    animation: currentToLeft .4s forwards;
+[data-position='current'] {
+    height: 100%;
+    
+    &.left {
+        animation: currentToLeft .4s forwards;
+    }
+
+    &.current {
+        animation: leftToCurrent .4s forwards;
+    }
 }
 
-[data-position='current'].current {
-    animation: leftToCurrent .4s forwards;
-}
 
 [data-position='back'] {
     position: absolute;
