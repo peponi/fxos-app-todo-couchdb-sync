@@ -9,6 +9,9 @@ var ViewModel = function() {
         headerGroupMenuBtn = d.querySelector('#drawer h1'),
         todoFormGroupIntput = d.querySelector('#todo-form [name=group]'),
         dashboard = d.querySelector('[data-position="current"]'),
+        mainTodoList = d.getElementById('main-todo-list'),
+        noGroupsAvailableSection = d.getElementById('no-groups-available-section'),
+        circleBtn = d.getElementById('circle-button'),
         model = {
             todo: new TodoModel(),
             group: new GroupModel()
@@ -215,6 +218,12 @@ var ViewModel = function() {
     //     var bool = passedDateTime > currentDateTime ? true : false;
     //     self.state.showCheckbox(bool);
     // };
+    // 
+    self.selectGroup = function(title) {
+        self.state.currentSelectedGroup = title;
+        headerGroupMenuBtn.innerHTML = title;
+        todoFormGroupIntput.value = title;
+    };
 
     self.saveFormData = function(data, e) {
         // i dont need the passed knockout data object data
@@ -256,6 +265,21 @@ var ViewModel = function() {
         model[type].transaction(formData);
         model[type].getAll(self.loadAll);
         targetForm.reset();
+
+        if(type === 'group') {
+            // in case of this is the first group wh has been created
+            // hide welcome message in main section
+            // if is not the first group, this 3 display sets will have no impact
+            mainTodoList.style.display = 'block';
+            noGroupsAvailableSection.style.display = 'none';
+            circleBtn.style.display = 'block';
+
+            // pre set header and form input for the new group who has been created
+            // if you create a new group, you will enter todos there
+            self.selectGroup(formData.title);
+        //} else if (type === 'todo') {
+        }
+
         
         self.offCanvasAutoBack(formData);
     };
@@ -330,6 +354,14 @@ var ViewModel = function() {
         }
     };
 
+    self.nukeAllDataBases = function() {
+        console.log('kill all');
+        pm.nukeAllDataBases();
+        setTimeout(function(){
+            location.reload();
+        }, 1500)
+    };
+
     self.loadAll = function(type, doc) {
         self.state['all' + self.capitalizeWord(type) + 's'](doc.rows);
 
@@ -347,12 +379,12 @@ var ViewModel = function() {
         model.group.getAll(function(type, doc) {
             if(doc && doc.rows.length === 0) {
                 // show button & text to create a group
+                mainTodoList.style.display = 'none';
+                noGroupsAvailableSection.style.display = 'block';
+                circleBtn.style.display = 'none';
+
             } else if(doc && doc.rows && doc.rows.length) {
-                title = doc.rows[0].doc.title;
-
-                self.state.currentSelectedGroup = title;
-                headerGroupMenuBtn.innerHTML = title;
-
+                self.selectGroup(doc.rows[0].doc.title);
                 self.loadFilteredTodos();
             }
         });

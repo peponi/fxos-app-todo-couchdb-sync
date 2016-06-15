@@ -81,7 +81,7 @@
                 <h2>Plugins</h2>
                 <ul>
                     <li>
-                        <a href="#" data-bind="onclick:dataController.nukeAllDataBases">
+                        <a href="#" data-bind="click: nukeAllDataBases">
                             <p class="sidebar-navigation__text">NUKE</p>
                         </a>
                     </li>
@@ -163,25 +163,24 @@
                         <div class="bounce3"></div>
                     </div>
 
-                    <section class="content hide" id="no-accounts-available">
+                    <section class="content hide no-groups-available-section" id="no-groups-available-section">
                         <br>
-                        <br>
-                        <p>Themes you start up the app the first time.</p>
-                        <p>You need to create an account first.</p>
+                        <p class="ft-indie-flower">Themes you start up the app the first time dude.</p>
+                        <p class="ft-indie-flower">First things first, you need to create a todo group.</p>
                         <br>
                         <br>
                         <button
                             role="button"
                             class="button recommend"
                             data-bind="click:offCanvasAction"
-                            data-target-id="manage-accounts-section"
-                            data-first-account="true"
-                            data-direction="current">create an account</button>
+                            data-target-id="group-section"
+                            data-direction="current">PRESS THE BUTTON</button>
                     </section>
                 </section>
             </section>
             
             <button type="button"
+                    id="circle-button"
                     class="circle-button plus position-bottom-right"
                     data-bind="click:offCanvasAction"
                     data-target-id="todo-section"

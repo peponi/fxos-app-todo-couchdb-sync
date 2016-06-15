@@ -11,13 +11,15 @@
 .color-middle {
   color: #0095dd; }
 
+/* indie-flower-regular - latin */
 @font-face {
-  font-family: "Amatic SC";
-  src: url("../../fonts/AmaticSC-Regular.ttf") format("ttf"); }
-
-@font-face {
-  font-family: "Amatic SC Bold";
-  src: url("../../fonts/AmaticSC-Bold.ttf") format("ttf"); }
+  font-family: 'Indie Flower';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../fonts/indie-flower/indie-flower-v8-latin-regular.eot");
+  /* IE9 Compat Modes */
+  src: local("Indie Flower"), local("IndieFlower"), url("../../fonts/indie-flower/indie-flower-v8-latin-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/indie-flower/indie-flower-v8-latin-regular.woff2") format("woff2"), url("../../fonts/indie-flower/indie-flower-v8-latin-regular.woff") format("woff"), url("../../fonts/indie-flower/indie-flower-v8-latin-regular.ttf") format("truetype"), url("../../fonts/indie-flower/indie-flower-v8-latin-regular.svg#IndieFlower") format("svg");
+  /* Legacy iOS */ }
 
 button:focus {
   outline: none; }
@@ -116,17 +118,13 @@ button:focus {
     display: table-cell;
     vertical-align: middle; }
 
-/* Active state */
 .active {
   color: #fff;
   background-color: #b2f2ff; }
 
 /* functions */
-.ft-amatic {
-  font-family: "Amatic SC", cursive; }
-
-.ft-amatic-bold {
-  font-family: "Amatic SC Bold", cursive; }
+.ft-indie-flower {
+  font-family: "Indie Flower", cursive; }
 
 form select {
   padding: 8px;
@@ -663,6 +661,15 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
     height: 5rem; }
   .couchdb-form .table-cell:last-child {
     text-align: right; }
+
+.no-groups-available-section {
+  height: calc(100% - 15px);
+  position: absolute;
+  background-image: url(../../images/procrastination.png);
+  background-size: contain;
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+  padding-bottom: 0; }
 
 /* Lists */
 [data-type='list'] li > a {
