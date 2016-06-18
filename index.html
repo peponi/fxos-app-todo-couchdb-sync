@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <link rel='shortcut icon' type='image/x-icon' href='app/images/icons/favicon.ico' />
+    <link rel="shortcut icon" type="image/x-icon" href="app/images/icons/favicon.ico" />
 
     <link rel="manifest" href="manifest.json">
 
@@ -41,11 +41,12 @@
     <!-- build:css -->
 
     <link rel="stylesheet" href="app/building-blocks/style/buttons.css">
-    <link rel="stylesheet" href="app/building-blocks/style/headers.css">
+    <link rel="stylesheet" href="app/building-blocks/style/confirm.css">
     <link rel="stylesheet" href="app/building-blocks/style/drawer.css">
+    <link rel="stylesheet" href="app/building-blocks/style/headers.css">
     <link rel="stylesheet" href="app/building-blocks/style/input_areas.css">
-    <link rel="stylesheet" href="app/building-blocks/style/switches.css">
     <link rel="stylesheet" href="app/building-blocks/style/lists.css">
+    <link rel="stylesheet" href="app/building-blocks/style/switches.css">
     <link rel="stylesheet" href="app/building-blocks/style/status.css">
 
     <!-- Transitions -->
@@ -95,9 +96,9 @@
                     <li>
                         <a href="#"
                             data-bind="click:offCanvasAction"
-                            data-target-id="couchdb-section"
+                            data-target-id="database-section"
                             data-direction="current">
-                            <p class="sidebar-navigation__text">CouchDB</p>
+                            <p class="sidebar-navigation__text">Database</p>
                         </a>
                     </li>
                 </ul>
@@ -330,12 +331,12 @@
         </section>
     </section>
 
-    <!--···························· couchdb ····························-->
-    <section role="region" id="couchdb-section" data-position="right">
+    <!--···························· database ····························-->
+    <section role="region" id="database-section" data-position="right">
         <header class="fixed">
             <button type="button"
                     data-bind="click:offCanvasAction"
-                    data-target-id="couchdb-section"
+                    data-target-id="database-section"
                     data-direction="right">
                 <span class="icon icon-back">back</span>
             </button>
@@ -346,10 +347,17 @@
                         data-type="settings"
                         data-notify-text="Regulary transaction">save</button>
             </menu>
-            <h1>couchdb</h1>
+            <h1>Database</h1>
         </header>
 
         <section class="content scrollable header">
+            <section>
+                <a href="#" id="export-database-btn" class="button recommend">Export database backup</a>
+            </section>
+            <section>
+                <label for="import-database-backup-json-file">Import database backup file (JSON)</label>
+                <input type="file" id="import-database-backup-json-file" class="button recommend" data-bind="event: { change: function() { importDatabaseBackupJsonFile($element.files[0]) } }">
+            </section>
             <fieldset>
                 <form id="couchdb-form" class="couchdb-form">
                     <div class="table">                        
@@ -502,15 +510,15 @@
                                             text: doc.title,
                                             click: $root.handleActionBtnClick"></p>
                         </li>
-                     <!-- /ko -->
-                     <!-- ko foreach: state.filteredDatelessTodos -->
+                    <!-- /ko -->
+                    <!-- ko foreach: state.filteredDatelessTodos -->
                         <li class="menu-list__item" >
                             <p class="title" 
                                 data-bind=" attr: {'data-title': key},
                                             text: doc.title,
                                             click: $root.handleActionBtnClick"></p>
                         </li>
-                     <!-- /ko -->
+                    <!-- /ko -->
                     </ul>
                 </section>
             </div>          
@@ -547,6 +555,20 @@
             </section>         
         </form>
     </section>
+        <!--···························· default confirm····························-->
+    <section data-position="back" class="fade-out" id="default-confirm">
+        <form role="dialog" data-type="confirm">
+            <section>
+                <h1>Confirmation</h1><!-- this heading is optional -->
+                <p id="confirm-text"></p>
+            </section>
+            <menu>
+                <button id="confirm-btn-false" data-bind="click: hideMenu">No</button>
+                <button id="confirm-btn-true" data-bind="click: tmpFunc" class="danger">Yes</button>
+            </menu>
+        </form>
+    </section>
+
     <!-- build:js-lib -->
     <script src="node_modules/knockout/build/output/knockout-latest.js"></script>
     <script src="node_modules/fecha/fecha.min.js"></script>

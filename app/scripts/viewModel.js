@@ -1,6 +1,8 @@
 'use strict';
 
 var ViewModel = function() {
+
+    // global declarated heavy used variables
     var self = this,
         i = 0,
         is,
@@ -70,6 +72,10 @@ var ViewModel = function() {
     };
 
     // Menu Functions
+    
+    self.tmpFunc = function () {
+        console.alert('vm.tmpFunc() is empty');
+    };
 
     self.showActionMenu = function() {
         d.getElementById(self.state.currentOpenMenu).className = 'fade-in';
@@ -109,6 +115,71 @@ var ViewModel = function() {
     self.hideMenu = function() {
         self.hideActionMenu();
         self.state.currentOpenMenu = '';
+    };
+
+    self.overWriteDbWithBackup = function() {
+        self.hideMenu();
+        self.nukeAllDataBases();
+
+        var obj = self.state.importedJsonBackupObject;
+
+        console.log(obj);
+
+        obj.group.map(function(group) {
+            console.log(group.doc);
+            pm.save('group', group.doc, function(data){console.log(data);});
+        });
+
+        obj.todo.map(function(todo) {
+            console.log(todo.doc);
+            pm.save('todo', todo.doc, function(data){console.log(data);});
+        });
+
+        self.init();
+    };
+
+    self.importDatabaseBackupJsonFile = function(file) {
+
+        if(file.name.indexOf('.json') === -1) {
+            self.setStatus('This is not a JSON file');
+            return;
+        }
+        
+        if (typeof window.FileReader !== 'function') {
+            self.setStatus('The file API isn\'t supported.\nCan\'t import the backup, sorry!');
+            return;
+        }
+
+        var fr = new FileReader();
+
+        fr.readAsText(file);
+        fr.onload = function(e) {
+            var obj = JSON.parse(e.target.result);
+
+            self.state.importedJsonBackupObject = obj;
+
+            if(typeof obj.group === 'undefined' || typeof obj.todo === 'undefined') {
+                self.setStatus('This is not a valid backup file,\nno attribute "todo" or "group" has been found');
+            }
+
+            if(self.state.allGroups().length !== 0 || self.state.allTodos().length !== 0) {
+
+                d.getElementById('confirm-text').innerHTML = 'Your local DB is not empty.\
+                <br><br>Do you want to <b class="color-danger">overwrite</b> the local DB with the backup file ?';
+
+                self.state.currentOpenMenu = 'default-confirm';
+                self.showActionMenu();
+
+                self.tmpFunc = self.overWriteDbWithBackup;
+            } else {
+                self.overWriteDbWithBackup();
+            }
+        };
+    };
+
+    self.prefillExportJsonFileBtn = function(a, obj) {        
+        a.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(obj));
+        a.download = 'fxos-app-todo-backup-' + fecha.format(new Date(), 'YYYY-MM-DD') + '.json';
     };
 
     /**
@@ -164,6 +235,17 @@ var ViewModel = function() {
         dashboard.className = is ? 'left' : 'current';
 
         self.hideActionMenu();
+
+        if(data.targetId === 'database-section') {
+
+            var a = d.getElementById('export-database-btn'),
+                obj = {
+                    todo: self.state.allTodos(),
+                    group: self.state.allGroups()
+                };
+
+            self.prefillExportJsonFileBtn(a, obj);
+        }
     };
 
     /**
@@ -357,9 +439,7 @@ var ViewModel = function() {
     self.nukeAllDataBases = function() {
         console.log('kill all');
         pm.nukeAllDataBases();
-        setTimeout(function(){
-            location.reload();
-        }, 1500);
+        self.init();
     };
 
     self.loadAll = function(type, doc) {

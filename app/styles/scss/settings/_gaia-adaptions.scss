@@ -46,10 +46,23 @@ button:focus {
     }
 }
 
+form[role="dialog"][data-type="confirm"] {
+
+    > section {
+        position: absolute;
+    }
+
+    menu button {
+        margin: 0 .5rem;    
+    }
+}
+
+
 [role='region'] > header:first-child button {
     color: $white;
     border-left: 1px solid rgba(0,0,0,.03);
 }
+
 
 .edit-mode [data-type=edit] {
     position: absolute;

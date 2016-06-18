@@ -101,8 +101,8 @@ var PouchModel = function() {
     };
 
     self.nukeAllDataBases = function() {
-        db.todo.destroy().then( function() { console.log('pay has been deleted'); });
-        db.group.destroy().then( function() { console.log('inpay has been deleted'); });
+        db.todo.destroy().then( function() { console.log('todo has been deleted'); });
+        db.group.destroy().then( function() { console.log('group has been deleted'); });
         // db.settings.destroy().then( function() { console.log('settings has been deleted'); });
     };
 
