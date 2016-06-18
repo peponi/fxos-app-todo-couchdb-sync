@@ -95,7 +95,7 @@ var ViewModel = function() {
 
             doc = doc[0].doc;
 
-            if (doc.dependency) {
+            if (doc.dependency !== 'Dependency') {
                 self.fillDependencyDoc(doc);
             }
 
