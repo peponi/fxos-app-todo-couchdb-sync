@@ -428,7 +428,7 @@
                             <p class="title" 
                                 data-bind=" attr: {id: doc._id, 'data-title': doc.title},
                                             text: doc.title,
-                                            click: $root.handleActionBtnClick"></p>
+                                            click: $root.handleActionBtnClick">none</p>
                         </li>
                     </ul>
                 </section>
@@ -455,13 +455,20 @@
 
             <div id="priority-menu-list" class="menu-list">
                 <section>
-                    <ul data-bind="foreach: priority">
+                    <ul>
+                        <li class="menu-list__item" >
+                            <p class="title color-grey"
+                                data-bind=" attr: {'data-title':'Priority'},
+                                            click: $root.handleActionBtnClick">none</p>
+                        </li>
+                        <!-- ko foreach: priority -->
                         <li class="menu-list__item" >
                             <p class="title" 
                                 data-bind=" attr: {'data-title': key},
                                             text: key,
                                             click: $root.handleActionBtnClick"></p>
                         </li>
+                        <!-- /ko -->
                     </ul>
                 </section>
             </div>          
@@ -483,6 +490,11 @@
                 <section>
 
                     <ul>
+                        <li class="menu-list__item" >
+                            <p class="title color-grey"
+                                data-bind=" attr: {'data-title':'Dependency'},
+                                            click: $root.handleActionBtnClick">none</p>
+                        </li>
                     <!-- ko foreach: state.filteredTodosWithDateInFuture -->
                         <li class="menu-list__item" >
                             <p class="title" 

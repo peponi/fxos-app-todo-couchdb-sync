@@ -106,7 +106,7 @@ var ViewModel = function() {
         }
     };
 
-    self.hideMenu = function(data, e) {
+    self.hideMenu = function() {
         self.hideActionMenu();
         self.state.currentOpenMenu = '';
     };
@@ -277,7 +277,7 @@ var ViewModel = function() {
             // pre set header and form input for the new group who has been created
             // if you create a new group, you will enter todos there
             self.selectGroup(formData.title);
-        //} else if (type === 'todo') {
+        // } else if (type === 'todo') {
         }
 
         
@@ -288,12 +288,12 @@ var ViewModel = function() {
         var id = doc.dependency;
 
         doc = self.state.filteredDatelessTodos().find(function(todo) {
-            return todo.id == id;
+            return todo.id === id;
         });
 
         if (!doc) {
             doc = self.state.filteredTodosWithDateInFuture().find(function(todo) {
-                return todo.id == id;
+                return todo.id === id;
             });                
         }
 
@@ -359,7 +359,7 @@ var ViewModel = function() {
         pm.nukeAllDataBases();
         setTimeout(function(){
             location.reload();
-        }, 1500)
+        }, 1500);
     };
 
     self.loadAll = function(type, doc) {
