@@ -14,7 +14,7 @@ var TodoModel = function() {
         'urgent': 3
     };
 
-    self.transaction = function (formData) {
+    self.transaction = function(formData) {
         /* if date field is emtpy set current date an time */
         if (formData.date.length <= 0) {
             formData.date = fecha.format(new Date(), 'YYYY-MM-DD');
@@ -23,18 +23,9 @@ var TodoModel = function() {
             formData.time = '';
         }
 
-        var prio = formData.prio;
-
         // map the priority string to a integer value
         // easier to sort later
-        if(prio === 'middle' || prio === 'hight' || prio === 'urgent') {
-            formData.prio = self.map[prio];
-        // priority will be 0 when prio is 'low' 
-        // or default value has been passed  (priority menu was not used)
-        // or some other crap is in the form data
-        } else {
-            formData.prio = 0;
-        }
+        formData.prio = self.map[formData.prio];        
 
         // if(formData.calender) {
         //     console.log('open calender webactivity here');
@@ -46,25 +37,25 @@ var TodoModel = function() {
         pm.save(type, formData);
     };
 
-    self.get = function (id, callback) {
+    self.get = function(id, callback) {
         pm.get(type, id, function (doc) {
             callback(doc);
         });
     };
 
-    self.getAll = function (callback) {
+    self.getAll = function(callback) {
         pm.getAll(type, function (result) {
             callback(type, result);
         });
     };
 
-    self.update = function (id, callback) {
+    self.update = function(id, callback) {
         pm.update(type, id, function (doc) {
             return callback(doc);
         });
     };
 
-    self.delete = function (id, callback) {
+    self.delete = function(id, callback) {
         pm.removeId(type, id, callback);
     };
 };

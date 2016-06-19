@@ -119,23 +119,32 @@ var ViewModel = function() {
 
     self.overWriteDbWithBackup = function() {
         self.hideMenu();
-        self.nukeAllDataBases();
 
         var obj = self.state.importedJsonBackupObject;
-
+        self.state.importedJsonBackupObject = null;
         console.log(obj);
 
-        obj.group.map(function(group) {
-            console.log(group.doc);
-            pm.save('group', group.doc, function(data){console.log(data);});
+        var objectList = [];
+        
+        pm.removeAll('group', function() {        
+            obj.group.map(function(group) {
+                delete group.doc._rev;
+                objectList.push(group.doc);
+            });
+
+            pm.saveList('group', objectList);
+            objectList = [];
         });
 
-        obj.todo.map(function(todo) {
-            console.log(todo.doc);
-            pm.save('todo', todo.doc, function(data){console.log(data);});
-        });
 
-        self.init();
+        pm.removeAll('todo', function() {        
+            obj.todo.map(function(todo) {
+                delete todo.doc._rev;
+                objectList.push(todo.doc);
+            });
+
+            pm.saveList('todo', objectList, location.reload());
+        });        
     };
 
     self.importDatabaseBackupJsonFile = function(file) {

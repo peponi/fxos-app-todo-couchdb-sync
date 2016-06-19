@@ -12,7 +12,11 @@ var PouchModel = function() {
         },
         syncDatabase = {};
 
-    self.initializeCouchDBSync = function (doc) {
+    var checkCallback = function(c) {
+        return (typeof c === undefined) ? function(doc){ return doc; } : c;
+    };
+
+    self.initializeCouchDBSync = function(doc) {
 
         var allDBs = Object.keys(db),
             domain = doc['couchdb-url'].split('/'),
@@ -45,13 +49,13 @@ var PouchModel = function() {
         }
     };
 
-    self.get = function (type, id, callback) {
+    self.get = function(type, id, callback) {
         db[type].get(id)
         .then(callback)
         .catch( function(err) { return err; } );
     };
 
-    self.getAll = function (type, callback) {
+    self.getAll = function(type, callback) {
         /* eslint-disable camelcase */
         db[type].allDocs({ include_docs: true, attachments: false })
         .then(callback)
@@ -59,20 +63,28 @@ var PouchModel = function() {
         /* eslint-enable camelcase */
     };
 
-    self.save = function (type, Obj, callback) {
+    self.save = function(type, obj, callback) {
         // write unixtime as id
-        Obj._id = ~~(new Date().getTime() / 1000) + ''; // cast to string
+        obj._id = ~~(new Date().getTime() / 1000) + ''; // cast to string
 
-        callback = (typeof callback === undefined) ? function(doc){ return doc; } : callback;
+        callback = checkCallback(callback);
 
-        db[type].put(Obj)
+        db[type].put(obj)
         .then(callback)
         .then ( function() { // show notify
             vm.setStatus(type + ' has been saved', 2000);
         }).catch( function(err) { return err; } );
     };
 
-    self.removeId = function (type, id, callback) {
+    self.saveList = function(type, list, callback) {
+        callback = checkCallback(callback);
+
+        db[type].bulkDocs(list)
+        .then(callback)
+        .catch( function(err) { return err; } );
+    };
+
+    self.removeId = function(type, id, callback) {
         db[type].get(id)
         .then( function(doc) { // remove object from db
             db[type].remove(doc);
@@ -85,6 +97,20 @@ var PouchModel = function() {
                 vm.loadAll(type, doc);
             });
         }).catch( function(err) { return err; } );
+    };
+
+    self.removeAll = function(type, callback) {
+        callback = checkCallback(callback);
+
+        db[type].allDocs()
+        .then(function (result) {
+            // Promise isn't supported by all browsers; you may want to use bluebird
+            return Promise.all(result.rows.map(function (row) {
+                return db.remove(row.id, row.value.rev);
+            }));
+        })
+        .then(callback)
+        .catch( function(err) { return err; } );
     };
 
     self.update = function(type, id, callback) {
@@ -101,8 +127,8 @@ var PouchModel = function() {
     };
 
     self.nukeAllDataBases = function() {
-        db.todo.destroy().then( function() { console.log('todo has been deleted'); });
-        db.group.destroy().then( function() { console.log('group has been deleted'); });
+        db.todo.destroy().then( function() { console.log('pay DB has been deleted'); } );
+        db.group.destroy().then( function() { console.log('inpay DB has been deleted'); } );
         // db.settings.destroy().then( function() { console.log('settings has been deleted'); });
     };
 

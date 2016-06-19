@@ -35,7 +35,7 @@ so that I can outsource my brain capacity to the phone
 - [x] priority will be signaled by color
 - [x] start screen, when first start
 - [x] DB export to JSON file function
-- [ ] read JSON file ✓ and import to DB function
+- [x] read JSON file and import to DB function
 - [ ] todos can be edit
 - [ ] links in the todo description will be shown as html link in the edit mode
 - [ ] it will show a message if a todo has been toggle with an unsolved dependency (other todo is not done)
@@ -52,6 +52,7 @@ so that I can outsource my brain capacity to the phone
 ### Bugs
 
 - [ ] **heisenbug** - viewModel.js:75 Uncaught TypeError: Cannot set property 'className' of null
+- won't reload after json import
 
 ## Install
 ```
