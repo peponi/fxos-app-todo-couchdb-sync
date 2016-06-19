@@ -26,8 +26,8 @@ Goal is to build a todo app who provide
 
 ## User story
 
-As a **FirefoxOS user** I want to have a todo app to who rember me on noticed stuff
-so that I can outsource my brain capacity to the phone
+As a **FirefoxOS user** I want to have a todo app who will rember me on important stuff
+so that I can outsource my brain capacity to the phone, yeai
 
 ### Acceptance criteria
 
