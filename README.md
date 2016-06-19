@@ -1,6 +1,6 @@
 ![screenshot](_assets/just-do-it.jpg)
 
-# My Custom Todo WebApp
+# My Custom Todo WebApp (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
 
 > It's a WebApp optimzed for [Firefox OS 1.0 up to 2.5](https://www.mozilla.org/de/firefox/os/), but will works on Android and iOS too
 
