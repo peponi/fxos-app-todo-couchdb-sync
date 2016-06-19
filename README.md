@@ -1,10 +1,15 @@
 ![screenshot](_assets/just-do-it.jpg)
 
-# Todo WebApp
+# My Custom Todo WebApp
 
 > It's a WebApp optimzed for [Firefox OS 1.0 up to 2.5](https://www.mozilla.org/de/firefox/os/), but will works on Android and iOS too
->
-> Goal is to build a todo app who provide sever synchronization, dependencies and prioritization
+
+Goal is to build a todo app who provide 
+
+* sever synchronization
+* export, import
+* dependencies
+* prioritization
 
 
 ## Build with 
@@ -31,11 +36,11 @@ so that I can outsource my brain capacity to the phone
 - [x] todos will be shown in a list
 - [x] todos will be shown filtered by group
 - [x] todos can be ordered by priority
-- [x] and by date (<strike>show date as header group</strike> if date is in the future and order by priority all todos with this date under the date header group) 
+- [x] and by date
 - [x] priority will be signaled by color
 - [x] start screen, when first start
-- [x] DB export to JSON file function
-- [x] read JSON file and import to DB function
+- [x] DB export to JSON file
+- [x] read JSON file and import to DB
 - [ ] todos can be edit
 - [ ] links in the todo description will be shown as html link in the edit mode
 - [ ] it will show a message if a todo has been toggle with an unsolved dependency (other todo is not done)
