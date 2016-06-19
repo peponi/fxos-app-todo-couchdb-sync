@@ -117,6 +117,10 @@ var ViewModel = function() {
 
             self.state.currentOpenTodo(doc);
             self.showActionMenu();
+        } else if (self.state.currentOpenMenu === 'tag-menu') {
+            if(e.keyCode === 51) {
+                self.showActionMenu();
+            };
         } else {
             self.showActionMenu();            
         }

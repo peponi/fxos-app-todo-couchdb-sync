@@ -237,7 +237,7 @@
                     </p>
                     <p>
                         <textarea placeholder="Description #Hashtag"
-                                data-bind="keyup:viewModel.openMenu"
+                                data-bind="event: {keyup: openMenu} "
                                 data-target-id="tag-menu"
                                 data-binding-context="todo-form"
                                 name="desc"></textarea>
@@ -518,6 +518,32 @@
                     </ul>
                 </section>
             </div>          
+        </form>
+    </section>
+
+    <!--···························· action menu - tag ····························-->
+    <section data-position="back" class="fade-out" id="tag-menu">
+        <form role="dialog" data-type="action">
+            <header>
+                <div class="inline">Tags</div>
+                <button class="inline"
+                        data-bind="click:hideMenu"
+                        data-target-id="tag-menu"
+                        role="button">close</button>
+            </header>
+
+            <div id="tag-menu-list" class="menu-list">
+                <section>
+                    <ul data-bind="foreach: state.allTags">
+                        <li class="menu-list__item" >
+                             <p class="title" 
+                                data-bind=" attr: {'data-title': key},
+                                            text: doc.title,
+                                            click: $root.handleActionBtnClick"></p>
+                        </li>
+                    </ul>
+                </section>
+            </div>        
         </form>
     </section>
 
