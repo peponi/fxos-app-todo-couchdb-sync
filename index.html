@@ -181,11 +181,6 @@
                             </ul>
                         </section>
                     </div>
-                    <div class="spinner hide">
-                        <div class="bounce1"></div>
-                        <div class="bounce2"></div>
-                        <div class="bounce3"></div>
-                    </div>
 
                     <section class="content hide no-groups-available-section" id="no-groups-available-section">
                         <br>
@@ -241,12 +236,11 @@
                         <button type="reset">Clear</button>
                     </p>
                     <p>
-                        <input type="text"
-                                placeholder="Description #Hashtag"
+                        <textarea placeholder="Description #Hashtag"
                                 data-bind="keyup:viewModel.openMenu"
                                 data-target-id="tag-menu"
                                 data-binding-context="todo-form"
-                                name="desc">
+                                name="desc"></textarea>
                         <button type="reset">Clear</button>
                     </p>
                     <p class="hide">
@@ -256,6 +250,7 @@
                     <p>
                         <input type="button" 
                                 value="Priority"
+                                data-placeholder="Priority"
                                 data-bind="click:openMenu"
                                 data-target-id="priority-menu"
                                 data-binding-context="todo-form"
@@ -265,6 +260,7 @@
                     <p>
                         <input type="button" 
                                 value="Dependency"
+                                data-placeholder="Dependency"
                                 data-bind="click:openMenu"
                                 data-target-id="dependency-menu"
                                 data-binding-context="todo-form"
@@ -272,8 +268,8 @@
                         <button type="reset">Clear</button>
                     </p>
                     <p>
-                        <label for="todo-date">Todo Date</label>
-                        <input type="date" name="date" id="todo-date">
+                        <label for="expiry-date">Expiry Date</label>
+                        <input type="date" name="date" id="expiry-date">
                         <!-- <input type="date" name="date" id="todo-date" data-bind="event: {change: checkDateAndShowChekbox} "> -->
                     </p>
                     <!-- <p data-bind="visible: state.showCheckbox">

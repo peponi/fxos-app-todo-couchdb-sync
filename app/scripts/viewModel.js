@@ -67,6 +67,16 @@ var ViewModel = function() {
         return formData;
     };
 
+    self.resetForm = function(form) {
+        form.reset();
+
+        var menuOpeners = form.querySelectorAll('[type=button]');
+
+        [].forEach.call(menuOpeners, function(input) {
+            input.value =  input.dataset.placeholder;
+        });
+    }
+
     self.capitalizeWord = function(word) {
         return word.substr(0, 1).toUpperCase() + word.substr(1);
     };
@@ -328,7 +338,7 @@ var ViewModel = function() {
         //     vm.hideEditMode();
         // }
 
-        data = targetForm.querySelectorAll('input');
+        data = targetForm.querySelectorAll('input, textarea');
         var formData = self.parseInputToObj(data);
 
         // FIXME: later with some regex
@@ -355,7 +365,7 @@ var ViewModel = function() {
 
         model[type].transaction(formData);
         model[type].getAll(self.loadAll);
-        targetForm.reset();
+        self.resetForm(targetForm);
 
         if(type === 'group') {
             // in case of this is the first group wh has been created

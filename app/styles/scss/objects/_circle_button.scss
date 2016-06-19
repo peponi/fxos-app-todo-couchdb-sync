@@ -1,4 +1,4 @@
-$circle-button__size: 48px;
+$circle-button__size: 46px;
 $circle-button__display-padding: 12px;
 
 .circle-button {
@@ -20,6 +20,7 @@ $circle-button__display-padding: 12px;
     outline: none;
     background-color: $blue-light;
     box-shadow: -2px 3px 6px 0 $shadow-grey;
+    font-style: normal;
 
     &.on-dark-background {
         box-shadow: -2px 3px 6px 0 $circle-button-shadow-black;

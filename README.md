@@ -57,7 +57,7 @@ so that I can outsource my brain capacity to the phone
 ### Bugs
 
 - [ ] **heisenbug** - viewModel.js:75 Uncaught TypeError: Cannot set property 'className' of null
-- won't reload after json import
+- [ ] won't reload after json import
 
 ## Install
 ```
