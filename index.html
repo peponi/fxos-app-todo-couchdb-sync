@@ -154,10 +154,10 @@
                                         <div data-bind="css: 'dot ' + $root.priorityArray[doc.prio]"></div>
                                     </aside>
                                     <p class="text" data-bind="text: doc.title, attr: {'data-done': doc.done}"></p>
-                                    <p data-bind="text: doc.desc, attr: {'data-done': doc.done}"></p>
                                     <aside class="pack-end">
                                         <small data-bind="text: doc.date"></small>
                                     </aside>
+                                    <p data-bind="text: doc.desc, attr: {'data-done': doc.done}"></p>
                                 </li>
                             <!-- /ko -->
                             </ul>
@@ -535,7 +535,7 @@
                 <p><strong data-bind="text: state.currentOpenTodo().title"></strong></p>
                 <p data-bind="text: state.currentOpenTodo().desc"></p>
                 <p>Priority: <var data-bind="text: priorityArray[state.currentOpenTodo().prio], css: 'color-' + priorityArray[state.currentOpenTodo().prio]"></var></p>
-                <!-- ko if: state.currentOpenTodo().dependency -->
+                <!-- ko if: state.currentOpenTodo().dependency !== 'Dependency' -->
                 <p>Dependency: <span data-bind="text: state.currentDependencyDocTitle"></span></p>
                 <!-- /ko -->
                 <br><br>

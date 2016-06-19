@@ -104,7 +104,7 @@ form[role="dialog"][data-type="confirm"] menu button {
   font-size: 18px; }
   [data-type="list"] aside.pack-end small {
     position: relative;
-    top: -25px; }
+    top: 8px; }
 
 [data-type="list"] aside img {
   width: 3rem;
