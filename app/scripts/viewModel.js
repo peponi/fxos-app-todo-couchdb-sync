@@ -18,6 +18,11 @@ var ViewModel = function() {
             todo: new TodoModel(),
             group: new GroupModel()
         };
+        
+    self.device = {
+            isIos: /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
+            isAndroid: /Android/.test(navigator.userAgent)
+        };
 
     self.priority = [
         {key: 'low'},
@@ -200,8 +205,14 @@ var ViewModel = function() {
         };
     };
 
-    self.prefillExportJsonFileBtn = function(a, obj) {        
-        a.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(obj));
+    self.prefillExportJsonFileBtn = function(a, obj) {
+
+        if(typeof Base64 !== 'undefined') {
+            a.href = 'data:application/octet-stream;charset=utf-8;base64,' + Base64.encode(JSON.stringify(obj));
+        } else {
+            a.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(obj));
+        }
+
         a.download = 'fxos-app-todo-backup-' + fecha.format(new Date(), 'YYYY-MM-DD') + '.json';
     };
 

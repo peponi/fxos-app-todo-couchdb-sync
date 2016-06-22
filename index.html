@@ -14,6 +14,7 @@
 
     <link rel="manifest" href="manifest.json">
 
+
     <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
@@ -347,10 +348,10 @@
         </header>
 
         <section class="content scrollable header">
-            <section>
+            <section data-bind="if: !device.isIos">
                 <a href="#" id="export-database-btn" class="button recommend">Export database backup</a>
-            </section>
-            <section>
+
+                <br><br>
                 <label for="import-database-backup-json-file">Import database backup file (JSON)</label>
                 <input type="file" id="import-database-backup-json-file" class="button recommend" data-bind="event: { change: function() { importDatabaseBackupJsonFile($element.files[0]) } }">
             </section>
@@ -596,6 +597,7 @@
     <script src="node_modules/fecha/fecha.min.js"></script>
     <script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
     <script src="app/building-blocks/js/status.js"></script>
+    <script src="app/scripts/helper/base64.js"></script>
     <!-- endbuild -->
     <!-- build:js-app -->
     <script src="app/scripts/models/pouchModel.js"></script>
