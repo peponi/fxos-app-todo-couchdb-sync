@@ -349,11 +349,14 @@
 
         <section class="content scrollable header">
             <section data-bind="if: !device.isIos">
+                <br>
                 <a href="#" id="export-database-btn" class="button recommend">Export database backup</a>
 
                 <br><br>
-                <label for="import-database-backup-json-file">Import database backup file (JSON)</label>
-                <input type="file" id="import-database-backup-json-file" class="button recommend" data-bind="event: { change: function() { importDatabaseBackupJsonFile($element.files[0]) } }">
+                <h2>Import database backup file (JSON)</h2>
+                <input type="file" class="button recommend" data-bind="event: { change: function() { importDatabaseBackupJsonFile($element.files[0]) } }">
+                <br><br>
+                <hr>
             </section>
             <fieldset>
                 <form id="couchdb-form" class="couchdb-form">
@@ -361,8 +364,10 @@
                         <p class="table-row">
                             <label for="do-sync-couchdb" class="table-cell">Sync to CouchDB</label>
                             <label class="pack-switch table-cell">
-                                <input type="checkbox" name="do-sync-couchdb" id="do-sync-couchdb"
-                                    data-bind="click:toggleAccordion"
+                                <input type="checkbox"
+                                    name="do-sync-couchdb"
+                                    id="do-sync-couchdb"
+                                    data-bind="event: {change: toggleAccordion} "
                                     data-target-id="accordion-content">
                                 <span></span>
                             </label>
@@ -376,22 +381,41 @@
                             </p>
                         </div>
                         <p>
-                            <input type="text" placeholder="user name" name="couchdb-user-name">
+                            <input type="text"
+                                placeholder="user name" 
+                                name="couchdb-user-name"
+                                id="couchdb-user-name"
+                                data-bind="textInput: state.settings.couchdbUserName, event: {focusout: connectToCouchDb}"
+                                data-save-target="settings">
                             <button type="reset">Clear</button>
                         </p>
                         <p>
-                            <input type="password" placeholder="password" name="couchdb-password">
+                            <input type="password"
+                                placeholder="password" 
+                                name="couchdb-password"
+                                id="couchdb-password"
+                                data-bind="textInput: state.settings.couchdbPassword, event: {focusout: connectToCouchDb}"
+                                data-save-target="settings">
                             <button type="reset">Clear</button>
                         </p>
                         <p>
-                            <input type="url" placeholder="https://my-couchdb-server.local" name="couchdb-url">
+                            <input type="text"
+                                placeholder="couchdb database prefix" 
+                                name="couchdb-prefix"
+                                id="couchdb-prefix"
+                                data-bind="textInput: state.settings.couchdbPrefix, event: {focusout: connectToCouchDb}"
+                                data-save-target="settings">
                             <button type="reset">Clear</button>
                         </p>
                         <p>
-                            <input type="text" placeholder="couchdb database prefix" name="couchdb-prefix">
+                            <input type="url"
+                                placeholder="https://my-couchdb-server.local" 
+                                name="couchdb-url"
+                                id="couchdb-url"
+                                data-bind="textInput: state.settings.couchdbUrl, event: {focusout: connectToCouchDb}"
+                                data-save-target="settings">
                             <button type="reset">Clear</button>
                         </p>
-                        <hr>
                     </div>
                 </form>
             </fieldset>
@@ -603,6 +627,7 @@
     <script src="app/scripts/models/pouchModel.js"></script>
     <script src="app/scripts/models/todoModel.js"></script>
     <script src="app/scripts/models/groupModel.js"></script>
+    <script src="app/scripts/models/settingsModel.js"></script>
     <script src="app/scripts/viewModel.js"></script>
     <!-- endbuild -->
 

@@ -8,7 +8,8 @@ var PouchModel = function() {
     var self = this,
         db = {
             todo: new PouchDB('todo'),
-            group: new PouchDB('group')// ,settings: new PouchDB('settings')
+            group: new PouchDB('group'),
+            settings: new PouchDB('settings')
         },
         syncDatabase = {};
 
@@ -16,13 +17,13 @@ var PouchModel = function() {
         return (typeof c === undefined) ? function(doc){ return doc; } : c;
     };
 
-    self.initializeCouchDBSync = function(doc) {
+    self.initializeCouchDBSync = function(settings) {
 
         var allDBs = Object.keys(db),
-            domain = doc['couchdb-url'].split('/'),
-            userName = doc['couchdb-user-name'],
-            password = doc['couchdb-password'],
-            prefix = doc['couchdb-prefix'],
+            domain = settings.couchdbUrl.split('/'),
+            userName = settings.couchdbUserName,
+            password = settings.couchdbPassword,
+            prefix = settings.couchdbPrefix,
             url,
             dbName;
 
@@ -37,8 +38,8 @@ var PouchModel = function() {
             syncDatabase[dbName] = new PouchDB(url);
 
             db[dbName].sync(syncDatabase[dbName], {
-            //     live: true,
-            //     retry: true
+                //live: true,
+                //retry: true
             }).on('complete', function() {
                 vm.setStatus(dbName + ' has been synct', 2000);
                 console.log(dbName + ' has been synct', 2000);

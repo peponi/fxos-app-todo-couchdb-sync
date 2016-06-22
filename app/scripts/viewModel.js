@@ -16,7 +16,8 @@ var ViewModel = function() {
         circleBtn = d.getElementById('circle-button'),
         model = {
             todo: new TodoModel(),
-            group: new GroupModel()
+            group: new GroupModel(),
+            settings: new SettingsModel()
         };
         
     self.device = {
@@ -24,6 +25,8 @@ var ViewModel = function() {
             isAndroid: /Android/.test(navigator.userAgent)
         };
 
+    self.urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
+    
     self.priority = [
         {key: 'low'},
         {key: 'middle'},
@@ -36,6 +39,7 @@ var ViewModel = function() {
     self.state = {
         currentOpenMenu: 'group-menu',
         currentSelectedGroup: '',
+        currentDependencyDocTitle: ko.observable(),
         currentOpenTodo: ko.observable({
             date: '',
             desc: '',
@@ -49,11 +53,23 @@ var ViewModel = function() {
         allTodos: ko.observableArray(),
         filteredTodosWithDateInFuture: ko.observableArray(),
         filteredDatelessTodos: ko.observableArray(),
-        currentDependencyDocTitle: ko.observable()
+        settings: {
+            docId: 0,
+            syncToCouchDb: false,
+            couchdbUserName: '',
+            couchdbPassword: '',
+            couchdbPrefix: '',
+            couchdbUrl: ''
+        }
     };
 
-    // Helper
+    //////////////////  Helper  /////////////////////////
 
+    /**
+     * will show a short flash message (notify)
+     *
+     * @param      {string}  msg     The notify message
+     */
     self.setStatus = function(msg) {
         utils.status.show(msg);
     };
@@ -86,55 +102,11 @@ var ViewModel = function() {
         return word.substr(0, 1).toUpperCase() + word.substr(1);
     };
 
-    // Menu Functions
-    
     self.tmpFunc = function () {
         console.alert('vm.tmpFunc() is empty');
     };
 
-    self.showActionMenu = function() {
-        d.getElementById(self.state.currentOpenMenu).className = 'fade-in';
-    };
-
-    self.hideActionMenu = function() {
-        d.getElementById(self.state.currentOpenMenu).className = 'fade-out';
-    };
-
-    self.openMenu = function(data, e) {
-        self.state.currentOpenMenu = e.currentTarget.dataset.targetId;
-        self.state.menuBindingContext = e.currentTarget.dataset.bindingContext;
-        self.state.menuBindingInputName = e.currentTarget.name;
-
-        if(self.state.currentOpenMenu === 'edit-menu') {
-            // in case of edit-menu is open
-            // bindingContext is an pouchdb id
-            var id = e.currentTarget.dataset.bindingContext;
-            
-            var doc = self.state.allTodos().filter(function(doc) {
-                return doc.id === id;
-            });
-
-            doc = doc[0].doc;
-
-            if (doc.dependency !== 'Dependency') {
-                self.fillDependencyDoc(doc);
-            }
-
-            self.state.currentOpenTodo(doc);
-            self.showActionMenu();
-        } else if (self.state.currentOpenMenu === 'tag-menu') {
-            if(e.keyCode === 51) {
-                self.showActionMenu();
-            };
-        } else {
-            self.showActionMenu();            
-        }
-    };
-
-    self.hideMenu = function() {
-        self.hideActionMenu();
-        self.state.currentOpenMenu = '';
-    };
+    ///////////////////  Settings Section Functions  /////////////////////////
 
     self.overWriteDbWithBackup = function() {
         self.hideMenu();
@@ -222,32 +194,90 @@ var ViewModel = function() {
      * @param  {event} e contains the accordion target id
      */
     self.toggleAccordion = function(data, e) {
+
         var accordionContent = d.getElementById(e.currentTarget.dataset.targetId),
             showAccordion = e.currentTarget.checked;
 
         accordionContent.style.display = showAccordion ? 'block' : 'none';
     };
 
-    /**
-     * showAccordionContent will make a default hidden accordion visible
-     * @param  {string} targetId DOM id
-     */
-    self.showAccordionContent = function(targetId) {
-        var accordionContent = d.getElementById(targetId);
+    self.connectToCouchDb = function(data, e) {
 
-        accordionContent.style.display = 'block';
+        if(e.target.name !== 'couchdb-url') return;
+
+        if(self.urlregex.test(self.state.settings.couchdbUrl)) {
+            self.state.settings.syncToCouchDb = true;
+            sm.transaction(self.state.settings);
+            pm.initializeCouchDBSync(self.state.settings);
+        } else {
+            self.setStatus('The CouchDB URL is not valid');
+        }
+    }
+
+    self.mapCouchDbSettingsToForm = function(settings) {
+        console.log(settings);
+        d.getElementById('do-sync-couchdb').checked = settings.syncToCouchDb;
+        d.getElementById('accordion-content').style.display = 'block',
+        d.getElementById('couchdb-user-name').value = settings.couchdbUserName;
+        d.getElementById('couchdb-password').value = settings.couchdbPassword;
+        d.getElementById('couchdb-prefix').value = settings.couchdbPrefix;
+        d.getElementById('couchdb-url').value = settings.couchdbUrl;
+    }
+
+    self.initializeCouchDBSync = function(settings) {
+        pm.initializeCouchDBSync(settings);
+    }
+
+    ///////////////////  Menu Functions  /////////////////////////
+    
+    self.showActionMenu = function() {
+        d.getElementById(self.state.currentOpenMenu).className = 'fade-in';
+    };
+
+    self.hideActionMenu = function() {
+        d.getElementById(self.state.currentOpenMenu).className = 'fade-out';
+    };
+
+    self.openMenu = function(data, e) {
+        self.state.currentOpenMenu = e.currentTarget.dataset.targetId;
+        self.state.menuBindingContext = e.currentTarget.dataset.bindingContext;
+        self.state.menuBindingInputName = e.currentTarget.name;
+
+        if(self.state.currentOpenMenu === 'edit-menu') {
+            // in case of edit-menu is open
+            // bindingContext is an pouchdb id
+            var id = e.currentTarget.dataset.bindingContext;
+            
+            var doc = self.state.allTodos().filter(function(doc) {
+                return doc.id === id;
+            });
+
+            doc = doc[0].doc;
+
+            if (doc.dependency !== 'Dependency') {
+                self.fillDependencyDoc(doc);
+            }
+
+            self.state.currentOpenTodo(doc);
+            self.showActionMenu();
+        } else if (self.state.currentOpenMenu === 'tag-menu') {
+            if(e.keyCode === 51) {
+                self.showActionMenu();
+            };
+        } else {
+            self.showActionMenu();            
+        }
+    };
+
+    self.hideMenu = function() {
+        self.hideActionMenu();
+        self.state.currentOpenMenu = '';
     };
 
     /**
      * just an auto animatio to return to the dashboard
      */
-    self.offCanvasAutoBack = function() {        
-
-        // if(self.isFirstAccount && typeof doc !== 'undefined') {
-        //     self.hideNoAccountsAvailableSection(doc);
-        //     self.prefillAllInputsWithThis(doc.name);
-        //     mainCurrentAccountInfoNode.id = doc._id;
-        // }
+    self.offCanvasAutoBack = function() {
 
         d.querySelector('section.current').className = 'right';
         dashboard.className = 'current';        
@@ -260,6 +290,7 @@ var ViewModel = function() {
      * @param {event} e is an event
      */
     self.offCanvasAction = function(data, e) {
+
         data = e.currentTarget.dataset;
         is = data.direction === 'current';
 
@@ -334,7 +365,7 @@ var ViewModel = function() {
     //     var bool = passedDateTime > currentDateTime ? true : false;
     //     self.state.showCheckbox(bool);
     // };
-    // 
+
     self.selectGroup = function(title) {
         self.state.currentSelectedGroup = title;
         headerGroupMenuBtn.innerHTML = title;
@@ -502,6 +533,7 @@ var ViewModel = function() {
                 self.loadFilteredTodos();
             }
         });
+        model.settings.fill(self);
     };
 
     self.init();
