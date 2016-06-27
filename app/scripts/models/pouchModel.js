@@ -25,21 +25,38 @@ var PouchModel = function() {
             password = settings.couchdbPassword,
             prefix = settings.couchdbPrefix,
             url,
-            dbName;
+            dbName,
+            remoteDB = {},
+            //isApp = w.location.protocol === "app:" ? { mozSystem: true, mozAnon: true } : { mozSystem: false, mozAnon: false },
+            isApp = w.location.protocol === "app:";
+
+        var appXHR = function () {
+            return new XMLHttpRequest({
+                mozSystem: isApp,
+                mozAnon: isApp
+            });
+        };
+
+        var remoteDbOpts = {
+            ajax: {
+                xhr: appXHR,
+                headers: { cookie: 'no' }
+            }
+        };
 
         for (var i = allDBs.length; i--;) {
             dbName = allDBs[i];
 
-            // url = domain[0] + '//' + userName + ':' + password + '@' + domain[2] + '/' + prefix + dbName;
             url = domain[0] + '//' + userName + ':' + password + '@' + domain[2] + '/' + prefix + dbName;
             console.log(url);
 
+            // https://github.com/pouchdb/pouchdb/issues/4256
             // http://pouchdb.com/guides/replication.html
-            syncDatabase[dbName] = new PouchDB(url);
+            remoteDB[dbName] = new PouchDB(url, remoteDbOpts);
 
-            db[dbName].sync(syncDatabase[dbName], {
-                //live: true,
-                //retry: true
+            db[dbName].sync(remoteDB[dbName], {
+            //     live: true,
+            //     retry: true
             }).on('complete', function() {
                 vm.setStatus(dbName + ' has been synct', 2000);
                 console.log(dbName + ' has been synct', 2000);

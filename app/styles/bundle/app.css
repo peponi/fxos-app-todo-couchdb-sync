@@ -166,6 +166,9 @@ form label {
   box-shadow: none;
   /* override the box-shadow from the system (performance issue) */ }
 
+img {
+  width: 100%; }
+
 /**
  * http://tobiasahlin.com/spinkit/
  * 
@@ -672,19 +675,6 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
     height: 5rem; }
   .couchdb-form .table-cell:last-child {
     text-align: right; }
-
-.no-groups-available-section {
-  height: calc(100% - 15px);
-  position: absolute;
-  background-image: url("../../images/procrastination.png");
-  background-size: contain;
-  background-position: center 100%;
-  background-repeat: no-repeat;
-  padding-bottom: 0;
-  /* alle the firefox os 30$ phones have a resolution of 320x460 */ }
-  @media screen and (max-height: 460px) {
-    .no-groups-available-section {
-      background-size: 60% auto; } }
 
 /* Lists */
 [data-type='list'] li > a {

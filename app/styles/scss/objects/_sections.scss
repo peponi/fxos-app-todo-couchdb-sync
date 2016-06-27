@@ -17,17 +17,17 @@
     }
 }
 
-.no-groups-available-section {
-    height: calc(100% - 15px);
-    position: absolute;
-    background-image: url("../../images/procrastination.png");
-    background-size: contain;
-    background-position: center 100%;
-    background-repeat: no-repeat;
-    padding-bottom: 0;
+// .no-groups-available-section {
+//     height: calc(100% - 15px);
+//     // position: absolute;
+//     // background-image: url("../../images/procrastination.png");
+//     // background-size: contain;
+//     // background-position: center 100%;
+//     // background-repeat: no-repeat;
+//     padding-bottom: 0;
 
-    /* alle the firefox os 30$ phones have a resolution of 320x460 */
-    @media screen and (max-height: 460px) {
-        background-size: 60% auto;
-    }
-}
+//     /* alle the firefox os 30$ phones have a resolution of 320x460 */
+//     @media screen and (max-height: 460px) {
+//         background-size: 60% auto;
+//     }
+// }
