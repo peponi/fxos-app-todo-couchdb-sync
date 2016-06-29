@@ -2,15 +2,14 @@
 
 # My Custom Todo WebApp (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
 
-> It's a WebApp optimzed for [Firefox OS 1.0 up to 2.5](https://www.mozilla.org/de/firefox/os/), but will works on Android and iOS too
+> It's a WebApp optimzed for [Firefox OS 1.0 up to 2.5](https://www.mozilla.org/de/firefox/os/), but will works on Android and <strike>iOS</strike> legacy phones too
 
-Goal is to build a todo app who provide 
+Goal is to build a todo webapp who provide 
 
-* sever synchronization
-* export, import
-* dependencies
-* prioritization
-
+* Server (CouchDB) synchronization
+* Backup export, import ✓
+* Todo dependencies 
+* Prioritization ✓
 
 ## Build with 
  * [Mozilla buildingfirefoxos.com](http://buildingfirefoxos.com), ([github](https://github.com/buildingfirefoxos/Building-Blocks))
@@ -39,25 +38,62 @@ so that I can outsource my brain capacity to the phone, yeai
 - [x] and by date
 - [x] priority will be signaled by color
 - [x] start screen, when first start
-- [x] DB export to JSON file
-- [x] read JSON file and import to DB
+- [ ] settings will be loaded on startup (language/couchdb)
+- [ ] synchronization to a CouchDB works
 - [ ] todos can be edit
 - [ ] links in the todo description will be shown as html link in the edit mode
 - [ ] it will show a message if a todo has been toggle with an unsolved dependency (other todo is not done)
-- [ ] settings will be loaded on startup (language/couchdb)
-- [ ] synchronization to a CouchDB works
-- [ ] sharing lists with other user via couchdb accounts
 - [ ] group delete will show a confirm message and delete all dependet todos 
-- [ ] transaltion can be added
-- [ ] it will prefer the system default language
-- [ ] LTR/RTL works
 - [ ] app will run on FXOS 1.1
 - [ ] app will run on android and ios
 
+### Feature whishlist
+
+- [x] DB export to JSON file
+- [x] read JSON file and import to DB
+- [ ] phone will [vibrate](https://www.sitepoint.com/use-html5-vibration-api) while notify is poping up
+- [ ] open input form whit phone [shaking](https://github.com/alexgibson/shake.js) [1](http://qnimate.com/detect-shake-using-javascript)
+- [ ] sharing lists with other user via couchdb accounts
+- [ ] show all groups with all todos in a [pie chart](http://www.chartjs.org/docs/#doughnut-pie-chart-introduction) like landingpage by [small and big dots](https://media-mediatemple.netdna-ssl.com/wp-content/uploads/2016/03/02-beats-opt.jpg)
+- [ ] transaltion can be added
+- [ ] it will prefer the system default language
+- [ ] LTR/RTL works
+- [ ] Android [web](https://developer.chrome.com/multidevice/android/intents) [intents](http://webintents.org/#support) has been tested
+- [ ] themes (ios, android, cyberUI)
+- [ ] archivements for completing todos
+
+### Feature Table
+
+| Feature | FirefoxOS 1.1 | FirefoxOS 2.0 | Android 4.3 | Android 5 | iOS 5 | iOS 6 |
+| --- | --- | --- | --- | --- | --- | --- |
+| **DB Backup Export** | | ✓ |  | ✓ | ❌ | ❌ |
+| **DB Backup Import** | | ✓ |  | ✓ | ❌ | ❌ |
+
 ### Bugs
 
+- [ ] build is not up to date
 - [ ] **heisenbug** - viewModel.js:75 Uncaught TypeError: Cannot set property 'className' of null
 - [ ] won't reload after json import
+
+## CouchDB
+
+if you want to sychronize your data, you need to install and configure a [CouchDB](https://couchdb.apache.org)
+* [how to install couchdb and futon on ubuntu 14 04](https://www.digitalocean.com/community/tutorials/how-to-install-couchdb-and-futon-on-ubuntu-14-04)
+* [how to install couchdb on a RaspberryPI - Raspbian Jessie](http://jeeonthepi.blogspot.ch/2014/08/installing-couchdb-1.html)
+
+when you done this and login to Futon, create following databases
+
+* *couchdb-databbase-prefix-***group**
+* *couchdb-databbase-prefix-***todo**
+* *couchdb-databbase-prefix-***settings**
+
+then configure your app in 
+
+> menu -> Database -> Sync to CouchDB
+
+choose somthing clear as prefix like **my-fxos-todo-app-** or leave this blank if you don't wan't to use your CouchDB for something else
+
+# Development
 
 ## Install
 ```
@@ -70,9 +106,10 @@ npm run web
 ```
 then click on [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-## CouchDB setup (if you want to sync your data to your [CouchDB](https://couchdb.apache.org))
+## CouchDB setup 
 
-you need to enable [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
+if you want to work on the synchronization and need to debug in your Chrome browser,
+you need to enable [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) in your [CouchDB](https://couchdb.apache.org)
 
 [github.com/pouchdb/add-cors-to-couchdb](https://github.com/pouchdb/add-cors-to-couchdb#what-it-does)
 
