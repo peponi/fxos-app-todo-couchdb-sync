@@ -215,7 +215,6 @@ var ViewModel = function() {
     }
 
     self.mapCouchDbSettingsToForm = function(settings) {
-        console.log(settings);
         d.getElementById('do-sync-couchdb').checked = settings.syncToCouchDb;
         d.getElementById('accordion-content').style.display = 'block',
         d.getElementById('couchdb-user-name').value = settings.couchdbUserName;
@@ -301,7 +300,10 @@ var ViewModel = function() {
 
         self.hideActionMenu();
 
-        if(data.targetId === 'database-section') {
+        if(data.targetId === 'todo-section') {
+            todoFormGroupIntput.value = self.state.currentSelectedGroup;
+
+        } else if(data.targetId === 'database-section') {
 
             var a = d.getElementById('export-database-btn'),
                 obj = {

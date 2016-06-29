@@ -25,7 +25,7 @@ var TodoModel = function() {
 
         // map the priority string to a integer value
         // easier to sort later
-        formData.prio = self.map[formData.prio];        
+        formData.prio = self.map[formData.prio] || 0;        
 
         // if(formData.calender) {
         //     console.log('open calender webactivity here');

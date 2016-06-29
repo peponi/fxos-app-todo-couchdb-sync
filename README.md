@@ -71,6 +71,8 @@ so that I can outsource my brain capacity to the phone, yeai
 
 ### Bugs
 
+- [ ] settings form muss umgebaut werden, sync form hoch, onkeyup raus und save button fixen
+- [ ] overlay menu kann nict gescrollt werden
 - [ ] build is not up to date
 - [ ] **heisenbug** - viewModel.js:75 Uncaught TypeError: Cannot set property 'className' of null
 - [ ] won't reload after json import

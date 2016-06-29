@@ -19,7 +19,7 @@ var PouchModel = function() {
 
     self.initializeCouchDBSync = function(settings) {
 
-        var allDBs = Object.keys(db),
+        var allDBs = ['todo', 'group'],//Object.keys(db), // don't want to sync settings
             domain = settings.couchdbUrl.split('/'),
             userName = settings.couchdbUserName,
             password = settings.couchdbPassword,
@@ -28,7 +28,7 @@ var PouchModel = function() {
             dbName,
             remoteDB = {},
             //isApp = w.location.protocol === "app:" ? { mozSystem: true, mozAnon: true } : { mozSystem: false, mozAnon: false },
-            isApp = w.location.protocol === "app:";
+            isApp = window.location.protocol === "app:";
 
         var appXHR = function () {
             return new XMLHttpRequest({
