@@ -34,7 +34,7 @@ so that I can outsource my brain capacity to the phone, yeai
 - [x] todos can be saved, toggeled and deleted
 - [x] todos will be shown in a list
 - [x] todos will be shown filtered by group
-- [x] todos can be ordered by priority
+- [x] todos will be ordered by priority
 - [x] and by date
 - [x] priority will be signaled by color
 - [x] start screen, when first start
@@ -53,7 +53,7 @@ so that I can outsource my brain capacity to the phone, yeai
 - [x] read JSON file and import to DB
 - [ ] phone will [vibrate](https://www.sitepoint.com/use-html5-vibration-api) while notify is poping up
 - [ ] open input form whit phone [shaking](https://github.com/alexgibson/shake.js) [1](http://qnimate.com/detect-shake-using-javascript)
-- [ ] sharing lists with other user via couchdb accounts
+- [ ] sharing lists with [other user](https://github.com/nolanlawson/pouchdb-authentication) via couchdb accounts
 - [ ] show all groups with all todos in a [pie chart](http://www.chartjs.org/docs/#doughnut-pie-chart-introduction) like landingpage by [small and big dots](https://media-mediatemple.netdna-ssl.com/wp-content/uploads/2016/03/02-beats-opt.jpg)
 - [ ] transaltion can be added
 - [ ] it will prefer the system default language
@@ -61,6 +61,7 @@ so that I can outsource my brain capacity to the phone, yeai
 - [ ] Android [web](https://developer.chrome.com/multidevice/android/intents) [intents](http://webintents.org/#support) has been tested
 - [ ] themes (ios, android, cyberUI)
 - [ ] archivements for completing todos
+- [ ] [crypto-pouch](https://github.com/calvinmetcalf/crypto-pouch) ausprobieren
 
 ### Feature Table
 
@@ -87,7 +88,6 @@ when you done this and login to Futon, create following databases
 
 * *couchdb-databbase-prefix-***group**
 * *couchdb-databbase-prefix-***todo**
-* *couchdb-databbase-prefix-***settings**
 
 then configure your app in 
 
