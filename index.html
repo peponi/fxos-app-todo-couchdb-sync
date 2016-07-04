@@ -359,7 +359,7 @@
         </header>
 
         <section class="content scrollable header">
-            <section data-bind="if: !device.isIos">
+            <section data-bind="if: !device.isIos && device.fxosVersion !== '1.1' && device.fxosVersion !== '1.0.1'">
                 <br>
                 <a href="#" id="export-database-btn" class="button recommend">Export database backup</a>
 
@@ -371,10 +371,10 @@
             </section>
             <fieldset>
                 <form id="couchdb-form" class="couchdb-form">
-                    <div class="table">                        
-                        <p class="table-row">
-                            <label for="do-sync-couchdb" class="table-cell">Sync to CouchDB</label>
-                            <label class="pack-switch table-cell">
+                    <div class="">                        
+                        <p class="block">
+                            <label for="do-sync-couchdb" class="inline">Sync to CouchDB</label>
+                            <label class="pack-switch inline">
                                 <input type="checkbox"
                                     name="do-sync-couchdb"
                                     id="do-sync-couchdb"

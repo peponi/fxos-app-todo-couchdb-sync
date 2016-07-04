@@ -65,12 +65,12 @@ so that I can outsource my brain capacity to the phone, yeai
 
 ### Feature Table
 
-|  | FirefoxOS ||| Android  ||| iOS  ||
+|  | FirefoxOS ||| Android  || iOS  ||
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **OS Version** | **1.1** | **2.0** | **2.6** | **4.0.4** | **4.3** | **5** | **5** | **6** |
-| **onbording startscreen** || ✓ | ✓ |  |||||
-| **DB Backup Export** | | ✓ |  |  | ✓ | ✓ | ❌ | ❌ |
-| **DB Backup Import** | | ✓ |  |  | ✓ | ✓ | ❌ | ❌ |
+| **OS Version** | **1.1** | **2.0** | **2.6** | **4.3** | **5** | **5** | **6** |
+| **onbording startscreen** | ✓ | ✓ | ✓ ||||
+| **DB Backup Export** | ❌ | ✓ |  | ✓ | ✓ | ❌ | ❌ |
+| **DB Backup Import** | ❌ | ✓ |  | ✓ | ✓ | ❌ | ❌ |
 
 ### Bugs
 

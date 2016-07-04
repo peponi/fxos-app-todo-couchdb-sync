@@ -132,6 +132,11 @@ form[role="dialog"][data-type="confirm"] menu button {
   color: #fff;
   background-color: #b2f2ff; }
 
+.block {
+  display: block; }
+  .block .inline {
+    display: inline-block; }
+
 /* functions */
 .ft-indie-flower {
   font-family: "Indie Flower", cursive; }
@@ -668,7 +673,8 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
 .couchdb-form {
   /* gaia overwrite */ }
   .couchdb-form .pack-switch {
-    height: 3rem; }
+    height: 3rem;
+    float: right; }
   .couchdb-form .table {
     width: 100%; }
   .couchdb-form .table-row {

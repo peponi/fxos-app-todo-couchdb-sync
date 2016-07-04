@@ -29,6 +29,14 @@
     background-color: #b2f2ff;
 }
 
+.block {
+    display: block;
+
+    .inline {
+        display: inline-block;
+    }
+}
+
 
 /* functions */
 
