@@ -21,7 +21,7 @@ var SettingsModel = function() {
 
     // fill the view model with the settings configurations
     self.fill = function(viewModel) {
-        pm.getAll(type, (result) => {
+        pm.getAll(type, function (result) {
             // check if a settings document exist
             if(result.total_rows) {
                 var doc = result.rows[0].doc;

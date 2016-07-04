@@ -7,12 +7,12 @@
 //     let type = 'hashtag',
 //         self = this;
 
-//     self.transaction = (formData) => {
+//     self.transaction = function (formData) {
 //         pm.save(type, formData);
 //     };
 
-//     self.getAllHashtags = (model, functionName) => {
-//         pm.getAll(type, (result) => {
+//     self.getAllHashtags = function (model, functionName) {
+//         pm.getAll(type, function (result) {
 //             model[functionName](result);
 //         });
 //     };

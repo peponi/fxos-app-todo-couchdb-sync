@@ -443,7 +443,7 @@ var ViewModel = function() {
         if (!doc) {
             doc = self.state.filteredTodosWithDateInFuture().find(function(todo) {
                 return todo.id === id;
-            });                
+            });
         }
 
         self.state.currentDependencyDocTitle(doc.doc.title);
