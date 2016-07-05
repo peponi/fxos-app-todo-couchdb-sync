@@ -239,9 +239,7 @@ var ViewModel = function() {
         accordionContent.style.display = showAccordion ? 'block' : 'none';
     };
 
-    self.connectToCouchDb = function(data, e) {
-
-        if(e.target.name !== 'couchdb-url') return;
+    self.connectToCouchDb = function() {
 
         if(self.urlregex.test(self.state.settings.couchdbUrl)) {
             self.state.settings.syncToCouchDb = true;
@@ -252,13 +250,28 @@ var ViewModel = function() {
         }
     }
 
+    self.tryToConnectToCouchDb = function() {
+        var settings = self.state.settings;
+
+        if(settings.syncToCouchDb && 
+            settings.couchdbUserName !== '' && 
+            settings.couchdbPassword !== '' && 
+            settings.couchdbUrl !== '') {
+
+            self.connectToCouchDb();
+        }
+    };
+
     self.mapCouchDbSettingsToForm = function(settings) {
-        d.getElementById('do-sync-couchdb').checked = settings.syncToCouchDb;
-        d.getElementById('accordion-content').style.display = 'block',
         d.getElementById('couchdb-user-name').value = settings.couchdbUserName;
         d.getElementById('couchdb-password').value = settings.couchdbPassword;
         d.getElementById('couchdb-prefix').value = settings.couchdbPrefix;
         d.getElementById('couchdb-url').value = settings.couchdbUrl;
+        d.getElementById('do-sync-couchdb').checked = settings.syncToCouchDb;
+
+        if(settings.syncToCouchDb) {
+            d.getElementById('accordion-content').style.display = 'block';
+        }
     }
 
     self.initializeCouchDBSync = function(settings) {
@@ -450,8 +463,12 @@ var ViewModel = function() {
         }
 
         model[type].transaction(formData);
-        model[type].getAll(self.loadAll);
-        self.resetForm(targetForm);
+        
+        if(type !== 'settings') {
+            model[type].getAll(self.loadAll);
+            self.resetForm(targetForm);
+        }
+
 
         if(type === 'group') {
             // in case of this is the first group wh has been created

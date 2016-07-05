@@ -350,25 +350,15 @@
             </button>
             <menu type="toolbar">
                 <button type="button"
-                        data-bind="onclick:dataController.saveFormData"
+                        data-bind="click: saveFormData"
                         data-target-form="couchdb-form"
                         data-type="settings"
-                        data-notify-text="Regulary transaction">save</button>
+                        data-notify-text="Settings">save</button>
             </menu>
             <h1>Database</h1>
         </header>
 
         <section class="content scrollable header">
-            <section data-bind="if: !device.isIos && device.fxosVersion !== '1.1' && device.fxosVersion !== '1.0.1'">
-                <br>
-                <a href="#" id="export-database-btn" class="button recommend">Export database backup</a>
-
-                <br><br>
-                <h2>Import database backup file (JSON)</h2>
-                <input type="file" class="button recommend" data-bind="event: { change: function() { importDatabaseBackupJsonFile($element.files[0]) } }">
-                <br><br>
-                <hr>
-            </section>
             <fieldset>
                 <form id="couchdb-form" class="couchdb-form">
                     <div class="">                        
@@ -396,7 +386,7 @@
                                 placeholder="user name" 
                                 name="couchdb-user-name"
                                 id="couchdb-user-name"
-                                data-bind="textInput: state.settings.couchdbUserName, event: {focusout: connectToCouchDb}"
+                                data-bind="textInput: state.settings.couchdbUserName, event: {focusout: tryToConnectToCouchDb}"
                                 data-save-target="settings">
                             <button type="reset">Clear</button>
                         </p>
@@ -405,7 +395,7 @@
                                 placeholder="password" 
                                 name="couchdb-password"
                                 id="couchdb-password"
-                                data-bind="textInput: state.settings.couchdbPassword, event: {focusout: connectToCouchDb}"
+                                data-bind="textInput: state.settings.couchdbPassword, event: {focusout: tryToConnectToCouchDb}"
                                 data-save-target="settings">
                             <button type="reset">Clear</button>
                         </p>
@@ -414,7 +404,7 @@
                                 placeholder="couchdb database prefix" 
                                 name="couchdb-prefix"
                                 id="couchdb-prefix"
-                                data-bind="textInput: state.settings.couchdbPrefix, event: {focusout: connectToCouchDb}"
+                                data-bind="textInput: state.settings.couchdbPrefix, event: {focusout: tryToConnectToCouchDb}"
                                 data-save-target="settings">
                             <button type="reset">Clear</button>
                         </p>
@@ -423,13 +413,24 @@
                                 placeholder="https://my-couchdb-server.local" 
                                 name="couchdb-url"
                                 id="couchdb-url"
-                                data-bind="textInput: state.settings.couchdbUrl, event: {focusout: connectToCouchDb}"
+                                data-bind="textInput: state.settings.couchdbUrl, event: {focusout: tryToConnectToCouchDb}"
                                 data-save-target="settings">
                             <button type="reset">Clear</button>
                         </p>
                     </div>
                 </form>
+                <br>
+                <hr>
+                <br>
             </fieldset>
+            <section data-bind="if: !device.isIos && device.fxosVersion !== '1.1' && device.fxosVersion !== '1.0.1'">
+                <br>
+                <a href="#" id="export-database-btn" class="button recommend">Export database backup</a>
+
+                <br><br>
+                <h2>Import database backup file (JSON)</h2>
+                <input type="file" class="button recommend" data-bind="event: { change: function() { importDatabaseBackupJsonFile($element.files[0]) } }">
+            </section>
         </section>
     </section>
 
