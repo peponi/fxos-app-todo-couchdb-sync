@@ -72,31 +72,32 @@ form[role="dialog"][data-type="confirm"] menu button {
   bottom: 0; }
 
 /* gaia overwrites & adaptions */
-[role='dialog'][data-type='action'] {
-  overflow-y: scroll; }
-  [role='dialog'][data-type='action'] > header {
-    padding: 0; }
-    [role='dialog'][data-type='action'] > header .inline:first-child {
-      margin: 0;
-      padding-left: 3rem; }
-    [role='dialog'][data-type='action'] > header .inline:last-child {
-      position: absolute;
-      right: 1rem;
-      left: auto;
-      width: auto;
-      padding: 0 1rem;
-      border-left: 1px solid #666; }
-  [role='dialog'][data-type='action'] > section.menu-content {
-    padding-bottom: 60px; }
-  [role='dialog'][data-type='action'] > section.position-bottom {
-    bottom: 0;
-    top: auto; }
-  [role='dialog'][data-type='action'] menu > button {
-    font-size: 1.9rem;
-    font-weight: normal;
-    line-height: 2.5rem; }
-    [role='dialog'][data-type='action'] menu > button:nth-last-child(2) {
-      margin-bottom: 1rem; }
+[role='dialog'][data-type='action'] > header {
+  padding: 0; }
+  [role='dialog'][data-type='action'] > header .inline:first-child {
+    margin: 0;
+    padding-left: 3rem; }
+  [role='dialog'][data-type='action'] > header .inline:last-child {
+    position: absolute;
+    right: 1rem;
+    left: auto;
+    width: auto;
+    padding: 0 1rem;
+    border-left: 1px solid #666; }
+
+[role='dialog'][data-type='action'] > section.menu-content {
+  padding-bottom: 60px; }
+
+[role='dialog'][data-type='action'] > section.position-bottom {
+  bottom: 0;
+  top: auto; }
+
+[role='dialog'][data-type='action'] menu > button {
+  font-size: 1.9rem;
+  font-weight: normal;
+  line-height: 2.5rem; }
+  [role='dialog'][data-type='action'] menu > button:nth-last-child(2) {
+    margin-bottom: 1rem; }
 
 [data-type="list"] aside.pack-end {
   height: 0;
@@ -761,6 +762,9 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
     bottom: 0;
     left: 0;
     opacity: 1; }
+
+#group-menu [role='dialog'][data-type='action'] {
+  overflow-y: scroll; }
 
 .menu-list {
   position: absolute;
