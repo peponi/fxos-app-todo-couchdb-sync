@@ -21,9 +21,9 @@ Goal is to build a todo webapp who provide
 
 ## Screenshots
 
-![screenshot](_assets/screenshot.png)
 ![screenshot](_assets/screenshot1.png)
 ![screenshot](_assets/screenshot2.png)
+![screenshot](_assets/screenshot.png)
 ## User story
 
 As a **FirefoxOS user** I want to have a todo app who will rember me on important stuff
@@ -76,12 +76,12 @@ so that I can outsource my brain capacity to the phone, yeai
 
 ### Bugs
 
-- [ ] app icon dosen't work on FXOS 1.1 - 2.0
 - [ ] build is not up to date
 - [ ] **heisenbug** - viewModel.js:75 Uncaught TypeError: Cannot set property 'className' of null
 - [ ] won't reload after json import
 - [ ] db synchronization got a cookie error after type in of credentials
 - [ ] db synchronization dosn't refresh the todo list after first app start, second start works then (timing problem ?)
+- [ ] sm.transaction in vm.onnectToCouchDb will be called while vm.init(), find better solution
 
 ## CouchDB
 
