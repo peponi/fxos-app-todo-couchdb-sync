@@ -126,17 +126,19 @@
         </section>
 
         <section id="drawer" class="drawer" role="region">
-            <header class="fixed">
-                <a href="#" id="open-drawer-btn" class="open-drawer-btn">
+            <header class="fixed table">
+                <a href="#" id="open-drawer-btn" class="open-drawer-btn table-cell">
                     <img src="./app/images/icons/png/menu62.png" class="burger-icon" alt="burger icon">
                 </a>
-                <a href="#drawer" id="close-drawer-btn" class="close-drawer-btn">
+                <a href="#drawer" id="close-drawer-btn" class="close-drawer-btn table-cell">
                     <img src="./app/images/icons/png/menu62.png" class="burger-icon" alt="burger icon">
                 </a>
                 <h1 data-bind="click:openMenu"
                     data-target-id="group-menu"
                     data-binding-context="header"
-                    role="button"></h1>
+                    role="button"
+                    class="table-cell"></h1>
+                <span class="table-cell">&#9660;</span>
             </header>
     
             <section class="content scrollable header">

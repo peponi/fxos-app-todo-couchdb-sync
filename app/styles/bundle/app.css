@@ -99,6 +99,18 @@ form[role="dialog"][data-type="confirm"] menu button {
   [role='dialog'][data-type='action'] menu > button:nth-last-child(2) {
     margin-bottom: 1rem; }
 
+section[role="region"] > header:first-child {
+  display: table; }
+  section[role="region"] > header:first-child h1 {
+    display: table-cell;
+    font-style: normal;
+    width: 60%; }
+  section[role="region"] > header:first-child a {
+    width: 20%; }
+  section[role="region"] > header:first-child span {
+    width: 20%;
+    text-align: center; }
+
 [data-type="list"] aside.pack-end {
   height: 0;
   color: #999;
