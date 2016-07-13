@@ -144,18 +144,20 @@ var ViewModel = function() {
         console.alert('vm.tmpFunc() is empty');
     };
 
-    ///////////////////  Settings Section Functions  /////////////////////////
+    ///////////////////  Database Section Functions  /////////////////////////
 
+    /**
+     * will overwrite the local database with a JSON backup file
+     */
     self.overWriteDbWithBackup = function() {
         self.hideMenu();
 
-        var obj = self.state.importedJsonBackupObject;
-        self.state.importedJsonBackupObject = null;
-        console.log(obj);
+        var obj = self.state.importedJsonBackupObject,
+            objectList = [];
 
-        var objectList = [];
+        self.state.importedJsonBackupObject = null;
         
-        pm.removeAll('group', function() {        
+        pm.removeAll('group', function() {
             obj.group.map(function(group) {
                 delete group.doc._rev;
                 objectList.push(group.doc);
@@ -164,7 +166,6 @@ var ViewModel = function() {
             pm.saveList('group', objectList);
             objectList = [];
         });
-
 
         pm.removeAll('todo', function() {        
             obj.todo.map(function(todo) {
@@ -176,6 +177,18 @@ var ViewModel = function() {
         });        
     };
 
+    /**
+     * will read a valid JSON backup file of this app
+     * and check if the local DB is empty
+     * if not the function will show a confim overlay
+     * the user need to click OK
+     * to overwrite the local DB with the backup JSON
+     * 
+     * this function will be called in the view
+     * on a change event in the database-section
+     *
+     * @param      {Object}  file    a browser file stream object
+     */
     self.importDatabaseBackupJsonFile = function(file) {
 
         if(file.name.indexOf('.json') === -1) {
@@ -215,8 +228,25 @@ var ViewModel = function() {
         };
     };
 
+    /**
+     * this is the prepare function for the JSON export functionality
+     *  
+     * will fill the passed anker href (i.e. the export button in the database-section)
+     * with an encoded javascript object
+     * so the browser will download a JSON text file of the javascript object
+     * 
+     * Base64 encoding neede for Android
+     * legacy phones like iPhone/iOS won't provide this feature
+     * 
+     * this function will be called in the viewModel.offCanvasAction()
+     *
+     * @param      {Object}  a       a html anker node
+     * @param      {Object}  obj     javascript object who should be encoded and passed on the href
+     */
     self.prefillExportJsonFileBtn = function(a, obj) {
 
+        // if base64.js is included use a base64 encoding
+        // else export dosn't work on Android
         if(typeof Base64 !== 'undefined') {
             a.href = 'data:application/octet-stream;charset=utf-8;base64,' + Base64.encode(JSON.stringify(obj));
         } else {
@@ -228,8 +258,9 @@ var ViewModel = function() {
 
     /**
      * toggleAccordion will toggle an passed accordion
-     * @param  {object} data knockout data object
-     * @param  {event} e contains the accordion target id
+     * 
+     * @param  {Object} data knockout data object
+     * @param  {Event} e contains the accordion target id
      */
     self.toggleAccordion = function(data, e) {
 
@@ -239,6 +270,17 @@ var ViewModel = function() {
         accordionContent.style.display = showAccordion ? 'block' : 'none';
     };
 
+    /**
+     * Connects to couch database.
+     * 
+     * will be check via regex if the url is valid
+     * the user set in the database-section
+     * 
+     * save the database credentials and initialize the synchronisation
+     * if the url is not valid the user wil be informed via notify
+     * 
+     * this function will be called in the viewModel.tryToConnectToCouchDb()
+     */
     self.connectToCouchDb = function() {
 
         if(self.urlregex.test(self.state.settings.couchdbUrl)) {
@@ -250,6 +292,15 @@ var ViewModel = function() {
         }
     }
 
+    /**
+     * Check if CouchDB connection is possible 
+     * 
+     * will check if all neccessary fields are filles and call
+     * connectToCouchDb then
+     *
+     * this function will be called in the view while focusout event on form inputs
+     * inside the database-section
+     */
     self.tryToConnectToCouchDb = function() {
         var settings = self.state.settings;
 
@@ -262,6 +313,14 @@ var ViewModel = function() {
         }
     };
 
+    /**
+     * this function will be called in the settingsModel.fill()
+     * 
+     * and will map all saved database credentials
+     * form the storeage to the form inuts in the database-section
+     *
+     * @param      {object}  settings  todo app  settings object
+     */
     self.mapCouchDbSettingsToForm = function(settings) {
         d.getElementById('couchdb-user-name').value = settings.couchdbUserName;
         d.getElementById('couchdb-password').value = settings.couchdbPassword;
@@ -272,10 +331,6 @@ var ViewModel = function() {
         if(settings.syncToCouchDb) {
             d.getElementById('accordion-content').style.display = 'block';
         }
-    }
-
-    self.initializeCouchDBSync = function(settings) {
-        pm.initializeCouchDBSync(settings);
     }
 
     ///////////////////  Menu Functions  /////////////////////////
@@ -336,8 +391,9 @@ var ViewModel = function() {
     /**
      * offCanvasAction - control all off canvas slides
      * from side navigation to some section and back
-     * @param  {object} data knockout data object
-     * @param {event} e is an event
+     * 
+     * @param   {Object} data knockout data object
+     * @param   {Event} e is an event
      */
     self.offCanvasAction = function(data, e) {
 
@@ -369,8 +425,9 @@ var ViewModel = function() {
     /**
      * handleActionBtnClick - will grep the value of the selection 
      * and write it back to currency field in form where the menu has been opened
-     * @param  {object} data knockout data object
-     * @param {event} e is an event
+     * 
+     * @param   {Object} data knockout data object
+     * @param   {Event} e is an event
      */
     self.handleActionBtnClick = function(data, e) {
 
