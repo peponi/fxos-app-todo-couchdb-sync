@@ -6,7 +6,7 @@
 
 Goal is to build a todo webapp who provide 
 
-* Server (CouchDB) synchronization
+* Server (CouchDB) synchronization ✓
 * Backup export, import ✓
 * Todo dependencies 
 * Prioritization ✓

@@ -320,8 +320,6 @@ var ViewModel = function() {
     self.tryToConnectToCouchDb = function() {
         var settings = self.state.settings;
 
-        console.log(settings);
-
         if( settings.couchdbUserName !== '' && 
             settings.couchdbPassword !== '' && 
             settings.couchdbUrl !== '') {
@@ -551,8 +549,6 @@ var ViewModel = function() {
             });
 
             formData.docId = self.state.settings.docId;
-
-            console.log('formData: ',formData);
         }
 
         console.log('before transaction in saveForm: ',formData);
