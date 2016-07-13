@@ -51,7 +51,7 @@ so that I can outsource my brain capacity to the phone, yeai
 
 - [x] DB export to JSON file
 - [x] read JSON file and import to DB
-- [ ] phone will [vibrate](https://www.sitepoint.com/use-html5-vibration-api) while notify is poping up
+- [x] phone will [vibrate](https://www.sitepoint.com/use-html5-vibration-api) while notify is poping up
 - [ ] open input form whit phone [shaking](https://github.com/alexgibson/shake.js) [1](http://qnimate.com/detect-shake-using-javascript)
 - [ ] sharing lists with [other user](https://github.com/nolanlawson/pouchdb-authentication) via couchdb accounts
 - [ ] show all groups with all todos in a [pie chart](http://www.chartjs.org/docs/#doughnut-pie-chart-introduction) like landingpage by [small and big dots](https://media-mediatemple.netdna-ssl.com/wp-content/uploads/2016/03/02-beats-opt.jpg)

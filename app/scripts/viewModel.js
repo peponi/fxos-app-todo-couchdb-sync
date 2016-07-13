@@ -102,6 +102,9 @@ var ViewModel = function() {
 
     self.priorityArray = [ 'low', 'middle', 'height', 'urgent' ];
 
+    // enable vibration support
+    navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
     // -------------- Helper -------------- //
 
     /**
@@ -111,6 +114,11 @@ var ViewModel = function() {
      */
     self.setStatus = function(msg) {
         utils.status.show(msg);
+
+        if (navigator.vibrate) {
+            // vibration API supported
+            navigator.vibrate(300);
+        }
     };
 
     self.parseInputToObj = function(data) {
