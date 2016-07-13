@@ -10,8 +10,7 @@ var PouchModel = function() {
             todo: new PouchDB('todo'),
             group: new PouchDB('group'),
             settings: new PouchDB('settings')
-        },
-        syncDatabase = {};
+        };
 
     var checkCallback = function(c) {
         return (typeof c === undefined) ? function(doc){ return doc; } : c;
@@ -19,7 +18,7 @@ var PouchModel = function() {
 
     self.initializeCouchDBSync = function(settings) {
 
-        var allDBs = ['todo', 'group'],//Object.keys(db), // don't want to sync settings
+        var allDBs = [ 'todo', 'group' ], // Object.keys(db), // don't want to sync settings
             domain = settings.couchdbUrl.split('/'),
             userName = settings.couchdbUserName,
             password = settings.couchdbPassword,
@@ -27,8 +26,8 @@ var PouchModel = function() {
             url,
             dbName,
             remoteDB = {},
-            //isApp = w.location.protocol === "app:" ? { mozSystem: true, mozAnon: true } : { mozSystem: false, mozAnon: false },
-            isApp = window.location.protocol === "app:";
+            // isApp = w.location.protocol === "app:" ? { mozSystem: true, mozAnon: true } : { mozSystem: false, mozAnon: false },
+            isApp = window.location.protocol === 'app:';
 
         var appXHR = function () {
             return new XMLHttpRequest({

@@ -60,18 +60,18 @@ var ViewModel = function() {
             var ffVersionArray = (navigator.userAgent.match(/Firefox\/([\d]+\.[\w]?\.?[\w]+)/));
 
             if (ffVersionArray.length === 2) {
-                //Check with the gecko version the Firefox OS version
-                //Table https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
+                // Check with the gecko version the Firefox OS version
+                // Table https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
                 var hashVersion = {
-                    '18.0': '1.0.1',
-                    '18.1': '1.1',
-                    '26.0': '1.2',
-                    '28.0': '1.3',
-                    '30.0': '1.4',
-                    '32.0': '1.5'
-                },
-                rver = ffVersionArray[1],
-                sStr = ffVersionArray[1].substring(0, 4);
+                        '18.0': '1.0.1',
+                        '18.1': '1.1',
+                        '26.0': '1.2',
+                        '28.0': '1.3',
+                        '30.0': '1.4',
+                        '32.0': '1.5'
+                    },
+                    rver = ffVersionArray[1],
+                    sStr = ffVersionArray[1].substring(0, 4);
 
                 if (hashVersion[sStr]) {
                     rver = hashVersion[sStr];
@@ -85,10 +85,10 @@ var ViewModel = function() {
     };
         
     self.device = {
-            isIos: /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
-            isAndroid: /Android/.test(navigator.userAgent),
-            fxosVersion: self.getFirefoxOsVersion()
-        };
+        isIos: /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
+        isAndroid: /Android/.test(navigator.userAgent),
+        fxosVersion: self.getFirefoxOsVersion()
+    };
 
     self.urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
     
@@ -101,7 +101,7 @@ var ViewModel = function() {
 
     self.priorityArray = [ 'low', 'middle', 'height', 'urgent' ];
 
-    //////////////////  Helper  /////////////////////////
+    // -------------- Helper -------------- //
 
     /**
      * will show a short flash message (notify)
@@ -134,7 +134,7 @@ var ViewModel = function() {
         [].forEach.call(menuOpeners, function(input) {
             input.value =  input.dataset.placeholder;
         });
-    }
+    };
 
     self.capitalizeWord = function(word) {
         return word.substr(0, 1).toUpperCase() + word.substr(1);
@@ -144,7 +144,7 @@ var ViewModel = function() {
         console.alert('vm.tmpFunc() is empty');
     };
 
-    ///////////////////  Database Section Functions  /////////////////////////
+    // -------------- Database Section Functions -------------- //
 
     /**
      * will overwrite the local database with a JSON backup file
@@ -290,7 +290,7 @@ var ViewModel = function() {
         } else {
             self.setStatus('The CouchDB URL is not valid');
         }
-    }
+    };
 
     /**
      * Check if CouchDB connection is possible 
@@ -331,9 +331,9 @@ var ViewModel = function() {
         if(settings.syncToCouchDb) {
             d.getElementById('accordion-content').style.display = 'block';
         }
-    }
+    };
 
-    ///////////////////  Menu Functions  /////////////////////////
+    // -------------- Menu Functions -------------- //
     
     self.showActionMenu = function() {
         d.getElementById(self.state.currentOpenMenu).className = 'fade-in';

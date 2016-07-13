@@ -46,7 +46,7 @@ env.GULP_JS_DEV_PATHS           = env.GULP_DEV_PATH + 'scripts/';
 env.GULP_JS_TEST_SOURCE         = env.GULP_JS_DEV_PATHS + 'tests/';
 env.GULP_JS_ES5_TEMP_PATH       = env.GULP_JS_DEV_PATHS + '6to5/';
 env.GULP_JS_DEV_SOURCE          = [
-                                    '!' + env.GULP_JS_DEV_PATHS + 'libs',
+                                    '!' + env.GULP_JS_DEV_PATHS + 'libs/**/*',
                                     env.GULP_JS_DEV_PATHS + '**/*.js'
                                 ];
 env.GULP_JS_PROD_PATHS          = env.GULP_PROD_PATH + 'scripts/';

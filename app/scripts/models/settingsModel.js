@@ -34,7 +34,7 @@ var SettingsModel = function() {
                     }
                 });
                 
-                viewModel.initializeCouchDBSync(viewModel.state.settings);
+                pm.initializeCouchDBSync(viewModel.state.settings);
                 viewModel.mapCouchDbSettingsToForm(viewModel.state.settings);
             // else create a prefilled one
             } else {
@@ -51,7 +51,7 @@ var SettingsModel = function() {
             }
         });
     };
-}
+};
 /* eslint-disable no-unused-vars */
 var sm = new SettingsModel();
 /* eslint-enable no-unused-vars */

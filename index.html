@@ -361,7 +361,7 @@
         <section class="content scrollable header">
             <fieldset>
                 <form id="couchdb-form" class="couchdb-form">
-                    <div class="">                        
+                    <div>                        
                         <p class="block">
                             <label for="do-sync-couchdb" class="inline">Sync to CouchDB</label>
                             <label class="pack-switch inline">
@@ -573,7 +573,7 @@
                 <section>
                     <ul data-bind="foreach: state.allTags">
                         <li class="menu-list__item" >
-                             <p class="title" 
+                            <p class="title" 
                                 data-bind=" attr: {'data-title': key},
                                             text: doc.title,
                                             click: $root.handleActionBtnClick"></p>
@@ -633,7 +633,7 @@
     <script src="node_modules/fecha/fecha.min.js"></script>
     <script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
     <script src="app/building-blocks/js/status.js"></script>
-    <script src="app/scripts/helper/base64.js"></script>
+    <script src="app/scripts/libs/base64.js"></script>
     <!-- endbuild -->
     <!-- build:js-app -->
     <script src="app/scripts/models/pouchModel.js"></script>
