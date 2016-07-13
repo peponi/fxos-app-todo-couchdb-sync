@@ -18,7 +18,7 @@ var PouchModel = function() {
 
     self.initializeCouchDBSync = function(settings) {
 
-        var allDBs = [ 'todo', 'group' ], // Object.keys(db), // don't want to sync settings
+        var allDBs = [ 'group', 'todo' ], // Object.keys(db), // don't want to sync settings
             domain = settings.couchdbUrl.split('/'),
             userName = settings.couchdbUserName,
             password = settings.couchdbPassword,
@@ -47,7 +47,7 @@ var PouchModel = function() {
             dbName = allDBs[i];
 
             url = domain[0] + '//' + userName + ':' + password + '@' + domain[2] + '/' + prefix + dbName;
-            console.log(url);
+            // console.log(url);
 
             // https://github.com/pouchdb/pouchdb/issues/4256
             // http://pouchdb.com/guides/replication.html
@@ -55,13 +55,14 @@ var PouchModel = function() {
 
             db[dbName].sync(remoteDB[dbName], {
             //     live: true,
-            //     retry: true
+                retry: true
             }).on('complete', function() {
-                vm.setStatus(dbName + ' has been synct', 2000);
-                console.log(dbName + ' has been synct', 2000);
+                vm.setStatus('database has been synct', 2000);
+                vm.refreshView();
+                vm.setConnectionStatus(true);
             }).on('error', function() {
-                vm.setStatus(dbName + ' could not be synct', 2000);
-                console.log(dbName + ' could not be synct', 2000);
+                vm.setStatus('database could not be synct', 2000);
+                vm.setConnectionStatus(false);
             });
         }
     };
@@ -146,7 +147,7 @@ var PouchModel = function() {
     self.nukeAllDataBases = function() {
         db.todo.destroy().then( function() { console.log('pay DB has been deleted'); } );
         db.group.destroy().then( function() { console.log('inpay DB has been deleted'); } );
-        db.settings.destroy().then( function() { console.log('settings has been deleted'); });
+        //db.settings.destroy().then( function() { console.log('settings has been deleted'); });
     };
 
     return self;

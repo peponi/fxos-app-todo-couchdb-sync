@@ -38,8 +38,8 @@ so that I can outsource my brain capacity to the phone, yeai
 - [x] and by date
 - [x] priority will be signaled by color
 - [x] start screen, when first start
-- [ ] settings will be loaded on startup (language/couchdb)
-- [ ] synchronization to a CouchDB works
+- [x] settings will be loaded on startup (language/couchdb)
+- [x] synchronization to a CouchDB works
 - [ ] todos can be edit
 - [ ] links in the todo description will be shown as html link in the edit mode
 - [ ] it will show a message if a todo has been toggle with an unsolved dependency (other todo is not done)
@@ -71,14 +71,17 @@ so that I can outsource my brain capacity to the phone, yeai
 | **onbording startscreen** | ✓ | ✓ | ✓ ||||
 | **DB Backup Export** | ❌ | ✓ | ✓ | ✓ | ✓ | ❌ | ❌ |
 | **DB Backup Import** | ❌ | ✓ | ✓ | ✓ | ✓ | ❌ | ❌ |
+| **DB Synchronisation** |  | ✓ | ✓ |  |  |  |  |
 
 ### Bugs
 
-- [ ] settings form muss umgebaut werden, sync form hoch, onkeyup raus und save button fixen
-- [ ] overlay menu kann nict gescrollt werden
+- [ ] app icon dosen't work on FXOS 1.1 - 2.0
+- [ ] overlay menu kann nicht gescrollt werden
 - [ ] build is not up to date
 - [ ] **heisenbug** - viewModel.js:75 Uncaught TypeError: Cannot set property 'className' of null
 - [ ] won't reload after json import
+- [ ] db synchronization got a cookie error after type in of credentials
+- [ ] db synchronization dosn't refresh the todo list after first app start, second start works then (timing problem ?)
 
 ## CouchDB
 

@@ -14,6 +14,7 @@ var ViewModel = function() {
         mainTodoList = d.getElementById('main-todo-list'),
         noGroupsAvailableSection = d.getElementById('no-groups-available-section'),
         circleBtn = d.getElementById('circle-button'),
+        couchdbSyncState = d.getElementById('couchdb-sync-state'),
         model = {
             todo: new TodoModel(),
             group: new GroupModel(),
@@ -39,7 +40,7 @@ var ViewModel = function() {
         filteredDatelessTodos: ko.observableArray(),
         settings: {
             docId: 0,
-            syncToCouchDb: false,
+            doSyncCouchdb: false,
             couchdbUserName: '',
             couchdbPassword: '',
             couchdbPrefix: '',
@@ -140,11 +141,21 @@ var ViewModel = function() {
         return word.substr(0, 1).toUpperCase() + word.substr(1);
     };
 
+    self.camelize = function(str) { 
+        return str.toLowerCase().replace(/-(.)/g, function(match, grp) {
+            return grp.toUpperCase();
+        });
+    };
+
     self.tmpFunc = function () {
         console.alert('vm.tmpFunc() is empty');
     };
 
     // -------------- Database Section Functions -------------- //
+    
+    self.setConnectionStatus = function(state) {
+        couchdbSyncState.innerHTML = state ? 'connected' : 'disconnected';
+    }
 
     /**
      * will overwrite the local database with a JSON backup file
@@ -271,25 +282,18 @@ var ViewModel = function() {
     };
 
     /**
-     * Connects to couch database.
+     * Connects to couch database. 
      * 
-     * will be check via regex if the url is valid
-     * the user set in the database-section
-     * 
-     * save the database credentials and initialize the synchronisation
-     * if the url is not valid the user wil be informed via notify
+     * save the database credentials and initialize the synchronization
      * 
      * this function will be called in the viewModel.tryToConnectToCouchDb()
      */
     self.connectToCouchDb = function() {
-
-        if(self.urlregex.test(self.state.settings.couchdbUrl)) {
-            self.state.settings.syncToCouchDb = true;
-            sm.transaction(self.state.settings);
-            pm.initializeCouchDBSync(self.state.settings);
-        } else {
-            self.setStatus('The CouchDB URL is not valid');
-        }
+        self.state.settings.doSyncCouchdb = true;
+        self.state.settings.docId = self.state.settings.docId;
+        console.log('before transaction in connectToCouchDb: ',self.state.settings);
+        sm.transaction(self.state.settings);
+        pm.initializeCouchDBSync(self.state.settings);
     };
 
     /**
@@ -297,6 +301,10 @@ var ViewModel = function() {
      * 
      * will check if all neccessary fields are filles and call
      * connectToCouchDb then
+     
+     * will be check via regex if the url is valid
+     * the user set in the database-section
+     * if the url is not valid the user will be informed via notify
      *
      * this function will be called in the view while focusout event on form inputs
      * inside the database-section
@@ -304,12 +312,17 @@ var ViewModel = function() {
     self.tryToConnectToCouchDb = function() {
         var settings = self.state.settings;
 
-        if(settings.syncToCouchDb && 
-            settings.couchdbUserName !== '' && 
+        console.log(settings);
+
+        if( settings.couchdbUserName !== '' && 
             settings.couchdbPassword !== '' && 
             settings.couchdbUrl !== '') {
 
-            self.connectToCouchDb();
+            if(self.urlregex.test(self.state.settings.couchdbUrl)) {
+                self.connectToCouchDb();
+            } else {
+                self.setStatus('The CouchDB URL is not valid');
+            }
         }
     };
 
@@ -326,9 +339,9 @@ var ViewModel = function() {
         d.getElementById('couchdb-password').value = settings.couchdbPassword;
         d.getElementById('couchdb-prefix').value = settings.couchdbPrefix;
         d.getElementById('couchdb-url').value = settings.couchdbUrl;
-        d.getElementById('do-sync-couchdb').checked = settings.syncToCouchDb;
+        d.getElementById('do-sync-couchdb').checked = settings.doSyncCouchdb;
 
-        if(settings.syncToCouchDb) {
+        if(settings.doSyncCouchdb) {
             d.getElementById('accordion-content').style.display = 'block';
         }
     };
@@ -519,13 +532,29 @@ var ViewModel = function() {
             }
         }
 
+        // SettingsModel.transaction need a doc id to update the doc
+        // doc who will be updated has been create in SettingsModel.fill on first startup
+        // docId has been set in SettingsModel.fill on start up
+        if(type === 'settings') {
+            
+            Object.keys(formData).map(function(key) {
+                formData[self.camelize(key)] = formData[key];
+                delete formData[key];
+            });
+
+            formData.docId = self.state.settings.docId;
+
+            console.log('formData: ',formData);
+        }
+
+        console.log('before transaction in saveForm: ',formData);
         model[type].transaction(formData);
         
+        // if a group or todo has been saved reload the current lists
         if(type !== 'settings') {
             model[type].getAll(self.loadAll);
             self.resetForm(targetForm);
         }
-
 
         if(type === 'group') {
             // in case of this is the first group wh has been created
@@ -631,8 +660,7 @@ var ViewModel = function() {
         }
     };
 
-    self.init = function() {
-
+    self.refreshView = function() {
         model.group.getAll(self.loadAll);
         model.todo.getAll(self.loadAll);
         model.group.getAll(function(type, doc) {
@@ -646,7 +674,11 @@ var ViewModel = function() {
                 self.selectGroup(doc.rows[0].doc.title);
                 self.loadFilteredTodos();
             }
-        });
+        });        
+    };
+
+    self.init = function() {
+        self.refreshView();
         model.settings.fill(self);
     };
 

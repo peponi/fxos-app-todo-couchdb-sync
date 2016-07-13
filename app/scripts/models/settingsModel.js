@@ -8,13 +8,14 @@ var SettingsModel = function() {
 
     self.transaction = function(settings) {
 
+        console.info('inside settingsModel.transaction: ', settings);
+
         pm.update(type, settings.docId, function(doc) {
 
             Object.keys(settings).map(function(key) {
                 doc[key] = settings[key];
             });
 
-            console.log(doc);
             return doc;
         });        
     };
@@ -27,14 +28,14 @@ var SettingsModel = function() {
                 var doc = result.rows[0].doc;
                 viewModel.state.settings.docId = doc._id;
 
-                Object.keys(viewModel.state.settings).map(function(key) {
+                Object.keys(doc).map(function(key) {
                     // fill the viewModel.state.settings with all values
-                    if(typeof doc[key] !== 'undefined') {
+                    if(key[0] !== '_') {
                         viewModel.state.settings[key] = doc[key];
                     }
                 });
                 
-                pm.initializeCouchDBSync(viewModel.state.settings);
+                viewModel.tryToConnectToCouchDb();
                 viewModel.mapCouchDbSettingsToForm(viewModel.state.settings);
             // else create a prefilled one
             } else {
@@ -49,6 +50,8 @@ var SettingsModel = function() {
                     viewModel.state.settings.docId = doc.id;
                 });
             }
+
+            console.info('inside settingsModel.fill: ', viewModel.state.settings);
         });
     };
 };
