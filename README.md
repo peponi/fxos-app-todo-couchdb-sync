@@ -69,7 +69,7 @@ so that I can outsource my brain capacity to the phone, yeai
 |  | FirefoxOS ||| Android  || iOS  ||
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **OS Version** | **1.1** | **2.0** | **2.6** | **4.3** | **5** | **5** | **6** |
-| **onbording startscreen** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **onbording startscreen** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | **DB Backup Export** | ❌ | ✓ | ✓ | ✓ | ✓ | ❌ | ❌ |
 | **DB Backup Import** | ❌ | ✓ | ✓ | ✓ | ✓ | ❌ | ❌ |
 | **DB Synchronisation** |  | ✓ | ✓ |  |  |  |  |
