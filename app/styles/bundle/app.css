@@ -39,6 +39,22 @@ button:focus {
   font-style: normal;
   color: #fff; }
 
+/* 
+ * overwrite
+ * section[role="region"] > header:first-child h1
+ */
+#drawer > header:first-child {
+  display: table; }
+  #drawer > header:first-child h1 {
+    display: table-cell;
+    font-style: normal;
+    width: 60%; }
+  #drawer > header:first-child a {
+    width: 20%; }
+  #drawer > header:first-child span {
+    width: 20%;
+    text-align: center; }
+
 [role='dialog'][data-type='action'] {
   background: rgba(0, 0, 0, 0.8); }
   [role='dialog'][data-type='action'] menu {
@@ -98,18 +114,6 @@ form[role="dialog"][data-type="confirm"] menu button {
   line-height: 2.5rem; }
   [role='dialog'][data-type='action'] menu > button:nth-last-child(2) {
     margin-bottom: 1rem; }
-
-section[role="region"] > header:first-child {
-  display: table; }
-  section[role="region"] > header:first-child h1 {
-    display: table-cell;
-    font-style: normal;
-    width: 60%; }
-  section[role="region"] > header:first-child a {
-    width: 20%; }
-  section[role="region"] > header:first-child span {
-    width: 20%;
-    text-align: center; }
 
 [data-type="list"] aside.pack-end {
   height: 0;

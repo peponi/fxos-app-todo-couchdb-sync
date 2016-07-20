@@ -46,26 +46,6 @@
 
 }
 
-section[role="region"] > header:first-child {
-    display: table;
-    
-    h1 {
-        display: table-cell;
-        font-style: normal;
-        width: 60%;
-    }
-
-    a {
-        width: 20%;
-    }
-
-    span {
-        width: 20%;
-        text-align: center;
-    }
-}
-
-
 [data-type="list"] aside {
     &.pack-end {
         height: 0;
