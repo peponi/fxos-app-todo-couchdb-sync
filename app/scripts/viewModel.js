@@ -15,6 +15,7 @@ var ViewModel = function() {
         noGroupsAvailableSection = d.getElementById('no-groups-available-section'),
         circleBtn = d.getElementById('circle-button'),
         couchdbSyncState = d.getElementById('couchdb-sync-state'),
+        confirmText = d.getElementById('confirm-text'),
         model = {
             todo: new TodoModel(),
             group: new GroupModel(),
@@ -209,6 +210,7 @@ var ViewModel = function() {
      * @param      {Object}  file    a browser file stream object
      */
     self.importDatabaseBackupJsonFile = function(file) {
+        var data = event.target.dataset;
 
         if(file.name.indexOf('.json') === -1) {
             self.setStatus('This is not a JSON file');
@@ -234,13 +236,12 @@ var ViewModel = function() {
 
             if(self.state.allGroups().length !== 0 || self.state.allTodos().length !== 0) {
 
-                d.getElementById('confirm-text').innerHTML = 'Your local DB is not empty.\
-                <br><br>Do you want to <b class="color-danger">overwrite</b> the local DB with the backup file ?';
+                confirmText.innerHTML = data.text;
 
                 self.state.currentOpenMenu = 'default-confirm';
                 self.showActionMenu();
 
-                self.tmpFunc = self.overWriteDbWithBackup;
+                self.tmpFunc = self[data.callAfterConfirm];
             } else {
                 self.overWriteDbWithBackup();
             }
@@ -648,10 +649,23 @@ var ViewModel = function() {
         }
     };
 
+    self.showConfirm = function(data, e) {
+
+        var data = e.target.dataset;
+        
+        confirmText.innerHTML = data.text;
+
+        self.state.currentOpenMenu = 'default-confirm';
+        self.showActionMenu();
+
+        self.tmpFunc = self[data.callAfterConfirm];
+    }
+
     self.nukeAllDataBases = function() {
-        console.log('kill all');
+
         pm.nukeAllDataBases();
-        self.init();
+        self.hideActionMenu();
+        location.reload();
     };
 
     self.loadAll = function(type, doc) {

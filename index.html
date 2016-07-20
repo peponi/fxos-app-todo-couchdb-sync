@@ -100,14 +100,6 @@
                         </a>
                     </li>
                 </ul>
-                <h2>Plugins</h2>
-                <ul>
-                    <li>
-                        <a href="#" data-bind="click: nukeAllDataBases">
-                            <p class="sidebar-navigation__text">NUKE</p>
-                        </a>
-                    </li>
-                </ul>
                 <h2>info</h2>
                 <ul>
                     <li>
@@ -428,7 +420,16 @@
                     class="button recommend"
                     id="import-database-backup-json-file"
                     name="import-database-backup-json-file"
-                    data-bind="event: { change: function() { importDatabaseBackupJsonFile($element.files[0]) } }">
+                    data-bind="event: { change: function() { importDatabaseBackupJsonFile($element.files[0]) } }"
+                    data-text="Your local DB is not empty.<br><br>Do you want to <b class='color-danger'>overwrite</b> the local DB with the backup file ?"
+                    data-call-after-confirm="overWriteDbWithBackup">
+            </section>
+            <section>
+                <br><br>
+                <button class="danger"
+                    data-bind="click: showConfirm"
+                    data-text="Dude !<br><br>Do you really want <b class='color-danger'>erase</b> the whole local database ?"
+                    data-call-after-confirm="nukeAllDataBases">Nuke the local Database</button>
             </section>
         </section>
     </section>

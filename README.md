@@ -82,7 +82,7 @@ so that I can outsource my brain capacity to the phone, yeai
 - [ ] db synchronization got a cookie error after type in of credentials
 - [ ] db synchronization dosn't refresh the todo list after first app start, second start works then (timing problem ?)
 - [ ] sm.transaction in vm.onnectToCouchDb will be called while vm.init(), find better solution
-- [ ] seit commit 17328710579f0adb44ba is Android / iOS is komplett broken, hört nach onboarding auf zu funktionieren - getestet mit fbf7ac7bb155f648d9
+- [ ] seit commit 17328710579f0adb44ba is Android / iOS is komplett broken, buttons funktionieren nicht - getestet mit fbf7ac7bb155f648d9
 
 ## CouchDB
 
