@@ -1,0 +1,14 @@
+html {
+
+    @media screen and (min-width: 640px) {    
+        max-width: 640px;
+        margin: 0 auto;
+        background-color: grey;
+        overflow-x: hidden;
+        
+        section {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+    }
+}
