@@ -60,7 +60,7 @@ var ViewModel = function() {
             
             var ffVersionArray = (navigator.userAgent.match(/Firefox\/([\d]+\.[\w]?\.?[\w]+)/));
 
-            if (ffVersionArray.length === 2) {
+            if (ffVersionArray && ffVersionArray.length === 2) {
                 // Check with the gecko version the Firefox OS version
                 // Table https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
                 var hashVersion = {
