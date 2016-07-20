@@ -163,7 +163,7 @@ var ViewModel = function() {
     
     self.setConnectionStatus = function(state) {
         couchdbSyncState.innerHTML = state ? 'connected' : 'disconnected';
-    }
+    };
 
     /**
      * will overwrite the local database with a JSON backup file
@@ -299,7 +299,7 @@ var ViewModel = function() {
     self.connectToCouchDb = function() {
         self.state.settings.doSyncCouchdb = true;
         self.state.settings.docId = self.state.settings.docId;
-        console.log('before transaction in connectToCouchDb: ',self.state.settings);
+        console.log('before transaction in connectToCouchDb: ', self.state.settings);
         sm.transaction(self.state.settings);
         pm.initializeCouchDBSync(self.state.settings);
     };
@@ -551,7 +551,7 @@ var ViewModel = function() {
             formData.docId = self.state.settings.docId;
         }
 
-        console.log('before transaction in saveForm: ',formData);
+        console.log('before transaction in saveForm: ', formData);
         model[type].transaction(formData);
         
         // if a group or todo has been saved reload the current lists

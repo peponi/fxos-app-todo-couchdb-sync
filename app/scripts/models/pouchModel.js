@@ -147,7 +147,7 @@ var PouchModel = function() {
     self.nukeAllDataBases = function() {
         db.todo.destroy().then( function() { console.log('pay DB has been deleted'); } );
         db.group.destroy().then( function() { console.log('inpay DB has been deleted'); } );
-        //db.settings.destroy().then( function() { console.log('settings has been deleted'); });
+        // db.settings.destroy().then( function() { console.log('settings has been deleted'); });
     };
 
     return self;
