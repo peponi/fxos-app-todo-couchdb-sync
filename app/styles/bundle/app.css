@@ -801,8 +801,6 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
     .main-todo-list .inline:last-child {
       text-align: right;
       color: #333; }
-  .main-todo-list .text {
-    display: inline-flex; }
   .main-todo-list [data-done=true] {
     text-decoration: line-through; }
   .main-todo-list .hashtags {
