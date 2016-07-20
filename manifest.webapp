@@ -2,7 +2,8 @@
     "version": "0.6.0",
     "name": "Todo App",
     "launch_path": "/index.html",
-    "description": "todo app who provide CouchDB synchronization, dependencies and prioritization",
+    "description": "Todo App who provide CouchDB synchronization, dependencies and prioritization",
+    "size": 172496,
     "icons": {
         "16": "/app/images/icons/favicon-16x16.png",
         "32": "/app/images/icons/favicon-32x32.png",
@@ -12,7 +13,7 @@
     },
     "developer": {
         "name": "Peponi",
-        "url": "https://github.com/Peponi/wallet_webapp"
+        "url": "https://github.com/peponi/fxos-app-todo-couchdb-sync"
     },
     "installs_allowed_from": ["*"],
     "default_locale": "en",

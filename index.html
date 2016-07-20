@@ -77,7 +77,7 @@
                             data-bind="click:offCanvasAction"
                             data-target-id="todo-section"
                             data-direction="current">
-                            <p class="sidebar-navigation__text">todo</p>
+                            <p class="sidebar-navigation__text">Todo</p>
                         </a>
                     </li>
                     <li>
@@ -85,7 +85,7 @@
                             data-bind="click:offCanvasAction"
                             data-target-id="group-section"
                             data-direction="current">
-                            <p class="sidebar-navigation__text">group</p>
+                            <p class="sidebar-navigation__text">Group</p>
                         </a>
                     </li>
                 </ul>
@@ -100,14 +100,22 @@
                         </a>
                     </li>
                 </ul>
-                <h2>info</h2>
+                <h2>System</h2>
                 <ul>
+                    <li id="sidebar-install-btn" class="hide">
+                        <a href="#"
+                            data-bind="click:installApp"
+                            data-target-id="database-section"
+                            data-direction="current">
+                            <p class="sidebar-navigation__text">Install App</p>
+                        </a>
+                    </li>
                     <li>
                         <a href="#"
                             data-bind="click:offCanvasAction"
                             data-target-id="info-section"
                             data-direction="current">
-                            <p class="sidebar-navigation__text">info</p>
+                            <p class="sidebar-navigation__text">Info</p>
                         </a>
                     </li>
                 </ul>

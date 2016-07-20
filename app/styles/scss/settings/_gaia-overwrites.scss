@@ -65,6 +65,11 @@
         margin-top: 1.5rem;
     }
 }
+
+section[data-type="sidebar"] {
+    overflow-y: auto;
+}
+
 // label.pack-checkbox input ~ span:after {
 //     left: 10%;
 //     right: 0;

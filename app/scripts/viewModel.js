@@ -85,10 +85,16 @@ var ViewModel = function() {
         
         return null; 
     };
+
+    var appVersion = (navigator && navigator.appVersion || '').toLowerCase(),
+        userAgent = (navigator && navigator.userAgent || '').toLowerCase(),
+        vendor = (navigator && navigator.vendor || '').toLowerCase();
         
     self.device = {
-        isIos: /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
-        isAndroid: /Android/.test(navigator.userAgent),
+        isChrome:  /google inc/.test(vendor) && userAgent.match(/(?:chrome|crios)\/(\d+)/),
+        isFirefox: userAgent.match(/(?:firefox|fxios)\/(\d+)/),
+        isIos: /ipad|iphone|ipod/.test(userAgent) && !window.MSStream,
+        isAndroid: /android/.test(userAgent),
         fxosVersion: self.getFirefoxOsVersion()
     };
 
@@ -695,9 +701,46 @@ var ViewModel = function() {
         });        
     };
 
+    self.installApp = function() {
+        //if(e.target.id === 'manifest') {
+        // https://davidwalsh.name/install-firefoxos-app
+        request = navigator.mozApps.install(location.origin + '/manifest.webapp');
+        // } else {
+
+        //     console.log(url + 'dist/app_v0.0.5.zip');
+        //     request = mozApps.installPackage(url + 'dist/app_v0.0.5.zip');
+        //}
+
+        request.onsuccess = function () {
+            // Save the App object that is returned
+            //var appRecord = this.result;
+            alert('Installation successful!');
+            document.getElementById('sidebar-install-btn').style.display = 'none';
+        };
+
+        request.onerror = function () {
+            // Display the error information from the DOMError object
+            self.setStatus('Install failed, error: ' + this.error.name);
+        };
+    };
+
     self.init = function() {
         self.refreshView();
         model.settings.fill(self);
+
+        if(self.device.fxosVersion && navigator.mozApps) {
+            // https://developer.mozilla.org/en-US/docs/Archive/Firefox_OS/API/DOMApplication
+            var request = navigator.mozApps.checkInstalled(location.origin + '/manifest.webapp');
+
+            request.onsuccess = function(e) {
+                if (!request.result) {
+                    document.getElementById('sidebar-install-btn').style.display = 'block';
+                }
+            };
+
+
+        //} else if(self.device.isFirefox) {
+        }
     };
 
     self.init();
