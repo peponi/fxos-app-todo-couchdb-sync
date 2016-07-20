@@ -149,18 +149,14 @@
                             <header>
                                 <span>Expiry</span>
                             </header>
-                            <ul>
+                            <ul class="expiry-list">
                             <!-- ko foreach: state.filteredTodosWithDateInFuture -->
                                 <li data-bind="click:$root.openMenu, attr: {'data-binding-context': id, 'data-dependency': doc.dependency}"
-                                    data-target-id="edit-menu">
-                                    <aside>
-                                        <div data-bind="css: 'dot ' + $root.priorityArray[doc.prio]"></div>
-                                    </aside>
-                                    <p class="text" data-bind="text: doc.title, attr: {'data-done': doc.done}"></p>
-                                    <aside class="pack-end">
+                                    data-target-id="edit-menu">                                 
+                                    <div class="priority-date">
                                         <small data-bind="text: doc.date"></small>
-                                    </aside>
-                                    <p data-bind="text: doc.desc, attr: {'data-done': doc.done}"></p>
+                                    </div>
+                                    <p class="text" data-bind="text: doc.title, attr: {'data-done': doc.done}"></p>                               
                                 </li>
                             <!-- /ko -->
                             </ul>
@@ -170,7 +166,7 @@
                             <header>
                                 <span>Priority</span>
                             </header>
-                            <ul>
+                            <ul class="piority-list">
                             <!-- ko foreach: state.filteredDatelessTodos -->
                                 <li data-bind="click:$root.openMenu, attr: {'data-binding-context': id, 'data-dependency': doc.dependency}"
                                     data-target-id="edit-menu">

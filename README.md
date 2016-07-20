@@ -78,7 +78,7 @@ so that I can outsource my brain capacity to the phone, yeai
 
 - [ ] build is not up to date
 - [ ] **heisenbug** - viewModel.js:75 Uncaught TypeError: Cannot set property 'className' of null
-- [ ] won't reload after json import
+- [ ] won't reload after json import db overwrite
 - [ ] db synchronization got a cookie error after type in of credentials
 - [ ] db synchronization dosn't refresh the todo list after first app start, second start works then (timing problem ?)
 - [ ] sm.transaction in vm.onnectToCouchDb will be called while vm.init(), find better solution

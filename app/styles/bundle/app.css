@@ -813,16 +813,25 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
     display: inline-flex; }
   .main-todo-list .hashtag {
     font-size: 14px; }
-  .main-todo-list .dot {
+  .main-todo-list .expiry-list li {
+    height: auto;
+    min-height: 6rem; }
+  .main-todo-list .expiry-list .text {
+    padding: 0 0 0 5px !important; }
+  .main-todo-list .expiry-list .priority-date {
+    text-align: right;
+    color: #999;
+    font-size: 18px; }
+  .main-todo-list .piority-list .dot {
     margin-top: 13px;
     width: 15px;
     height: 15px;
     border-radius: 15px; }
-    .main-todo-list .dot.urgent {
+    .main-todo-list .piority-list .dot.urgent {
       background: red; }
-    .main-todo-list .dot.height {
+    .main-todo-list .piority-list .dot.height {
       background: #e66000; }
-    .main-todo-list .dot.middle {
+    .main-todo-list .piority-list .dot.middle {
       background: #0095dd; }
   .main-todo-list [data-dependency] {
     padding-left: 10px; }

@@ -33,28 +33,52 @@
         font-size: 14px;
     }
 
-    $priority-dot-size: 15px;
+    .expiry-list {
 
-    .dot {
-        margin-top: $priority-dot-size - 2px;
-        width: $priority-dot-size;
-        height: $priority-dot-size;
-        border-radius: $priority-dot-size;
-
-        &.urgent {
-            background: red;
+        li {
+            height: auto;
+            min-height: 6rem;
         }
 
-        &.height {
-            background: $firefox-orange;
+        .text {
+            padding: 0 0 0 5px !important;
         }
 
-        &.middle {
-            background: $firefox-light-blue;
+        .priority-date {
+            text-align: right;
+            color: $shadow-grey;
+            font-size: 18px;
         }
     }
+
+    .piority-list {
+
+        $priority-dot-size: 15px;
+
+        .dot {
+            margin-top: $priority-dot-size - 2px;
+            width: $priority-dot-size;
+            height: $priority-dot-size;
+            border-radius: $priority-dot-size;
+
+            &.urgent {
+                background: red;
+            }
+
+            &.height {
+                background: $firefox-orange;
+            }
+
+            &.middle {
+                background: $firefox-light-blue;
+            }
+        }
+    }
+
 
     [data-dependency] {
         padding-left: 10px;
     }
 }
+
+
