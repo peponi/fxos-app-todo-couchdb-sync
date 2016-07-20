@@ -231,5 +231,5 @@ gulp.task('prod', gulpsync.sync([
 
 gulp.task('watch',['build:styles', 'lint:scripts'], function() {
     gulp.watch(env.GULP_CSS_COMPRESS_SOURCE, ['lint:styles', 'build:styles']);
-    gulp.watch(env.GULP_JS_DEV_PATHS + 'apps/**/*', ['lint:scripts']);
+    gulp.watch(env.GULP_JS_DEV_SOURCE, ['lint:scripts']);
 });
