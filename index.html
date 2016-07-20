@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- build:appcache -->
-<html>
+<html lang="en">
 <!-- endbuild -->
 <head>
     <meta charset="utf-8">
@@ -67,9 +67,6 @@
     <section id="index" class="index" data-position="current">
         <section data-type="sidebar">
             <header>
-                <menu type="toolbar">
-                    <a href="#content"><span class="icon icon-add"></span></a>
-                </menu>
                 <h1>Menu</h1>
             </header>
             <nav id="sidebar-navigation">
@@ -137,7 +134,7 @@
                     data-target-id="group-menu"
                     data-binding-context="header"
                     role="button"
-                    class="table-cell"></h1>
+                    class="table-cell">menu</h1>
                 <span class="table-cell">&#9660;</span>
             </header>
     
@@ -426,8 +423,12 @@
                 <a href="#" id="export-database-btn" class="button recommend">Export database backup</a>
 
                 <br><br>
-                <h2>Import database backup file (JSON)</h2>
-                <input type="file" class="button recommend" data-bind="event: { change: function() { importDatabaseBackupJsonFile($element.files[0]) } }">
+                <h2><label for="import-database-backup-json-file">Import database backup file (JSON)</label></h2>
+                <input type="file"
+                    class="button recommend"
+                    id="import-database-backup-json-file"
+                    name="import-database-backup-json-file"
+                    data-bind="event: { change: function() { importDatabaseBackupJsonFile($element.files[0]) } }">
             </section>
         </section>
     </section>

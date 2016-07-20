@@ -17,7 +17,7 @@ env.GULP_ENVIRONMENT            = 'development'; // 'development' | 'stage' | 'l
 /**
  * GENERAL PATHS
  */
-env.GULP_WEBSITE_ROOT           = '';
+env.GULP_WEBSITE_ROOT           = __dirname + '/';
 env.GULP_NODE_MODULES           = env.GULP_WEBSITE_ROOT  + 'node_modules/'
 env.GULP_DEV_PATH               = env.GULP_WEBSITE_ROOT + 'app/';
 env.GULP_PROD_PATH              = env.GULP_WEBSITE_ROOT + 'build/app/';
@@ -111,6 +111,7 @@ require(gulpTasksPath + 'lint-styles');
 // require(gulpTasksPath + 'reload-page');
 require(gulpTasksPath + 'replace-html');
 require(gulpTasksPath + 'symlink-assets');
+require(gulpTasksPath + 'test-html');
 
 /**
  * Copy Tasks
@@ -232,4 +233,5 @@ gulp.task('prod', gulpsync.sync([
 gulp.task('watch',['build:styles', 'lint:scripts'], function() {
     gulp.watch(env.GULP_CSS_COMPRESS_SOURCE, ['lint:styles', 'build:styles']);
     gulp.watch(env.GULP_JS_DEV_SOURCE, ['lint:scripts']);
+    gulp.watch(env.GULP_HTML_DEV_SOURCE, ['lint:html', 'test:html'])
 });
