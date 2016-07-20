@@ -22,6 +22,7 @@ $circle-button__display-padding: 12px;
     box-shadow: -2px 3px 6px 0 $shadow-grey;
     font-style: normal;
 
+
     &.on-dark-background {
         box-shadow: -2px 3px 6px 0 $circle-button-shadow-black;
     }
@@ -47,5 +48,13 @@ $circle-button__display-padding: 12px;
     &.position-bottom-right {
         right: $circle-button__display-padding;
         bottom: $circle-button__display-padding;
+
+        @media screen and (min-width: 640px) {
+            left: 546px;
+            bottom: 16px;
+            width: 75px;
+            height: 75px;
+            border-radius: 50px;
+        }
     }
 }
