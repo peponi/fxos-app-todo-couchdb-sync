@@ -2,7 +2,7 @@
 
 # My Custom Todo WebApp (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
 
-> It's a WebApp optimzed for [Firefox OS 1.0 up to 2.5](https://www.mozilla.org/de/firefox/os/), but will works on Android and <strike>iOS</strike> legacy phones too
+> It's a WebApp optimzed for [Firefox OS 1.0 up to 2.6](https://www.mozilla.org/de/firefox/os/), but will works on Android and <strike>iOS</strike> legacy phones too
 
 Goal is to build a todo webapp who provide 
 
@@ -74,7 +74,7 @@ so that I can outsource my brain capacity to the phone, yeai
 | **DB Backup Export** | ❌ | ❌ | ✓ || ✓ | ✓ || ✓ | ❌ | ❌ | ✓ | ✓ |
 | **DB Backup Import** | ❌ | ❌ | ✓ || ✓ | ✓ || ✓ | ❌ | ❌ |  | ✓ |
 | **DB Synchronisation** ||  | ✓ || ✓ |  |  ||  |  |  |  |
-| **App Installation** | ❌ | ❌ | ❌ | ❌ | ❌ |  | ❌ |  ||  |  |  |  |
+| **App Installation** | ✓ | ✓ | ✓ | ✓ | ✓ |  |  |  ||  |  |  |  |
 | **Works Offline** ||  |  ||  |  |  ||  |  |  |  |
 | **Calendar Activity/Intent** ||  |  ||  |  |  ||  |  |  |  |
 | **Desktop Screen** | - | - | - | - | - | - | - | - | - | - |  |  |
