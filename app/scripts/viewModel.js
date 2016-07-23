@@ -88,8 +88,7 @@ var ViewModel = function() {
         return null; 
     };
 
-    var appVersion = (navigator && navigator.appVersion || '').toLowerCase(),
-        userAgent = (navigator && navigator.userAgent || '').toLowerCase(),
+    var userAgent = (navigator && navigator.userAgent || '').toLowerCase(),
         vendor = (navigator && navigator.vendor || '').toLowerCase();
         
     self.device = {
@@ -276,7 +275,6 @@ var ViewModel = function() {
         // if base64.js is included use a base64 encoding
         // else export dosn't work on Android
         if(typeof Base64 !== 'undefined') {
-            alert('base64');
             a.href = 'data:application/octet-stream;charset=utf-8;base64,' + Base64.encode(JSON.stringify(obj));
         } else {
             a.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(obj));
@@ -668,7 +666,7 @@ var ViewModel = function() {
         self.showActionMenu();
 
         self.tmpFunc = self[data.callAfterConfirm];
-    }
+    };
 
     self.nukeAllDataBases = function() {
 
@@ -710,23 +708,21 @@ var ViewModel = function() {
         // wait for transition endthen remove the apii install banner from document
         setTimeout(function() {
             document.getElementById('app-install-banner').remove();
-        }, 1000)
-    }
+        }, 1000);
+    };
 
     self.installApp = function() {
-        //if(e.target.id === 'manifest') {
+        // if(e.target.id === 'manifest') {
         // https://davidwalsh.name/install-firefoxos-app
-        alert(host + '/manifest.webapp');
         request = navigator.mozApps.install(host + '/manifest.webapp');
         // } else {
 
         //     console.log(url + 'dist/app_v0.0.5.zip');
         //     request = mozApps.installPackage(url + 'dist/app_v0.0.5.zip');
-        //}
+        // }
 
         request.onsuccess = function () {
             // Save the App object that is returned
-            alert('Installation successful!');
             document.getElementById('sidebar-install-btn').style.display = 'none';
         };
 
@@ -744,7 +740,7 @@ var ViewModel = function() {
             // https://developer.mozilla.org/en-US/docs/Archive/Firefox_OS/API/DOMApplication
             var request = navigator.mozApps.checkInstalled(host + '/manifest.webapp');
 
-            request.onsuccess = function(e) {
+            request.onsuccess = function() {
                 if (!request.result) {
 
                     // remove hide class to display app install banner
@@ -759,7 +755,7 @@ var ViewModel = function() {
         } else if(!self.device.fxosVersion) {
             // if not firefox os
             // remove app install banner from document
-            self.hideAppInstallBanner()
+            self.hideAppInstallBanner();
         }
     };
 
