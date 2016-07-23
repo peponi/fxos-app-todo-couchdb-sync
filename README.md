@@ -69,7 +69,7 @@ so that I can outsource my brain capacity to the phone, yeai
 
 | - | FirefoxOS ||||| Android  ||| iOS  || Chrome | Firefox
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Version** |**1.0**|**1.1**|**2.0**|**2.2**|**2.6**|**4.3**|**4.4**|**5**|**5**|**6**| **51  ** | **47 **
+| **Version** |**1.0**|**1.1**|**2.0**|**2.2**|**2.6**|**4.3**|**4.4**|**5**|**5**|**6**| **51** | **47**
 | **Onbording Startscreen** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | **DB Backup Export** | ❌ | ❌ | ✓ || ✓ | ✓ || ✓ | ❌ | ❌ | ✓ | ✓ |
 | **DB Backup Import** | ❌ | ❌ | ✓ || ✓ | ✓ || ✓ | ❌ | ❌ |  | ✓ |
@@ -87,7 +87,7 @@ so that I can outsource my brain capacity to the phone, yeai
 - [ ] db synchronization got a cookie error after type in of credentials
 - [ ] db synchronization dosn't refresh the todo list after first app start, second start works then (timing problem ?)
 - [ ] sm.transaction in vm.onnectToCouchDb will be called while vm.init(), find better solution
-- [ ] seit commit 17328710579f0adb44ba is Android / iOS is komplett broken, buttons funktionieren nicht - getestet mit fbf7ac7bb155f648d9
+- [ ] app install banner won't automatic fade out after installation
 
 ## CouchDB
 
