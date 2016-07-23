@@ -41,11 +41,13 @@ so that I can outsource my brain capacity to the phone, yeai
 - [x] start screen, when first start
 - [x] settings will be loaded on startup (language/couchdb)
 - [x] synchronization to a CouchDB works
+- [ ] install banner on FirefoxOS ✓ & Android
+- [ ] works offline
 - [ ] todos can be edit
 - [ ] links in the todo description will be shown as html link in the edit mode
 - [ ] it will show a message if a todo has been toggle with an unsolved dependency (other todo is not done)
 - [ ] group delete will show a confirm message and delete all dependet todos 
-- [ ] app will run on FXOS 1.1
+- [x] app will run on FXOS 1.1
 - [ ] app will run on android and ios
 
 ### Feature whishlist
@@ -73,7 +75,7 @@ so that I can outsource my brain capacity to the phone, yeai
 | **Onbording Startscreen** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | **DB Backup Export** | ❌ | ❌ | ✓ || ✓ | ✓ || ✓ | ❌ | ❌ | ✓ | ✓ |
 | **DB Backup Import** | ❌ | ❌ | ✓ || ✓ | ✓ || ✓ | ❌ | ❌ |  | ✓ |
-| **DB Synchronisation** ||  | ✓ || ✓ |  |  ||  |  |  |  |
+| **DB Synchronisation** | ✓ |  | ✓ || ✓ | ✓|  ||  |  |  |  |
 | **App Installation** | ✓ | ✓ | ✓ | ✓ | ✓ |  |  |  ||  |  |  |  |
 | **Works Offline** ||  |  ||  |  |  ||  |  |  |  |
 | **Calendar Activity/Intent** ||  |  ||  |  |  ||  |  |  |  |
