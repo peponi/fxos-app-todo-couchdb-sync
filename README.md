@@ -73,10 +73,10 @@ so that I can outsource my brain capacity to the phone, yeai
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **Version** |**1.0**|**1.1**|**2.0**|**2.2**|**2.6**|**4.3**|**4.4**|**5**|**5**|**6**| **51** | **47**
 | **Onbording Startscreen** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **DB Backup Export** | ❌ | ❌ | ✓ || ✓ | ✓ || ✓ | ❌ | ❌ | ✓ | ✓ |
-| **DB Backup Import** | ❌ | ❌ | ✓ || ✓ | ✓ || ✓ | ❌ | ❌ |  | ✓ |
-| **DB Synchronisation** | ✓ |  | ✓ || ✓ | ✓|  ||  |  |  |  |
-| **App Installation** | ✓ | ✓ | ✓ | ✓ | ✓ |  |  |  ||  |  |  |  |
+| **DB Backup Export** | ❌ | ❌ | ✓ | ✓ | ✓ | ✓ |  | ✓ | ❌ | ❌ | ✓ | ✓ |
+| **DB Backup Import** | ❌ | ❌ | ✓ | ? | ✓ | ✓ || ✓ | ❌ | ❌ | ? | ✓ |
+| **DB Synchronisation** | ✓|  | ✓ || ✓ | ✓|  ||  |  |  |  |
+| **App Installation** | ✓ | ✓ | ✓ | ✓ | ✓ |  |  |  | ❌ | ❌ ||  |
 | **Works Offline** ||  |  ||  |  |  ||  |  |  |  |
 | **Calendar Activity/Intent** ||  |  ||  |  |  ||  |  |  |  |
 | **Desktop Screen** | - | - | - | - | - | - | - | - | - | - |  |  |
