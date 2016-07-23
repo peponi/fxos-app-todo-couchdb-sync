@@ -8,6 +8,8 @@ var ViewModel = function() {
         is,
         d = document,
         title = '',
+        // FXOS1.1 on ZTE OPEN don't know location.origin
+        host = location.origin || location.protocol + '//' + location.host,
         headerGroupMenuBtn = d.querySelector('#drawer h1'),
         todoFormGroupIntput = d.querySelector('#todo-form [name=group]'),
         dashboard = d.querySelector('[data-position="current"]'),
@@ -274,6 +276,7 @@ var ViewModel = function() {
         // if base64.js is included use a base64 encoding
         // else export dosn't work on Android
         if(typeof Base64 !== 'undefined') {
+            alert('base64');
             a.href = 'data:application/octet-stream;charset=utf-8;base64,' + Base64.encode(JSON.stringify(obj));
         } else {
             a.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(obj));
@@ -701,10 +704,20 @@ var ViewModel = function() {
         });        
     };
 
+
+    self.hideAppInstallBanner = function() {
+        d.getElementById('app-install-banner').className = 'app-install-banner';
+        // wait for transition endthen remove the apii install banner from document
+        setTimeout(function() {
+            document.getElementById('app-install-banner').remove();
+        }, 1000)
+    }
+
     self.installApp = function() {
         //if(e.target.id === 'manifest') {
         // https://davidwalsh.name/install-firefoxos-app
-        request = navigator.mozApps.install(location.origin + '/manifest.webapp');
+        alert(host + '/manifest.webapp');
+        request = navigator.mozApps.install(host + '/manifest.webapp');
         // } else {
 
         //     console.log(url + 'dist/app_v0.0.5.zip');
@@ -713,7 +726,6 @@ var ViewModel = function() {
 
         request.onsuccess = function () {
             // Save the App object that is returned
-            //var appRecord = this.result;
             alert('Installation successful!');
             document.getElementById('sidebar-install-btn').style.display = 'none';
         };
@@ -730,16 +742,24 @@ var ViewModel = function() {
 
         if(self.device.fxosVersion && navigator.mozApps) {
             // https://developer.mozilla.org/en-US/docs/Archive/Firefox_OS/API/DOMApplication
-            var request = navigator.mozApps.checkInstalled(location.origin + '/manifest.webapp');
+            var request = navigator.mozApps.checkInstalled(host + '/manifest.webapp');
 
             request.onsuccess = function(e) {
                 if (!request.result) {
-                    document.getElementById('sidebar-install-btn').style.display = 'block';
+
+                    // remove hide class to display app install banner
+                    d.getElementById('app-install-banner').className = 'app-install-banner';
+                    setTimeout(function() {
+                        d.getElementById('app-install-banner__host-url').innerHTML = location.host;
+                        // add visible class to fade in the app install banner
+                        d.getElementById('app-install-banner').className = 'app-install-banner visible';
+                    }, 4000);
                 }
             };
-
-
-        //} else if(self.device.isFirefox) {
+        } else if(!self.device.fxosVersion) {
+            // if not firefox os
+            // remove app install banner from document
+            self.hideAppInstallBanner()
         }
     };
 

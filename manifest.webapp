@@ -9,7 +9,9 @@
         "32": "/app/images/icons/favicon-32x32.png",
         "48": "/app/images/icons/icon-mdpi-48x48.png",
         "64": "/app/images/icons/apple-touch-icon-60x60.png",
-        "128": "/app/images/icons/apple-touch-icon-120x120.png"
+        "128": "/app/images/icons/apple-touch-icon-120x120.png",
+        "144": "/app/images/icons/apple-touch-icon-144x144.png",
+        "180": "/app/images/icons/apple-touch-icon-180x180.png"
     },
     "developer": {
         "name": "Peponi",

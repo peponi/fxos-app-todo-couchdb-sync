@@ -1,0 +1,56 @@
+$banner-padding: 10px;
+
+.app-install-banner {
+    width: 100%;
+    background: $white;
+    border-top: 1px solid $blue-light;
+    z-index: 100;
+    padding-top: $banner-padding;
+    position: fixed;
+    height: 120px;
+    bottom: -132px;
+    transition: bottom 1s ease;
+    
+    &.visible {
+        bottom: -1px;
+
+    }
+
+    .table {
+        width: 100%;
+    }
+
+    .vertical-top {
+        vertical-align: top;
+    }
+
+    .app-logo {
+        margin: 0 auto;
+        vertical-align: middle;
+        width: 60px;
+    }
+
+    .app-title {
+        margin: 0 0 $banner-padding;
+        font-size: 20px;
+    }
+
+    .app-install-banner__host-url {
+        margin: 0;
+        color: $lighter-grey;
+        font-size: 16px;
+    }
+
+    .install-banner-close-btn {
+        padding: 0 0 $banner-padding;
+        font-size: 16px;
+        font-family: monospace;
+        transform: scale(1.4,1);
+    }
+
+    .app-install-btn {
+        width: 40%;
+        margin: $banner-padding $banner-padding $banner-padding auto;
+        display: block;
+    }
+}

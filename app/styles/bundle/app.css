@@ -152,6 +152,9 @@ section[data-type="sidebar"] {
   color: #fff;
   background-color: #b2f2ff; }
 
+.text-align-middle {
+  text-align: center; }
+
 .block {
   display: block; }
   .block .inline {
@@ -849,3 +852,40 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
 .edit-menu [data-btn-type="done"] {
   position: absolute;
   bottom: 0; }
+
+.app-install-banner {
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #00aac5;
+  z-index: 100;
+  padding-top: 10px;
+  position: fixed;
+  height: 120px;
+  bottom: -132px;
+  transition: bottom 1s ease; }
+  .app-install-banner.visible {
+    bottom: -1px; }
+  .app-install-banner .table {
+    width: 100%; }
+  .app-install-banner .vertical-top {
+    vertical-align: top; }
+  .app-install-banner .app-logo {
+    margin: 0 auto;
+    vertical-align: middle;
+    width: 60px; }
+  .app-install-banner .app-title {
+    margin: 0 0 10px;
+    font-size: 20px; }
+  .app-install-banner .app-install-banner__host-url {
+    margin: 0;
+    color: #666;
+    font-size: 16px; }
+  .app-install-banner .install-banner-close-btn {
+    padding: 0 0 10px;
+    font-size: 16px;
+    font-family: monospace;
+    transform: scale(1.4, 1); }
+  .app-install-banner .app-install-btn {
+    width: 40%;
+    margin: 10px 10px 10px auto;
+    display: block; }

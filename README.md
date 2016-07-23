@@ -63,16 +63,21 @@ so that I can outsource my brain capacity to the phone, yeai
 - [ ] themes (ios, android, cyberUI)
 - [ ] archivements for completing todos
 - [ ] [crypto-pouch](https://github.com/calvinmetcalf/crypto-pouch) ausprobieren
+- [ ] [Knockout Components](http://knockoutjs.com/documentation/component-overview.html) ausprobieren für app install banner
 
 ### Feature Table
 
-|  | FirefoxOS ||| Android  || iOS  ||
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **OS Version** | **1.1** | **2.0** | **2.6** | **4.3** | **5** | **5** | **6** |
-| **onbording startscreen** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **DB Backup Export** | ❌ | ✓ | ✓ | ✓ | ✓ | ❌ | ❌ |
-| **DB Backup Import** | ❌ | ✓ | ✓ | ✓ | ✓ | ❌ | ❌ |
-| **DB Synchronisation** |  | ✓ | ✓ |  |  |  |  |
+| - | FirefoxOS ||||| Android  ||| iOS  || Chrome | Firefox
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **Version** |**1.0**|**1.1**|**2.0**|**2.2**|**2.6**|**4.3**|**4.4**|**5**|**5**|**6**| **51  ** | **47 **
+| **Onbording Startscreen** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **DB Backup Export** | ❌ | ❌ | ✓ || ✓ | ✓ || ✓ | ❌ | ❌ | ✓ | ✓ |
+| **DB Backup Import** | ❌ | ❌ | ✓ || ✓ | ✓ || ✓ | ❌ | ❌ |  | ✓ |
+| **DB Synchronisation** ||  | ✓ || ✓ |  |  ||  |  |  |  |
+| **App Installation** | ❌ | ❌ | ❌ | ❌ | ❌ |  | ❌ |  ||  |  |  |  |
+| **Works Offline** ||  |  ||  |  |  ||  |  |  |  |
+| **Calendar Activity/Intent** ||  |  ||  |  |  ||  |  |  |  |
+| **Desktop Screen** | - | - | - | - | - | - | - | - | - | - |  |  |
 
 ### Bugs
 

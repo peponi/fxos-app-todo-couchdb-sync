@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="app/images/icons/favicon.ico" />
 
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
 
 
     <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -102,14 +102,6 @@
                 </ul>
                 <h2>System</h2>
                 <ul>
-                    <li id="sidebar-install-btn" class="hide">
-                        <a href="#"
-                            data-bind="click:installApp"
-                            data-target-id="database-section"
-                            data-direction="current">
-                            <p class="sidebar-navigation__text">Install App</p>
-                        </a>
-                    </li>
                     <li>
                         <a href="#"
                             data-bind="click:offCanvasAction"
@@ -178,6 +170,7 @@
                         </section>
                     </div>
 
+                    <!--···························· onbording section ····························-->
                     <section class="content hide no-groups-available-section" id="no-groups-available-section">
                         <br>
                         <p class="ft-indie-flower">Themes you start up the app the first time dude.</p>
@@ -201,6 +194,32 @@
                             data-target-id="database-section"
                             data-direction="current">PRESS THIS THE BUTTON</button>
                         <br>
+                    </section>
+
+                    <!--···························· app install banner ····························-->
+                    <section class="app-install-banner hide" id="app-install-banner">                    
+                        <div class="table">
+                            <div class="table-cell text-align-middle">
+                                <img class="app-logo" src="./app/images/icons/icon-hdpi-72x72.png" alt="App logo - is a Shia Labeouf meme, he scream just do it.">
+                            </div>
+                            <div class="table-cell">
+                                <h2 class="app-title">Todo App</h2>
+                                <p class="app-install-banner__host-url" id="app-install-banner__host-url"></p>
+                            </div>
+                            <div class="table-cell vertical-top">
+                                <div class="install-banner-close-btn"
+                                    data-bind="click: hideAppInstallBanner">x</div>
+                            </div>
+                        </div>
+                        <div class="block">
+                            <button
+                                role="button"
+                                class="button recommend app-install-btn"
+                                data-bind="click:installApp"
+                                data-target-id="database-section"
+                                data-direction="current">Install App
+                            </button>
+                        </div>                            
                     </section>
                 </section>
             </section>
