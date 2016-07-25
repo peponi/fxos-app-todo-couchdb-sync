@@ -10,8 +10,11 @@ Goal is to build a todo webapp who provide
 * Backup export, import ✓
 * Todo dependencies 
 * Prioritization ✓
+* Offline support
+* Crossbrowser support (FirefoxOS, Android, iOS, Ubuntu Touch)
 
 ## Build with 
+
  * [Mozilla buildingfirefoxos.com](http://buildingfirefoxos.com), ([github](https://github.com/buildingfirefoxos/Building-Blocks))
  * [KnockoutJS](http://knockoutjs.com)
  * [PouchDB](https://pouchdb.com)
@@ -41,31 +44,35 @@ so that I can outsource my brain capacity to the phone, yeai
 - [x] start screen, when first start
 - [x] settings will be loaded on startup (language/couchdb)
 - [x] synchronization to a CouchDB works
-- [ ] install banner on FirefoxOS ✓ & Android
-- [ ] works offline
+- [ ] install banner on FirefoxOS ✓ & iOS & Android
+- [ ] works offline ()
 - [ ] todos can be edit
 - [ ] links in the todo description will be shown as html link in the edit mode
 - [ ] it will show a message if a todo has been toggle with an unsolved dependency (other todo is not done)
 - [ ] group delete will show a confirm message and delete all dependet todos 
-- [x] app will run on FXOS 1.1
-- [ ] app will run on android and ios
+- [x] app will run on FXOS 1.0
+- [ ] app will run on Android and can be pinned to desktop
+- [ ] app will run on [iOS](http://stackoverflow.com/questions/17306806/how-can-you-give-your-mobile-web-app-an-install-screen) [1](https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html) [2](http://brolik.com/blog/installable-web-apps-open-web/)
+- [ ] app will run on Ubuntu Touch and can be [pinned to desktop](https://cordova.apache.org/docs/de/latest/guide/platforms/ubuntu/) [1](http://developer.ubuntu.com/en/phone/web/)
 
 ### Feature whishlist
 
 - [x] DB export to JSON file
 - [x] read JSON file and import to DB
+- [ ] export to [CVS](https://marketplace.firefox.com/app/planr/) [1](https://github.com/corbindavenport/planr)
+- [ ] read CVS file and import to DB
 - [x] phone will [vibrate](https://www.sitepoint.com/use-html5-vibration-api) while notify is poping up
-- [ ] open input form whit phone [shaking](https://github.com/alexgibson/shake.js) [1](http://qnimate.com/detect-shake-using-javascript)
-- [ ] sharing lists with [other user](https://github.com/nolanlawson/pouchdb-authentication) via couchdb accounts
-- [ ] show all groups with all todos in a [pie chart](http://www.chartjs.org/docs/#doughnut-pie-chart-introduction) like landingpage by [small and big dots](https://media-mediatemple.netdna-ssl.com/wp-content/uploads/2016/03/02-beats-opt.jpg)
-- [ ] transaltion can be added
-- [ ] it will prefer the system default language
-- [ ] LTR/RTL works
 - [ ] Android [web](https://developer.chrome.com/multidevice/android/intents) [intents](http://webintents.org/#support) has been tested
 - [ ] themes (ios, android, cyberUI)
-- [ ] archivements for completing todos
 - [ ] [crypto-pouch](https://github.com/calvinmetcalf/crypto-pouch) ausprobieren
 - [ ] [Knockout Components](http://knockoutjs.com/documentation/component-overview.html) ausprobieren für app install banner
+- [ ] transaltion can be added
+- [ ] it will prefer the system default language
+- [ ] open input form whit phone [shaking](https://github.com/alexgibson/shake.js) [1](http://qnimate.com/detect-shake-using-javascript)
+- [ ] LTR/RTL works
+- [ ] sharing lists with [other user](https://github.com/nolanlawson/pouchdb-authentication) via couchdb accounts
+- [ ] show all groups with all todos in a [pie chart](http://www.chartjs.org/docs/#doughnut-pie-chart-introduction) like landingpage by [small and big dots](https://media-mediatemple.netdna-ssl.com/wp-content/uploads/2016/03/02-beats-opt.jpg)
+- [ ] archivements for completing todos
 
 ### Feature Table
 
