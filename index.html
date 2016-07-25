@@ -215,10 +215,14 @@
                             <button
                                 role="button"
                                 class="button recommend app-install-btn"
-                                data-bind="click:installApp"
+                                data-bind="visible: device.fxosVersion, click:installApp"
                                 data-target-id="database-section"
                                 data-direction="current">Install App
                             </button>
+                            <div data-bind="visible: device.isIos" class="ios-text">                            
+                                <p class="center">Tap <strong>"Add to Home Screen"</strong> to install</p>
+                                <p class="center">▼</p>
+                            </div>
                         </div>                            
                     </section>
                 </section>

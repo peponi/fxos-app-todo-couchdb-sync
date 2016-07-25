@@ -711,6 +711,16 @@ var ViewModel = function() {
         }, 1000);
     };
 
+    self.showAppInstallBanner = function() {
+        // remove hide class to display app install banner
+        d.getElementById('app-install-banner').className = 'app-install-banner';
+        setTimeout(function() {
+            d.getElementById('app-install-banner__host-url').innerHTML = location.host;
+            // add visible class to fade in the app install banner
+            d.getElementById('app-install-banner').className = 'app-install-banner visible';
+        }, 4000);
+    };
+
     self.installApp = function() {
         // if(e.target.id === 'manifest') {
         // https://davidwalsh.name/install-firefoxos-app
@@ -742,18 +752,14 @@ var ViewModel = function() {
 
             request.onsuccess = function() {
                 if (!request.result) {
-
-                    // remove hide class to display app install banner
-                    d.getElementById('app-install-banner').className = 'app-install-banner';
-                    setTimeout(function() {
-                        d.getElementById('app-install-banner__host-url').innerHTML = location.host;
-                        // add visible class to fade in the app install banner
-                        d.getElementById('app-install-banner').className = 'app-install-banner visible';
-                    }, 4000);
+                    self.showAppInstallBanner();                   
                 }
             };
-        } else if(!self.device.fxosVersion) {
-            // if not firefox os
+        // http://stackoverflow.com/questions/17306806/how-can-you-give-your-mobile-web-app-an-install-screen
+        } else if(self.device.isIos && !window.navigator.standalone) {
+            self.showAppInstallBanner();
+        } else if(!self.device.fxosVersion && !self.device.isIos) {
+            // if not firefox os or iOS
             // remove app install banner from document
             self.hideAppInstallBanner();
         }

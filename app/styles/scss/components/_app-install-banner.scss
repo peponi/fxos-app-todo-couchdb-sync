@@ -3,7 +3,7 @@ $banner-padding: 10px;
 .app-install-banner {
     width: 100%;
     background: $white;
-    border-top: 1px solid $blue-light;
+    box-shadow: 0 0 8px 0px $lighter-grey;
     z-index: 100;
     padding-top: $banner-padding;
     position: fixed;
@@ -38,7 +38,7 @@ $banner-padding: 10px;
     .app-install-banner__host-url {
         margin: 0;
         color: $lighter-grey;
-        font-size: 16px;
+        font-size: 12px;
     }
 
     .install-banner-close-btn {
@@ -52,5 +52,16 @@ $banner-padding: 10px;
         width: 40%;
         margin: $banner-padding $banner-padding $banner-padding auto;
         display: block;
+    }
+
+    .ios-text p {
+        padding: 0 3px;
+        font-size: 16px;
+        margin: 0;
+        color: $lighter-grey;
+
+        &:first-child {
+            padding-top: 8px;
+        }
     }
 }

@@ -856,7 +856,7 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
 .app-install-banner {
   width: 100%;
   background: #fff;
-  border-top: 1px solid #00aac5;
+  box-shadow: 0 0 8px 0px #666;
   z-index: 100;
   padding-top: 10px;
   position: fixed;
@@ -879,7 +879,7 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
   .app-install-banner .app-install-banner__host-url {
     margin: 0;
     color: #666;
-    font-size: 16px; }
+    font-size: 12px; }
   .app-install-banner .install-banner-close-btn {
     padding: 0 0 10px;
     font-size: 16px;
@@ -889,3 +889,10 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
     width: 40%;
     margin: 10px 10px 10px auto;
     display: block; }
+  .app-install-banner .ios-text p {
+    padding: 0 3px;
+    font-size: 16px;
+    margin: 0;
+    color: #666; }
+    .app-install-banner .ios-text p:first-child {
+      padding-top: 8px; }
