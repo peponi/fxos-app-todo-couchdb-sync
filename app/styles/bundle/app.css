@@ -881,10 +881,10 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
     color: #666;
     font-size: 12px; }
   .app-install-banner .install-banner-close-btn {
-    padding: 0 0 10px;
-    font-size: 16px;
-    font-family: monospace;
-    transform: scale(1.4, 1); }
+    padding: 5px 5px 10px 10px; }
+    .app-install-banner .install-banner-close-btn img {
+      width: 10px;
+      height: 10px; }
   .app-install-banner .app-install-btn {
     width: 40%;
     margin: 10px 10px 10px auto;

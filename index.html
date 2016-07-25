@@ -15,7 +15,7 @@
     <link rel="manifest" href="./manifest.json">
 
 
-    <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
@@ -32,7 +32,7 @@
     <meta name="msapplication-square70x70logo" content="/smalltile.png" />
     <meta name="msapplication-square150x150logo" content="/mediumtile.png" />
     <meta name="msapplication-wide310x150logo" content="/widetile.png" />
-    <meta name="msapplication-square310x310logo" content="/largetile.png" /> -->
+    <meta name="msapplication-square310x310logo" content="/largetile.png" />
 
 
     <link rel="shortcut icon" type="image/png" href="app/images/icons/icon16x16.png"/>
@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="app/building-blocks/style/lists.css">
     <link rel="stylesheet" href="app/building-blocks/style/switches.css">
     <link rel="stylesheet" href="app/building-blocks/style/status.css">
+    <!-- <link rel="stylesheet" href="app/building-blocks/icons/styles/action_icons.css"> -->
 
     <!-- Transitions -->
     <link rel="stylesheet" href="app/building-blocks/transitions.css">
@@ -132,7 +133,6 @@
     
             <section class="content scrollable header">
                 <section data-type="list">                
-
                     <div id="main-todo-list" class="main-todo-list">
                         <section data-bind="if: state.filteredTodosWithDateInFuture().length > 0">
                             <header>
@@ -208,7 +208,7 @@
                             </div>
                             <div class="table-cell vertical-top">
                                 <div class="install-banner-close-btn"
-                                    data-bind="click: hideAppInstallBanner">x</div>
+                                    data-bind="click: hideAppInstallBanner"><img src="app/images/icons/png/cancel.png" alt=""></div>
                             </div>
                         </div>
                         <div class="block">

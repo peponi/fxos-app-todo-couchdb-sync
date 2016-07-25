@@ -42,10 +42,12 @@ $banner-padding: 10px;
     }
 
     .install-banner-close-btn {
-        padding: 0 0 $banner-padding;
-        font-size: 16px;
-        font-family: monospace;
-        transform: scale(1.4,1);
+        padding: $banner-padding/2 $banner-padding/2 $banner-padding $banner-padding;
+
+        img {
+            width: 10px;
+            height: 10px;
+        }
     }
 
     .app-install-btn {
