@@ -44,7 +44,7 @@ so that I can outsource my brain capacity to the phone, yeai
 - [x] start screen, when first start
 - [x] settings will be loaded on startup (language/couchdb)
 - [x] synchronization to a CouchDB works
-- [ ] install banner on FirefoxOS ✓ & iOS & Android
+- [ ] install banner on FirefoxOS ✓ & iOS ✓ & Android
 - [ ] works offline ()
 - [ ] todos can be edit
 - [ ] links in the todo description will be shown as html link in the edit mode
@@ -52,8 +52,8 @@ so that I can outsource my brain capacity to the phone, yeai
 - [ ] group delete will show a confirm message and delete all dependet todos 
 - [x] app will run on FXOS 1.0
 - [ ] app will run on Android and can be pinned to desktop
-- [ ] app will run on [iOS](http://stackoverflow.com/questions/17306806/how-can-you-give-your-mobile-web-app-an-install-screen) [1](https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html) [2](http://brolik.com/blog/installable-web-apps-open-web/)
-- [ ] app will run on Ubuntu Touch and can be [pinned to desktop](https://cordova.apache.org/docs/de/latest/guide/platforms/ubuntu/) [1](http://developer.ubuntu.com/en/phone/web/)
+- [ ] app will run on [iOS](http://stackoverflow.com/questions/17306806/how-can-you-give-your-mobile-web-app-an-install-screen) [[1](https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)] [[2](http://brolik.com/blog/installable-web-apps-open-web/)]
+- [ ] app will run on Ubuntu Touch and can be [pinned to desktop](https://cordova.apache.org/docs/de/latest/guide/platforms/ubuntu/) [[1](http://developer.ubuntu.com/en/phone/web/)]
 
 ### Feature whishlist
 
