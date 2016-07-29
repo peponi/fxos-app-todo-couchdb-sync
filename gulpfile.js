@@ -122,6 +122,11 @@ gulp.task('copy:manifest', function() {
         .pipe(gulp.dest(env.GULP_WEBSITE_ROOT + 'build/'));
 });
 
+gulp.task('copy:appcache', function() {
+    gulp.src(env.GULP_WEBSITE_ROOT + 'manifest.appcache')
+        .pipe(gulp.dest(env.GULP_WEBSITE_ROOT + 'build/'));
+});
+
 gulp.task('copy:fonts', function() {
     gulp.src(env.GULP_ASSETS_DEV_PATH + 'fonts/**/*')
         .pipe(gulp.dest(env.GULP_ASSETS_PROD_PATH + 'fonts/'));
@@ -143,6 +148,11 @@ gulp.task('copy:building-blocks:fonts', function() {
         .pipe(gulp.dest(env.GULP_PROD_PATH + 'styles/bundle/fonts/'));
 });
 
+gulp.task('copy:styles', function() {
+    gulp.src(env.GULP_CSS_PROD_PATH + '/**/*.css')
+        .pipe(gulp.dest(env.GULP_PROD_PATH + 'styles/bundle'));
+});
+
 gulp.task('concate:scripts:lib', function() {
     gulp.src([
         env.GULP_NODE_MODULES + 'fecha/fecha.min.js',
@@ -158,7 +168,9 @@ gulp.task('concate:scripts:app', function() {
         env.GULP_JS_DEV_PATHS + 'models/pouchModel.js',
         env.GULP_JS_DEV_PATHS + 'models/todoModel.js',
         env.GULP_JS_DEV_PATHS + 'models/groupModel.js',
-        env.GULP_JS_DEV_PATHS + 'viewModel.js'])
+        env.GULP_JS_DEV_PATHS + 'models/settingsModel.js',
+        env.GULP_JS_DEV_PATHS + 'viewModel.js',
+        env.GULP_JS_DEV_PATHS + 'offline.js'])
         .pipe(concat('app.js'))
         .pipe(gulp.dest(env.GULP_JS_PROD_PATHS));
 });
@@ -178,9 +190,6 @@ gulp.task('concate:css', function() {
         .pipe(concat('lib.css'))
         .pipe(gulp.dest(env.GULP_PROD_PATH + 'styles/bundle/'));
 });
-
-
-
 
 
 /**
@@ -203,31 +212,30 @@ gulp.task('lint', [
 
 gulp.task('build:styles', [/*'format:styles',*/ 'compress:styles']);
 
-gulp.task('build', [
+gulp.task('build', gulpsync.sync([
     'clean:static',
-    'build:styles'
-]);
-
-gulp.task('prod', gulpsync.sync([
-    'build',
+    'build:styles',
     [
-        'copy:manifest',
-        'copy:fonts',
-        'copy:images',
-        'copy:building-blocks:images',
-        'copy:building-blocks:fonts'
-    ], [
         'concate:scripts:lib',
         'concate:scripts:app',
         'concate:css'
     ], 
-    'replace:html',
     [
-        'compress:scripts',
-        'compress:styles',
-        'compress:html'
-    ],
-    'create:appcache'
+        'copy:styles',
+        'copy:manifest',
+        'copy:appcache',
+        'copy:fonts',
+        'copy:images',
+        'copy:building-blocks:images',
+        'copy:building-blocks:fonts'
+    ], 
+    'replace:html',
+    // [
+    //     'compress:scripts',
+    //     'compress:styles',
+    //     'compress:html'
+    // ],
+    //'create:appcache' // does not work correct
 ]));
 
 gulp.task('watch',['build:styles', 'lint:scripts'], function() {

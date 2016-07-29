@@ -45,7 +45,7 @@ so that I can outsource my brain capacity to the phone, yeai
 - [x] settings will be loaded on startup (language/couchdb)
 - [x] synchronization to a CouchDB works
 - [ ] install banner on FirefoxOS ✓ & iOS ✓ & Android
-- [ ] works offline ()
+- [ ] works offline (✓ appcache für iOS)
 - [ ] todos can be edit
 - [ ] links in the todo description will be shown as html link in the edit mode
 - [ ] it will show a message if a todo has been toggle with an unsolved dependency (other todo is not done)
@@ -90,7 +90,6 @@ so that I can outsource my brain capacity to the phone, yeai
 
 ### Bugs
 
-- [ ] build is not up to date
 - [ ] **heisenbug** - viewModel.js:75 Uncaught TypeError: Cannot set property 'className' of null
 - [ ] won't reload after json import db overwrite
 - [ ] db synchronization got a cookie error after type in of credentials

@@ -11,7 +11,7 @@ gulp.task('replace:html', function() {
     .pipe(htmlreplace({
         'js-lib': '<script src="app/scripts/lib.js"></script>',
         'js-app': '<script src="app/scripts/app.js"></script>',
-        'css': '<link rel="stylesheet" type="text/css" href="app/styles/bundle/lib.css">',
+        'css': '<link rel="stylesheet" type="text/css" href="app/styles/bundle/lib.css"><link rel="stylesheet" type="text/css" href="app/styles/bundle/app.css">',
         'appcache': {
             src: 'manifest.appcache',
             tpl: '<html manifest="%s">'
