@@ -1,6 +1,6 @@
 {
-  "short_name": "FXOS_Todo",
   "name": "FXOS Todo App",
+  "short_name": "FXOS_Todo",
   "description": "todo app who provide CouchDB synchronization, dependencies and prioritization",
   "icons": [
     {
