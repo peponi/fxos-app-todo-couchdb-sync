@@ -76,9 +76,9 @@ so that I can outsource my brain capacity to the phone, yeai
 
 ### Feature Table
 
-| - | FirefoxOS ||||| Android  ||| iOS  || Ubuntu Touch | SallyfishOS | Chrome | Firefox |
+| - | FirefoxOS |-|-|-|-| Android  |-|-| iOS  |-| Ubuntu Touch | SallyfishOS | Chrome | Firefox |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Version** |**1.0**|**1.1**|**2.0**|**2.2**|**2.6**|**4.3**|**4.4**|**5**|**5**|**6**| BQ E4.5 | 2 | **51** | **47** |
+| **Version** |**1.0**|**1.1**|**2.0**|**2.2**|**2.6**|**4.3**|**4.4**|**5**|**5**|**6**|**BQ E4.5**|**2**|**51**|**47**|
 | **Onbording Startscreen** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | **DB Backup Export** | ❌ | ❌ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ❌ | ❌ | A? | ✓ | ✓ | ✓ |
 | **DB Backup Import** | ❌ | ❌ | ✓ | ? | ✓ | ✓ | ✓ | ✓ | ❌ | ❌ | ✓ | A? | T? | ✓ |
