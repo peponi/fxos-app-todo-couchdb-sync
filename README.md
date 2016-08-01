@@ -76,17 +76,28 @@ so that I can outsource my brain capacity to the phone, yeai
 
 ### Feature Table
 
-| - | FirefoxOS ||||| Android  ||| iOS  || Ubuntu Touch | Chrome | Firefox
+| - | FirefoxOS ||||| Android  ||| iOS  || Ubuntu Touch | SallyfishOS | Chrome | Firefox
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Version** |**1.0**|**1.1**|**2.0**|**2.2**|**2.6**|**4.3**|**4.4**|**5**|**5**|**6**| BQ E4.5 | **51** | **47**
-| **Onbording Startscreen** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **DB Backup Export** | ❌ | ❌ | ✓ | ✓ | ✓ | ✓ |  | ✓ | ❌ | ❌ | app ? |✓ | ✓ |
-| **DB Backup Import** | ❌ | ❌ | ✓ | ? | ✓ | ✓ || ✓ | ❌ | ❌ | ✓ |? | ✓ |
-| **DB Synchronisation** | ✓|  | ✓ || ✓ | ✓|  ||  |  |  |  |  |
-| **App Installation** | ✓ | ✓ | ✓ | ✓ | ✓ |  |  |  | ❌ | ❌ ||  |  |
-| **Works Offline** ||  |  ||  |  |  ||  |  |  |  |  |
-| **Calendar Activity/Intent** ||  |  ||  |  |  ||  |  |  |  |  |
-| **Desktop Screen** | - | - | - | - | - | - | - | - | - | - | - |  |  |
+| **Version** |**1.0**|**1.1**|**2.0**|**2.2**|**2.6**|**4.3**|**4.4**|**5**|**5**|**6**| BQ E4.5 | 2 | **51** | **47**
+| **Onbording Startscreen** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **DB Backup Export** | ❌ | ❌ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ❌ | ❌ | A? | ✓ | ✓ | ✓ |
+| **DB Backup Import** | ❌ | ❌ | ✓ | ? | ✓ | ✓ | ✓ | ✓ | ❌ | ❌ | ✓ | A? | T? | ✓ |
+| **DB Synchronisation** | ✓ | N? | ✓ | N? | ✓ | ✓ | N? | N? | N? | N? | N? | N? | ✓ | ✓ |
+| **App Installation** | ✓ | ✓ | ✓ | ✓ | ✓ | N? | N? | N? | N? | N? | F❌ | ❌ | F❌ | F❌ |
+| **Works Offline** | ✓ | ✓ | ✓ | ✓ | ✓ | N? | N? | N? | N? | N? | N? | N? | N? | N? |
+| **Calendar Activity/Intent** | N | N | N | N | N | N | N | N | N | N | N | N | N | N |
+| **Desktop Screen** | - | - | - | - | - | - | - | - | - | - | - | - | N | N |
+
+|sign| meaning|
+| --- | --- |
+| ✓ | works |
+| ❌ | don't works because of technical reason |
+| F❌ | wold be possible with by other technical features |
+| A? | don't works because some app or app feature is missing, the right app could help |
+| T? | should work, but don't, need to test this |
+| N? | not tested yet |
+| N | not implemented yet |
+| - |feature not neccessary for this device / os / screenport|
 
 ### Bugs
 
