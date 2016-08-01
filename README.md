@@ -76,9 +76,9 @@ so that I can outsource my brain capacity to the phone, yeai
 
 ### Feature Table
 
-| - | FirefoxOS ||||| Android  ||| iOS  || Ubuntu Touch | SallyfishOS | Chrome | Firefox
+| - | FirefoxOS ||||| Android  ||| iOS  || Ubuntu Touch | SallyfishOS | Chrome | Firefox |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Version** |**1.0**|**1.1**|**2.0**|**2.2**|**2.6**|**4.3**|**4.4**|**5**|**5**|**6**| BQ E4.5 | 2 | **51** | **47**
+| **Version** |**1.0**|**1.1**|**2.0**|**2.2**|**2.6**|**4.3**|**4.4**|**5**|**5**|**6**| BQ E4.5 | 2 | **51** | **47** |
 | **Onbording Startscreen** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | **DB Backup Export** | ❌ | ❌ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ❌ | ❌ | A? | ✓ | ✓ | ✓ |
 | **DB Backup Import** | ❌ | ❌ | ✓ | ? | ✓ | ✓ | ✓ | ✓ | ❌ | ❌ | ✓ | A? | T? | ✓ |
@@ -92,7 +92,7 @@ so that I can outsource my brain capacity to the phone, yeai
 | --- | --- |
 | ✓ | works |
 | ❌ | don't works because of technical reason |
-| F❌ | wold be possible with by other technical features |
+| F❌ | wold be possible by other technical features |
 | A? | don't works because some app or app feature is missing, the right app could help |
 | T? | should work, but don't, need to test this |
 | N? | not tested yet |
