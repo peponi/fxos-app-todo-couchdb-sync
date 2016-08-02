@@ -1,5 +1,6 @@
-var CACHE_NAME = 'my-site-cache-v1';
-var urlsToCache = [
+
+var CACHE_NAME = 'my-site-cache-v1',
+    urlsToCache = [
     'build/index.html',
     'build/app/styles/bundle/lib.css',
     'build/app/styles/bundle/app.css',
