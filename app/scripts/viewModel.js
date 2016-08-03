@@ -11,7 +11,8 @@ var ViewModel = function() {
         // FXOS1.1 on ZTE OPEN don't know location.origin
         host = location.origin || location.protocol + '//' + location.host,
         headerGroupMenuBtn = d.querySelector('#drawer h1'),
-        todoFormGroupIntput = d.querySelector('#todo-form [name=group]'),
+        todoForm = d.getElementById('todo-form'),
+        todoFormGroupIntput = todoForm.querySelector('[name=group]'),
         dashboard = d.querySelector('[data-position="current"]'),
         mainTodoList = d.getElementById('main-todo-list'),
         noGroupsAvailableSection = d.getElementById('no-groups-available-section'),
@@ -22,13 +23,8 @@ var ViewModel = function() {
             todo: new TodoModel(),
             group: new GroupModel(),
             settings: new SettingsModel()
-        };
-
-    self.state = {
-        currentOpenMenu: 'group-menu',
-        currentSelectedGroup: '',
-        currentDependencyDocTitle: ko.observable(),
-        currentOpenTodo: ko.observable({
+        },
+        blankTodo = {
             date: '',
             desc: '',
             done: false,
@@ -36,7 +32,13 @@ var ViewModel = function() {
             prio: 0,
             time: '',
             title: ''
-        }),
+        };
+
+    self.state = {
+        currentOpenMenu: 'group-menu',
+        currentSelectedGroup: '',
+        currentDependencyDocTitle: ko.observable(),
+        currentOpenTodo: ko.observable(blankTodo),
         allGroups: ko.observableArray(),
         allTodos: ko.observableArray(),
         filteredTodosWithDateInFuture: ko.observableArray(),
@@ -404,6 +406,27 @@ var ViewModel = function() {
     self.hideMenu = function() {
         self.hideActionMenu();
         self.state.currentOpenMenu = '';
+        self.state.currentOpenTodo(blankTodo);
+    };
+
+    self.editTodo = function(data, e) {
+        self.hideActionMenu();
+        self.offCanvasAction(data, e);
+        
+        var todo = self.state.currentOpenTodo();
+
+        var todoPriorityMap = {
+            '0': 'low',
+            '1': 'middle',
+            '2': 'height',
+            '3': 'urgent'
+        };
+
+        todoForm.querySelector('[name=title]').value = todo.title;
+        todoForm.querySelector('[name=desc]').value = todo.desc;
+        todoForm.querySelector('[name=date]').value = todo.date;
+        todoForm.querySelector('[name=dependency]').value = todo.dependency;
+        todoForm.querySelector('[name=prio]').value = todoPriorityMap[todo.prio.toString()];
     };
 
     /**
@@ -517,12 +540,23 @@ var ViewModel = function() {
         var targetForm = d.getElementById(data.targetForm),
             type = data.type;
 
-        // if (targetForm === 'edit-mode-form' ) {
-        //     vm.hideEditMode();
-        // }
 
         data = targetForm.querySelectorAll('input, textarea');
         var formData = self.parseInputToObj(data);
+
+        // if some todo is selected update the todo obect and skip to save a new one
+        if (typeof self.state.currentOpenTodo()._id === 'string' ) {
+            model[type].update(self.state.currentOpenTodo()._id, function(doc) {
+                Object.keys(formData).map(function(key){
+                    doc[key] = formData[key];
+                });
+
+                self.state.currentOpenTodo(blankTodo);
+                return doc;
+            });
+
+            return;
+        }
 
         // FIXME: later with some regex
         // rip out hashtags of description

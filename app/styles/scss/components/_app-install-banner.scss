@@ -3,7 +3,7 @@ $banner-padding: 10px;
 .app-install-banner {
     width: 100%;
     background: $white;
-    box-shadow: 0 0 8px 0px $lighter-grey;
+    box-shadow: 0 0 8px 0 $lighter-grey;
     z-index: 100;
     padding-top: $banner-padding;
     position: fixed;

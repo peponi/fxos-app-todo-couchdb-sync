@@ -609,7 +609,12 @@
     <section data-position="back" class="fade-out edit-menu" id="edit-menu">
         <form role="dialog" data-type="action">
             <header>
-                <div class="inline">Todo Edit</div>
+                <button class="inline"
+                        data-bind="click:editTodo"
+                        data-target-id="todo-section"
+                        data-direction="current"
+                        role="button">edit</button>
+                <div class="inline">Todo Detail</div>
                 <button class="inline"
                         data-bind="click:hideMenu"
                         data-target-id="edit-menu"
@@ -635,7 +640,8 @@
             </section>         
         </form>
     </section>
-        <!--···························· default confirm····························-->
+
+    <!--···························· default confirm····························-->
     <section data-position="back" class="fade-out" id="default-confirm">
         <form role="dialog" data-type="confirm">
             <section>
