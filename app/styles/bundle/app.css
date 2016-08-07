@@ -89,10 +89,14 @@ form[role="dialog"][data-type="confirm"] menu button {
 
 /* gaia overwrites & adaptions */
 [role='dialog'][data-type='action'] > header {
-  padding: 0; }
+  padding: 0;
+  text-align: center; }
   [role='dialog'][data-type='action'] > header .inline:first-child {
-    margin: 0;
-    padding-left: 3rem; }
+    position: absolute;
+    left: 10px;
+    border-right: 1px solid #666;
+    padding: 0 1rem;
+    min-width: 56px; }
   [role='dialog'][data-type='action'] > header .inline:last-child {
     position: absolute;
     right: 1rem;
@@ -856,7 +860,7 @@ html[dir='rtl'] [role='dialog'][data-type='action'] > header > a {
 .app-install-banner {
   width: 100%;
   background: #fff;
-  box-shadow: 0 0 8px 0px #666;
+  box-shadow: 0 0 8px 0 #666;
   z-index: 100;
   padding-top: 10px;
   position: fixed;

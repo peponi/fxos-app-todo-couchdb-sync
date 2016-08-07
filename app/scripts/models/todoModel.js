@@ -49,9 +49,15 @@ var TodoModel = function() {
         });
     };
 
-    self.update = function(id, callback) {
-        pm.update(type, id, function (doc) {
-            return callback(doc);
+    self.update = function(id, formData) {
+        formData.prio = self.map[formData.prio] || 0;  
+
+        pm.update(type, id, function (doc) {            
+            Object.keys(formData).map(function(key) {
+                doc[key] = formData[key];
+            });            
+
+            return doc;
         });
     };
 

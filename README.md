@@ -107,6 +107,7 @@ so that I can outsource my brain capacity to the phone, yeai
 - [ ] db synchronization dosn't refresh the todo list after first app start, second start works then (timing problem ?)
 - [ ] sm.transaction in vm.onnectToCouchDb will be called while vm.init(), find better solution
 - [ ] app install banner won't automatic fade out after installation
+- [ ] can't turn off sync & save
 
 ### Code Refactoring
 
