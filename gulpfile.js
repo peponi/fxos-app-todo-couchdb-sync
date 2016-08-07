@@ -104,6 +104,7 @@ require(gulpTasksPath + 'compress-html');
 require(gulpTasksPath + 'compress-scripts');
 require(gulpTasksPath + 'compress-styles');
 require(gulpTasksPath + 'create-appcache');
+require(gulpTasksPath + 'create-doc-todo');
 require(gulpTasksPath + 'format-styles');
 require(gulpTasksPath + 'lint-html');
 require(gulpTasksPath + 'lint-scripts');
@@ -230,6 +231,7 @@ gulp.task('build', gulpsync.sync([
         'copy:building-blocks:fonts'
     ], 
     'replace:html',
+    'create:doc.todo'
     // [
     //     'compress:scripts',
     //     'compress:styles',

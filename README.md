@@ -108,6 +108,10 @@ so that I can outsource my brain capacity to the phone, yeai
 - [ ] sm.transaction in vm.onnectToCouchDb will be called while vm.init(), find better solution
 - [ ] app install banner won't automatic fade out after installation
 
+### Code Refactoring
+
+see [TODO.md](./TODO.md) file
+
 ## CouchDB
 
 if you want to sychronize your data, you need to install and configure a [CouchDB](https://couchdb.apache.org)
