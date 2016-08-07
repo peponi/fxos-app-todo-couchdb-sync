@@ -533,8 +533,8 @@ var ViewModel = function() {
     };
 
     self.saveFormData = function(data, e) {
-        // i dont need the passed knockout data object data
-        // and use it for click event dataset
+        // i don't need the passed knockout data object
+        // just use the click event dataset
         data = e.target.dataset;
 
         var targetForm = d.getElementById(data.targetForm),
@@ -546,15 +546,11 @@ var ViewModel = function() {
 
         // if some todo is selected update the todo obect and skip to save a new one
         if (typeof self.state.currentOpenTodo()._id === 'string' ) {
-            model[type].update(self.state.currentOpenTodo()._id, function(doc) {
-                Object.keys(formData).map(function(key){
-                    doc[key] = formData[key];
-                });
 
-                self.state.currentOpenTodo(blankTodo);
-                return doc;
-            });
+            model[type].update(self.state.currentOpenTodo()._id, formData)
 
+            self.state.currentOpenTodo(blankTodo);
+            self.offCanvasAutoBack(formData);
             return;
         }
 
