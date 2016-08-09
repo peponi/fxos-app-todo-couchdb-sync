@@ -6,19 +6,18 @@ var appCache = window.applicationCache;
 
 
 // use  the serviceworker if provided
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker
-//         .register('./sw.js')
-//         .then(function (registration) {
-//             // Registration was successful
-//             console.log('ServiceWorker registration successful with scope: ', registration.scope);
-//         }).catch(function (err) {
-//             // registration failed :(
-//             console.log('ServiceWorker registration failed: ', err);
-//         });
-// // else switch to manifest.appcache
-// } else 
-if (appCache) {
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+        .register('./sw.js')
+        .then(function (registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }).catch(function (err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+        });
+// else switch to manifest.appcache
+} else if (appCache) {
     appCache.onupdateready = function () {
         if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
             // Browser downloaded a new app cache.
