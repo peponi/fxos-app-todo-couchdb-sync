@@ -6,7 +6,9 @@
   "scripts": {
     "test": "eslint",
     "sass": "./node_modules/node-sass/bin/node-sass app/styles/scss/app.scss > app/styles/bundle/app.css",
-    "web": "python -m SimpleHTTPServer 8000"
+    "http": "python -m SimpleHTTPServer 8000",
+    "https": "./node_modules/local-web-server/bin/cli.js -d build/ --key _assets/ws.key --cert _assets/ws.crt",
+    "chrome": "/usr/bin/google-chrome --user-data-dir=/tmp/foo --ignore-certificate-errors --unsafely-treat-insecure-origin-as-secure=https://127.0.0.1:8000"
   },
   "repository": {
     "type": "git",
@@ -49,6 +51,7 @@
     "gulp-todo": "^4.1.0",
     "gulp-uglify": "^1.1.0",
     "gulp-watch": "^4.1.1",
+    "local-web-server": "^1.2.6",
     "node-sass": "^3.7.0",
     "pa11y": "^4.0.0",
     "phantomjs": "^2.1.7"
