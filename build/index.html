@@ -1,5 +1,639 @@
-<!DOCTYPE html><html manifest=manifest.appcache><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=no"><meta name=mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=black><link rel="shortcut icon" type=image/png href=app/images/icons/icon16x16.png><link rel=apple-touch-startup-image href=app/images/icon/128x128.png><link rel=apple-touch-icon-precomposed href=app/images/icon/128x128.png><link rel=manifest href=manifest.json><link rel=stylesheet type=text/css href=app/styles/bundle/lib.css><link rel=stylesheet type=text/css href=app/styles/bundle/app.css><title>wallet</title></head><body><section id=index class=index data-position=current><section data-type=sidebar><header><menu type=toolbar><a href=#content><span class="icon icon-add"></span></a></menu><h1>Menu</h1></header><nav id=sidebar-navigation><h2>Manage</h2><ul><li><a href=# data-bind=click:offCanvasAction data-target-id=todo-section data-direction=current><p class=sidebar-navigation__text>todo</p></a></li><li><a href=# data-bind=click:offCanvasAction data-target-id=group-section data-direction=current><p class=sidebar-navigation__text>group</p></a></li></ul><h2>Settings</h2><ul><li><a href=# data-bind=click:offCanvasAction data-target-id=couchdb-section data-direction=current><p class=sidebar-navigation__text>CouchDB</p></a></li></ul><h2>Plugins</h2><ul><li><a href=# data-bind=onclick:dataController.nukeAllDataBases><p class=sidebar-navigation__text>NUKE</p></a></li></ul><h2>info</h2><ul><li><a href=# data-bind=click:offCanvasAction data-target-id=info-section data-direction=current><p class=sidebar-navigation__text>info</p></a></li></ul></nav></section><section id=drawer class=drawer role=region><header class=fixed><a href=# id=open-drawer-btn class=open-drawer-btn><img src=./app/images/icons/png/menu62.png class=burger-icon alt="burger icon"> </a><a href=#drawer id=close-drawer-btn class=close-drawer-btn><img src=./app/images/icons/png/menu62.png class=burger-icon alt="burger icon"></a><h1 data-bind=click:openMenu data-target-id=group-menu data-binding-context=header role=button></h1></header><section class="content scrollable header"><section data-type=list><div id=main-todo-list class=main-todo-list><section data-bind="if: state.filteredTodosWithDateInFuture().length > 0"><header><span>Expiry</span></header><ul><li class=payment data-bind="click:$root.openMenu, attr: {'data-binding-context': id}" data-target-id=edit-menu><aside><div data-bind="css: 'dot ' + $root.priorityArray[doc.prio]"></div></aside><p class=text data-bind="text: doc.title, attr: {'data-done': doc.done}"></p><p data-bind="text: doc.desc, attr: {'data-done': doc.done}"></p><aside class=pack-end><small data-bind="text: doc.date"></small></aside></li></ul></section><br><br><section data-bind="if: state.filteredDatelessTodos().length > 0"><header><span>Priority</span></header><ul><li class=payment data-bind="click:$root.openMenu, attr: {'data-binding-context': id}" data-target-id=edit-menu><aside><div data-bind="css: 'dot ' + $root.priorityArray[doc.prio]"></div></aside><p class=text data-bind="text: doc.title, attr: {'data-done': doc.done}"></p><p data-bind="text: doc.desc, attr: {'data-done': doc.done}"></p></li></ul></section></div><div class="spinner hide"><div class=bounce1></div><div class=bounce2></div><div class=bounce3></div></div><section class="content hide" id=no-accounts-available><br><br><p>Themes you start up the app the first time.</p><p>You need to create an account first.</p><br><br><button role=button class="button recommend" data-bind=click:offCanvasAction data-target-id=manage-accounts-section data-first-account=true data-direction=current>create an account</button></section></section></section><button type=button class="circle-button plus position-bottom-right" data-bind=click:offCanvasAction data-target-id=todo-section data-direction=current>+</button></section></section><section role=region id=todo-section data-position=right><header class=fixed><button type=button data-bind=click:offCanvasAction data-target-id=todo-section data-direction=right><span class="icon icon-back">back</span></button><menu type=toolbar><button type=button data-bind=click:saveFormData data-target-form=todo-form data-type=todo data-notify-text=todo>save</button></menu><h1>add Todo</h1></header><section class="content scrollable header"><fieldset><form id=todo-form><p><input type=text placeholder="Todo Title" name=title required> <button type=reset>Clear</button></p><p><input type=text placeholder="Description #Hashtag" data-bind=keyup:viewModel.openMenu data-target-id=tag-menu data-binding-context=todo-form name=desc> <button type=reset>Clear</button></p><p class=hide><input type=button name=group> <button type=reset>Clear</button></p><p><input type=button value=Priority data-bind=click:openMenu data-target-id=priority-menu data-binding-context=todo-form name=prio> <button type=reset>Clear</button></p><p><label for=todo-date>Todo Date</label><input type=date name=date id=todo-date></p></form></fieldset></section></section><section role=region id=group-section data-position=right><header class=fixed><button type=button data-bind=click:offCanvasAction data-target-id=group-section data-direction=right><span class="icon icon-back">back</span></button><menu type=toolbar><button type=button data-bind=click:saveFormData data-target-form=group-form data-type=group data-notify-text=group>save</button></menu><h1>manage Groups</h1></header><section class="content scrollable header"><fieldset><form id=group-form><p><input type=text placeholder="Group Title" name=title required> <button type=reset>Clear</button></p></form></fieldset><br><br><br><section data-type=list><header>All Groups</header><ul data-bind="foreach: state.allGroups"><li><aside class=pack-end data-bind=" attr: {id: doc._id}, click: $root.handleGroupDeleteBtnClick"><img alt=placeholder src=app/images/input_areas/images/clear.png></aside><p data-bind="text: doc.title"></p></li></ul></section></section></section><section role=region id=couchdb-section data-position=right><header class=fixed><button type=button data-bind=click:offCanvasAction data-target-id=couchdb-section data-direction=right><span class="icon icon-back">back</span></button><menu type=toolbar><button type=button data-bind=onclick:dataController.saveFormData data-target-form=couchdb-form data-type=settings data-notify-text="Regulary transaction">save</button></menu><h1>couchdb</h1></header><section class="content scrollable header"><fieldset><form id=couchdb-form class=couchdb-form><div class=table><p class=table-row><label for=do-sync-couchdb class=table-cell>Sync to CouchDB</label><label class="pack-switch table-cell"><input type=checkbox name=do-sync-couchdb id=do-sync-couchdb data-bind=click:toggleAccordion data-target-id=accordion-content> <span></span></label></p></div><div id=accordion-content class=hide><div class=table><p class="table-row accordion-content"><span class=table-cell>Sync Status</span> <a class=table-cell id=couchdb-sync-state>disconnected</a></p></div><p><input type=text placeholder="user name" name=couchdb-user-name> <button type=reset>Clear</button></p><p><input type=password placeholder=password name=couchdb-password> <button type=reset>Clear</button></p><p><input type=url placeholder=https://my-couchdb-server.local name=couchdb-url> <button type=reset>Clear</button></p><p><input type=text placeholder="couchdb database prefix" name=couchdb-prefix> <button type=reset>Clear</button></p><hr></div></form></fieldset></section></section><section role=region id=info-section data-position=right><header class=fixed><button type=button data-bind=click:offCanvasAction data-target-id=info-section data-direction=right><span class="icon icon-back">back</span></button><h1>info</h1></header><section class="content scrollable header"><div>Icons made by <a href=http://www.freepik.com title=Freepik>Freepik</a>, <a href=http://www.flaticon.com/authors/google title=Google>Google</a> from <a href=http://www.flaticon.com title=Flaticon>www.flaticon.com</a> is licensed by <a href=http://creativecommons.org/licenses/by/3.0/ title="Creative Commons BY 3.0">CC BY 3.0</a></div></section></section><section data-position=back class=fade-out id=group-menu><form role=dialog data-type=action><header><div class=inline>Group</div><button class=inline data-bind=click:hideMenu data-target-id=group-menu role=button>close</button></header><div id=group-menu-list class=menu-list><section><ul data-bind="foreach: state.allGroups"><li class=menu-list__item><p class=title data-bind=" attr: {id: doc._id, 'data-title': doc.title},
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="manifest" href="./manifest.json">
+
+    <!-- iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Todo App">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="app/images/icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="app/images/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="app/images/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="500x500" href="app/images/icon/icon-hr-500x500">
+    <link rel="apple-touch-startup-image" href="app/images/icon/icon-hr-500x500">
+
+    <!-- Android -->
+    <link rel="shortcut icon" type="image/x-icon" href="app/images/icons/favicon.ico" />
+    <!-- <link rel="shortcut icon" type="image/png" href="app/images/icons/icon16x16.png"/> -->
+    <meta name="theme-color" content="#e66000">
+    <meta name="HandheldFrindly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/png" href="app/images/icons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="app/images/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="app/images/icons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="app/images/icons/android-chrome-192x192.png" sizes="192x192">
+    
+    <link rel="stylesheet" type="text/css" href="app/styles/bundle/lib.css"><link rel="stylesheet" type="text/css" href="app/styles/bundle/app.css">
+
+    <title>Todo App</title>
+</head>
+
+<body>
+    <section id="index" class="index" data-position="current">
+        <section data-type="sidebar">
+            <header>
+                <h1>Menu</h1>
+            </header>
+            <nav id="sidebar-navigation">
+                <h2>Manage</h2>
+                <ul>
+                    <li>
+                        <a href="#"
+                            data-bind="click:offCanvasAction"
+                            data-target-id="todo-section"
+                            data-direction="current">
+                            <p class="sidebar-navigation__text">Todo</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            data-bind="click:offCanvasAction"
+                            data-target-id="group-section"
+                            data-direction="current">
+                            <p class="sidebar-navigation__text">Group</p>
+                        </a>
+                    </li>
+                </ul>
+                <h2>Settings</h2>
+                <ul>
+                    <li>
+                        <a href="#"
+                            data-bind="click:offCanvasAction"
+                            data-target-id="database-section"
+                            data-direction="current">
+                            <p class="sidebar-navigation__text">Database</p>
+                        </a>
+                    </li>
+                </ul>
+                <h2>System</h2>
+                <ul>
+                    <li>
+                        <a href="#"
+                            data-bind="click:offCanvasAction"
+                            data-target-id="info-section"
+                            data-direction="current">
+                            <p class="sidebar-navigation__text">Info</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+
+        <section id="drawer" class="drawer" role="region">
+            <header class="fixed table">
+                <a href="#" id="open-drawer-btn" class="open-drawer-btn table-cell">
+                    <img src="./app/images/icons/png/menu62.png" class="burger-icon" alt="burger icon">
+                </a>
+                <a href="#drawer" id="close-drawer-btn" class="close-drawer-btn table-cell">
+                    <img src="./app/images/icons/png/menu62.png" class="burger-icon" alt="burger icon">
+                </a>
+                <h1 data-bind="click:openMenu"
+                    data-target-id="group-menu"
+                    data-binding-context="header"
+                    role="button"
+                    class="table-cell">menu</h1>
+                <span class="table-cell">&#9660;</span>
+            </header>
+    
+            <section class="content scrollable header">
+                <section data-type="list">                
+                    <div id="main-todo-list" class="main-todo-list">
+                        <section data-bind="if: state.filteredTodosWithDateInFuture().length > 0">
+                            <header>
+                                <span>Expiry</span>
+                            </header>
+                            <ul class="expiry-list">
+                            <!-- ko foreach: state.filteredTodosWithDateInFuture -->
+                                <li data-bind="click:$root.openMenu, attr: {'data-binding-context': id, 'data-dependency': doc.dependency}"
+                                    data-target-id="edit-menu">                                 
+                                    <div class="priority-date">
+                                        <small data-bind="text: doc.date"></small>
+                                    </div>
+                                    <p class="text" data-bind="text: doc.title, attr: {'data-done': doc.done}"></p>                               
+                                </li>
+                            <!-- /ko -->
+                            </ul>
+                        </section>
+                        <br><br>
+                        <section data-bind="if: state.filteredDatelessTodos().length > 0">
+                            <header>
+                                <span>Priority</span>
+                            </header>
+                            <ul class="piority-list">
+                            <!-- ko foreach: state.filteredDatelessTodos -->
+                                <li data-bind="click:$root.openMenu, attr: {'data-binding-context': id, 'data-dependency': doc.dependency}"
+                                    data-target-id="edit-menu">
+                                    <aside>
+                                        <div data-bind="css: 'dot ' + $root.priorityArray[doc.prio]"></div>
+                                    </aside>
+                                    <p class="text" data-bind="text: doc.title, attr: {'data-done': doc.done}"></p>
+                                    <p data-bind="text: doc.desc, attr: {'data-done': doc.done}"></p>
+                                </li>
+                            <!-- /ko -->
+                            </ul>
+                        </section>
+                    </div>
+
+                    <!--···························· onbording section ····························-->
+                    <section class="content hide no-groups-available-section" id="no-groups-available-section">
+                        <br>
+                        <p class="ft-indie-flower">Themes you start up the app the first time dude.</p>
+                        <p class="ft-indie-flower">First things first, you need to create a todo group.</p>
+                        <br>
+                        <img src="app/images/procrastination.png" alt="know internet meme of a doodle men who hold up a stik and screams DO ALL THE THINGS ...">
+                        <button
+                            role="button"
+                            class="button recommend"
+                            data-bind="click:offCanvasAction"
+                            data-target-id="group-section"
+                            data-direction="current">PRESS THE BUTTON</button>
+                        <br>
+                        <p class="ft-indie-flower">Or sync your app with a always configured CouchDB.</p>
+                        <br>
+                        <img src="app/images/sync-all-the-things.png" alt="know internet meme of a doodle men who hold up a stik and screams DO ALL THE THINGS ...">
+                        <button
+                            role="button"
+                            class="button recommend"
+                            data-bind="click:offCanvasAction"
+                            data-target-id="database-section"
+                            data-direction="current">PRESS THIS THE BUTTON</button>
+                        <br>
+                    </section>
+
+                    <!--···························· app install banner ····························-->
+                    <section class="app-install-banner hide" id="app-install-banner">                    
+                        <div class="table">
+                            <div class="table-cell text-align-middle">
+                                <img class="app-logo" src="./app/images/icons/icon-hdpi-72x72.png" alt="App logo - is a Shia Labeouf meme, he scream just do it.">
+                            </div>
+                            <div class="table-cell">
+                                <h2 class="app-title">Todo App</h2>
+                                <p class="app-install-banner__host-url" id="app-install-banner__host-url"></p>
+                            </div>
+                            <div class="table-cell vertical-top">
+                                <div class="install-banner-close-btn"
+                                    data-bind="click: hideAppInstallBanner"><img src="app/images/icons/png/cancel.png" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="block">
+                            <button
+                                role="button"
+                                class="button recommend app-install-btn"
+                                data-bind="visible: device.fxosVersion, click:installApp"
+                                data-target-id="database-section"
+                                data-direction="current">Install App
+                            </button>
+                            <div data-bind="visible: device.isIos" class="ios-text">                            
+                                <p class="center">Tap <strong>"Add to Home Screen"</strong> to install</p>
+                                <p class="center">▼</p>
+                            </div>
+                        </div>                            
+                    </section>
+                </section>
+            </section>
+            
+            <button type="button"
+                    id="circle-button"
+                    class="circle-button plus position-bottom-right"
+                    data-bind="click:offCanvasAction"
+                    data-target-id="todo-section"
+                    data-direction="current">+</button>
+
+            </div>
+        </section><!-- end drawer -->
+    </section><!-- end index -->
+
+    <!--···························· add todo ····························-->
+    <section role="region" id="todo-section" data-position="right">
+        <header class="fixed">
+            <button type="button"
+                    data-bind="click:offCanvasAction"
+                    data-target-id="todo-section"
+                    data-direction="right">
+                <span class="icon icon-back">back</span>
+            </button>
+            <menu type="toolbar">
+                <button type="button"
+                        data-bind="click:saveFormData"
+                        data-target-form="todo-form"
+                        data-type="todo"
+                        data-notify-text="todo">save</button>
+            </menu>
+            <h1>add Todo</h1>
+        </header>
+
+        <section class="content scrollable header">
+            <fieldset>
+                <form id="todo-form">
+                    <p>
+                        <input type="text" placeholder="Todo Title" name="title" required>
+                        <button type="reset">Clear</button>
+                    </p>
+                    <p>
+                        <textarea placeholder="Description #Hashtag"
+                                data-bind="event: {keyup: openMenu} "
+                                data-target-id="tag-menu"
+                                data-binding-context="todo-form"
+                                name="desc"></textarea>
+                        <button type="reset">Clear</button>
+                    </p>
+                    <p class="hide">
+                        <input type="button" name="group">
+                        <button type="reset">Clear</button>
+                    </p>
+                    <p>
+                        <input type="button" 
+                                value="Priority"
+                                data-placeholder="Priority"
+                                data-bind="click:openMenu"
+                                data-target-id="priority-menu"
+                                data-binding-context="todo-form"
+                                name="prio">
+                        <button type="reset">Clear</button>
+                    </p>
+                    <p>
+                        <input type="button" 
+                                value="Dependency"
+                                data-placeholder="Dependency"
+                                data-bind="click:openMenu"
+                                data-target-id="dependency-menu"
+                                data-binding-context="todo-form"
+                                name="dependency">
+                        <button type="reset">Clear</button>
+                    </p>
+                    <p>
+                        <label for="expiry-date">Expiry Date</label>
+                        <input type="date" name="date" id="expiry-date">
+                        <!-- <input type="date" name="date" id="todo-date" data-bind="event: {change: checkDateAndShowChekbox} "> -->
+                    </p>
+                    <!-- <p data-bind="visible: state.showCheckbox">
+                        <label class="pack-checkbox">
+                            <input type="checkbox" name="calender" id="calender">
+                            <span></span>
+                        </label>
+                        <label for="calender">add to system calender</label>
+                    </p> -->
+                </form>
+            </fieldset>
+        </section>
+    </section>
+
+    <!--···························· manage groups ····························-->
+    <section role="region" id="group-section" data-position="right">
+        <header class="fixed">
+            <button type="button"
+                    data-bind="click:offCanvasAction"
+                    data-target-id="group-section"
+                    data-direction="right">
+                <span class="icon icon-back">back</span>
+            </button>
+            <menu type="toolbar">
+                <button type="button"
+                        data-bind="click:saveFormData"
+                        data-target-form="group-form"
+                        data-type="group"
+                        data-notify-text="group">save</button>
+            </menu>
+            <h1>manage Groups</h1>
+        </header>
+
+        <section class="content scrollable header">
+            <fieldset>
+                <form id="group-form">
+                    <p>
+                        <input type="text" placeholder="Group Title" name="title" required>
+                        <button type="reset">Clear</button>
+                    </p>
+                </form>
+            </fieldset>
+            <br><br><br>
+            <section data-type="list">
+                <header>All Groups</header>
+                    <ul data-bind="foreach: state.allGroups">
+                        <li>
+                            <aside class="pack-end" data-bind=" attr: {id: doc._id}, click: $root.handleGroupDeleteBtnClick">
+                                <img alt="placeholder" src="app/images/input_areas/images/clear.png">
+                            </aside>
+                            <p data-bind="text: doc.title"></p>
+                        </li>
+                    </ul>
+                </section>
+        </section>
+    </section>
+
+    <!--···························· database ····························-->
+    <section role="region" id="database-section" data-position="right">
+        <header class="fixed">
+            <button type="button"
+                    data-bind="click:offCanvasAction"
+                    data-target-id="database-section"
+                    data-direction="right">
+                <span class="icon icon-back">back</span>
+            </button>
+            <menu type="toolbar">
+                <button type="button"
+                        data-bind="click: saveFormData"
+                        data-target-form="couchdb-form"
+                        data-type="settings"
+                        data-notify-text="Settings">save</button>
+            </menu>
+            <h1>Database</h1>
+        </header>
+
+        <section class="content scrollable header">
+            <fieldset>
+                <form id="couchdb-form" class="couchdb-form">
+                    <div>                        
+                        <p class="block">
+                            <label for="do-sync-couchdb" class="inline">Sync to CouchDB</label>
+                            <label class="pack-switch inline">
+                                <input type="checkbox"
+                                    name="do-sync-couchdb"
+                                    id="do-sync-couchdb"
+                                    data-bind="event: {change: toggleAccordion} "
+                                    data-target-id="accordion-content">
+                                <span></span>
+                            </label>
+                        </p>
+                    </div>
+                    <div id="accordion-content" class="hide">
+                        <div class="table">
+                            <p class="table-row accordion-content">
+                                <span class="table-cell">Sync Status</span>
+                                <a class="table-cell" id="couchdb-sync-state">disconnected</a>
+                            </p>
+                        </div>
+                        <p>
+                            <input type="text"
+                                placeholder="user name" 
+                                name="couchdb-user-name"
+                                id="couchdb-user-name"
+                                data-bind="textInput: state.settings.couchdbUserName, event: {focusout: tryToConnectToCouchDb}"
+                                data-save-target="settings">
+                            <button type="reset">Clear</button>
+                        </p>
+                        <p>
+                            <input type="password"
+                                placeholder="password" 
+                                name="couchdb-password"
+                                id="couchdb-password"
+                                data-bind="textInput: state.settings.couchdbPassword, event: {focusout: tryToConnectToCouchDb}"
+                                data-save-target="settings">
+                            <button type="reset">Clear</button>
+                        </p>
+                        <p>
+                            <input type="text"
+                                placeholder="couchdb database prefix" 
+                                name="couchdb-prefix"
+                                id="couchdb-prefix"
+                                data-bind="textInput: state.settings.couchdbPrefix, event: {focusout: tryToConnectToCouchDb}"
+                                data-save-target="settings">
+                            <button type="reset">Clear</button>
+                        </p>
+                        <p>
+                            <input type="url"
+                                placeholder="https://my-couchdb-server.local" 
+                                name="couchdb-url"
+                                id="couchdb-url"
+                                data-bind="textInput: state.settings.couchdbUrl, event: {focusout: tryToConnectToCouchDb}"
+                                data-save-target="settings">
+                            <button type="reset">Clear</button>
+                        </p>
+                    </div>
+                </form>
+                <br>
+                <hr>
+                <br>
+            </fieldset>
+            <section data-bind="if: !device.isIos && device.fxosVersion !== '1.1' && device.fxosVersion !== '1.0.1'">
+                <br>
+                <a href="#" id="export-database-btn" class="button recommend">Export database backup</a>
+
+                <br><br>
+                <h2><label for="import-database-backup-json-file">Import database backup file (JSON)</label></h2>
+                <input type="file"
+                    class="button recommend"
+                    id="import-database-backup-json-file"
+                    name="import-database-backup-json-file"
+                    data-bind="event: { change: function() { importDatabaseBackupJsonFile($element.files[0]) } }"
+                    data-text="Your local DB is not empty.<br><br>Do you want to <b class='color-danger'>overwrite</b> the local DB with the backup file ?"
+                    data-call-after-confirm="overWriteDbWithBackup">
+            </section>
+            <section>
+                <br><br>
+                <button class="danger"
+                    data-bind="click: showConfirm"
+                    data-text="Dude !<br><br>Do you really want <b class='color-danger'>erase</b> the whole local database ?"
+                    data-call-after-confirm="nukeAllDataBases">Nuke the local Database</button>
+            </section>
+        </section>
+    </section>
+
+    <!--···························· info ····························-->
+    <section role="region" id="info-section" data-position="right">
+        <header class="fixed">
+            <button type="button"
+                    data-bind="click:offCanvasAction"
+                    data-target-id="info-section"
+                    data-direction="right">
+                <span class="icon icon-back">back</span>
+            </button>
+            <h1>info</h1>
+        </header>
+
+        <section class="content scrollable header">
+            <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a>, <a href="http://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+        </section>
+    </section>
+
+    <!--···························· action menu - group ····························-->
+    <section data-position="back" class="fade-out" id="group-menu">
+        <form role="dialog" data-type="action">
+            <header>
+                <div class="inline">Group</div>
+                <button class="inline"
+                        data-bind="click:hideMenu"
+                        data-target-id="group-menu"
+                        role="button">close</button>
+            </header>
+
+            <div id="group-menu-list" class="menu-list">
+                <section>
+                    <ul data-bind="foreach: state.allGroups">
+                        <li class="menu-list__item" >
+                            <p class="title" 
+                                data-bind=" attr: {id: doc._id, 'data-title': doc.title},
                                             text: doc.title,
-                                            click: $root.handleActionBtnClick"></p></li></ul></section></div><button type=button class="circle-button plus on-dark-background position-bottom-right" data-bind=click:offCanvasAction data-target-id=group-section data-direction=current>+</button></form></section><section data-position=back class=fade-out id=priority-menu><form role=dialog data-type=action><header><div class=inline>Priority</div><button class=inline data-bind=click:hideMenu data-target-id=priority-menu role=button>close</button></header><div id=priority-menu-list class=menu-list><section><ul data-bind="foreach: priority"><li class=menu-list__item><p class=title data-bind=" attr: {'data-title': key},
+                                            click: $root.handleActionBtnClick">none</p>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+            <button type="button"
+                    class="circle-button plus on-dark-background position-bottom-right"
+                    data-bind="click:offCanvasAction"
+                    data-target-id="group-section"
+                    data-direction="current">+</button>            
+        </form>
+    </section>
+
+    <!--···························· action menu - priority ····························-->
+    <section data-position="back" class="fade-out" id="priority-menu">
+        <form role="dialog" data-type="action">
+            <header>
+                <div class="inline">Priority</div>
+                <button class="inline"
+                        data-bind="click:hideMenu"
+                        data-target-id="priority-menu"
+                        role="button">close</button>
+            </header>
+
+            <div id="priority-menu-list" class="menu-list">
+                <section>
+                    <ul>
+                        <li class="menu-list__item" >
+                            <p class="title color-grey"
+                                data-bind=" attr: {'data-title':'Priority'},
+                                            click: $root.handleActionBtnClick">none</p>
+                        </li>
+                        <!-- ko foreach: priority -->
+                        <li class="menu-list__item" >
+                            <p class="title" 
+                                data-bind=" attr: {'data-title': key},
                                             text: key,
-                                            click: $root.handleActionBtnClick"></p></li></ul></section></div></form></section><section data-position=back class="fade-out edit-menu" id=edit-menu><form role=dialog data-type=action><header><div class=inline>Todo Edit</div><button class=inline data-bind=click:hideMenu data-target-id=edit-menu role=button>close</button></header><section><p><strong data-bind="text: state.currentOpenTodo().title"></strong></p><p data-bind="text: state.currentOpenTodo().desc"></p><p>Priority: <var data-bind="text: priorityArray[state.currentOpenTodo().prio], css: 'color-' + priorityArray[state.currentOpenTodo().prio]"></var></p><br><br><button data-bind=click:handleEditMenuBtnClick data-btn-type=done>is done</button> <button data-bind=click:handleEditMenuBtnClick data-btn-type=delete class=danger>delete</button> <button data-bind=click:handleEditMenuBtnClick data-btn-type=done>is not done</button></section></form></section><script src=app/scripts/lib.js></script><script src=app/scripts/app.js></script></body></html>
+                                            click: $root.handleActionBtnClick"></p>
+                        </li>
+                        <!-- /ko -->
+                    </ul>
+                </section>
+            </div>          
+        </form>
+    </section>
+
+    <!--···························· action menu - dependency ····························-->
+    <section data-position="back" class="fade-out" id="dependency-menu">
+        <form role="dialog" data-type="action">
+            <header>
+                <div class="inline">Priority</div>
+                <button class="inline"
+                        data-bind="click:hideMenu"
+                        data-target-id="dependency-menu"
+                        role="button">close</button>
+            </header>
+
+            <div id="dependency-menu-list" class="menu-list">
+                <section>
+
+                    <ul>
+                        <li class="menu-list__item" >
+                            <p class="title color-grey"
+                                data-bind=" attr: {'data-title':'Dependency'},
+                                            click: $root.handleActionBtnClick">none</p>
+                        </li>
+                    <!-- ko foreach: state.filteredTodosWithDateInFuture -->
+                        <li class="menu-list__item" >
+                            <p class="title" 
+                                data-bind=" attr: {'data-title': key},
+                                            text: doc.title,
+                                            click: $root.handleActionBtnClick"></p>
+                        </li>
+                    <!-- /ko -->
+                    <!-- ko foreach: state.filteredDatelessTodos -->
+                        <li class="menu-list__item" >
+                            <p class="title" 
+                                data-bind=" attr: {'data-title': key},
+                                            text: doc.title,
+                                            click: $root.handleActionBtnClick"></p>
+                        </li>
+                    <!-- /ko -->
+                    </ul>
+                </section>
+            </div>          
+        </form>
+    </section>
+
+    <!--···························· action menu - tag ····························-->
+    <section data-position="back" class="fade-out" id="tag-menu">
+        <form role="dialog" data-type="action">
+            <header>
+                <div class="inline">Tags</div>
+                <button class="inline"
+                        data-bind="click:hideMenu"
+                        data-target-id="tag-menu"
+                        role="button">close</button>
+            </header>
+
+            <div id="tag-menu-list" class="menu-list">
+                <section>
+                    <ul data-bind="foreach: state.allTags">
+                        <li class="menu-list__item" >
+                            <p class="title" 
+                                data-bind=" attr: {'data-title': key},
+                                            text: doc.title,
+                                            click: $root.handleActionBtnClick"></p>
+                        </li>
+                    </ul>
+                </section>
+            </div>        
+        </form>
+    </section>
+
+    <!--···························· action menu - edit ····························-->
+    <section data-position="back" class="fade-out edit-menu" id="edit-menu">
+        <form role="dialog" data-type="action">
+            <header>
+                <button class="inline"
+                        data-bind="click:editTodo"
+                        data-target-id="todo-section"
+                        data-direction="current"
+                        role="button">edit</button>
+                <div class="inline">Todo Detail</div>
+                <button class="inline"
+                        data-bind="click:hideMenu"
+                        data-target-id="edit-menu"
+                        role="button">close</button>
+            </header>
+            <section class="menu-content">
+                <p><strong data-bind="text: state.currentOpenTodo().title"></strong></p>
+                <p data-bind="text: state.currentOpenTodo().desc"></p>
+                <p>Priority: <var data-bind="text: priorityArray[state.currentOpenTodo().prio], css: 'color-' + priorityArray[state.currentOpenTodo().prio]"></var></p>
+                <!-- ko if: state.currentOpenTodo().dependency !== 'Dependency' -->
+                <p>Dependency: <span data-bind="text: state.currentDependencyDocTitle"></span></p>
+                <!-- /ko -->
+                <br><br>
+            </section>
+            <section class="position-bottom">
+                <!-- ko if: !state.currentOpenTodo().done -->
+                <button data-bind="click:handleEditMenuBtnClick" data-btn-type="done">is done</button>
+                <!-- /ko -->
+                <!-- ko if: state.currentOpenTodo().done -->
+                <button data-bind="click:handleEditMenuBtnClick" data-btn-type="delete" class="danger">delete</button>
+                <button data-bind="click:handleEditMenuBtnClick" data-btn-type="done">is not done</button>
+                <!-- /ko -->
+            </section>         
+        </form>
+    </section>
+
+    <!--···························· default confirm····························-->
+    <section data-position="back" class="fade-out" id="default-confirm">
+        <form role="dialog" data-type="confirm">
+            <section>
+                <h1>Confirmation</h1><!-- this heading is optional -->
+                <p id="confirm-text"></p>
+            </section>
+            <menu>
+                <button id="confirm-btn-false" data-bind="click: hideMenu">No</button>
+                <button id="confirm-btn-true" data-bind="click: tmpFunc" class="danger">Yes</button>
+            </menu>
+        </form>
+    </section>
+
+    <script src="app/scripts/lib.js"></script>
+    <script src="app/scripts/app.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 ### FIXMEs
 | Filename | line # | FIXME
 |:------|:------:|:------
-| viewModel.js | 561 | later with some regex
+| viewModel.js | 558 | later with some regex
 
 ### TODOs
 | Filename | line # | TODO

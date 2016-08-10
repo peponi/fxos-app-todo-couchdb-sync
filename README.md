@@ -139,9 +139,18 @@ gulp build
 ```
 and run a webserver
 ```
-npm run web
+npm run http
 ```
 then click on [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+to develop on the service worker offline stuff
+
+```
+npm run chrome
+npm run https
+gulp build --no-appcache
+```
+then click on [https://127.0.0.1:8000](https://127.0.0.1:8000)
 
 ## CouchDB setup 
 

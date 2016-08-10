@@ -7,6 +7,7 @@ var ViewModel = function() {
         i = 0,
         is,
         d = document,
+        n = navigator,
         title = '',
         // FXOS1.1 on ZTE OPEN don't know location.origin
         host = location.origin || location.protocol + '//' + location.host,
@@ -61,9 +62,9 @@ var ViewModel = function() {
      * @return     {string}  The firefox operating system version.
      */
     self.getFirefoxOsVersion = function () {
-        if (navigator.userAgent.match(/(mobile|tablet)/i)) {
+        if (n.userAgent.match(/(mobile|tablet)/i)) {
             
-            var ffVersionArray = (navigator.userAgent.match(/Firefox\/([\d]+\.[\w]?\.?[\w]+)/));
+            var ffVersionArray = (n.userAgent.match(/Firefox\/([\d]+\.[\w]?\.?[\w]+)/));
 
             if (ffVersionArray && ffVersionArray.length === 2) {
                 // Check with the gecko version the Firefox OS version
@@ -90,8 +91,8 @@ var ViewModel = function() {
         return null; 
     };
 
-    var userAgent = (navigator && navigator.userAgent || '').toLowerCase(),
-        vendor = (navigator && navigator.vendor || '').toLowerCase();
+    var userAgent = (navigator && n.userAgent || '').toLowerCase(),
+        vendor = (navigator && n.vendor || '').toLowerCase();
         
     self.device = {
         isChrome:  /google inc/.test(vendor) && userAgent.match(/(?:chrome|crios)\/(\d+)/),
@@ -113,7 +114,7 @@ var ViewModel = function() {
     self.priorityArray = [ 'low', 'middle', 'height', 'urgent' ];
 
     // enable vibration support
-    navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+    n.vibrate = n.vibrate || n.webkitVibrate || n.mozVibrate || n.msVibrate;
 
     // -------------- Helper -------------- //
 
@@ -125,9 +126,9 @@ var ViewModel = function() {
     self.setStatus = function(msg) {
         utils.status.show(msg);
 
-        if (navigator.vibrate) {
+        if (n.vibrate) {
             // vibration API supported
-            navigator.vibrate(300);
+            n.vibrate(300);
         }
     };
 
@@ -754,7 +755,7 @@ var ViewModel = function() {
     self.installApp = function() {
         // if(e.target.id === 'manifest') {
         // https://davidwalsh.name/install-firefoxos-app
-        request = navigator.mozApps.install(host + '/manifest.webapp');
+        request = n.mozApps.install(host + '/manifest.webapp');
         // } else {
 
         //     console.log(url + 'dist/app_v0.0.5.zip');
@@ -776,9 +777,9 @@ var ViewModel = function() {
         self.refreshView();
         model.settings.fill(self);
 
-        if(self.device.fxosVersion && navigator.mozApps) {
+        if(self.device.fxosVersion && n.mozApps) {
             // https://developer.mozilla.org/en-US/docs/Archive/Firefox_OS/API/DOMApplication
-            var request = navigator.mozApps.checkInstalled(host + '/manifest.webapp');
+            var request = n.mozApps.checkInstalled(host + '/manifest.webapp');
 
             request.onsuccess = function() {
                 if (!request.result) {
@@ -786,9 +787,9 @@ var ViewModel = function() {
                 }
             };
         // http://stackoverflow.com/questions/17306806/how-can-you-give-your-mobile-web-app-an-install-screen
-        } else if(self.device.isIos && !window.navigator.standalone) {
+        } else if(self.device.isIos && !n.standalone && !n.serviceWorker) {
             self.showAppInstallBanner();
-        } else if(!self.device.fxosVersion && !self.device.isIos) {
+        } else if(n.serviceWorker) {
             // if not firefox os or iOS
             // remove app install banner from document
             self.hideAppInstallBanner();

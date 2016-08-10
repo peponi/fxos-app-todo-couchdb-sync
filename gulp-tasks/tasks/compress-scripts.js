@@ -14,7 +14,7 @@ var gulp            = require('gulp'),
 
 gulp.task('compress:scripts', function () {
 
-    gulp.src(process.env.GULP_JS_DEV_SOURCE.split(","))
+    gulp.src(process.env.GULP_JS_PROD_PATHS + '*.js')
         .pipe(
             gulpif(process.env.GULP_JS_USE_MAPS,
                 sourcemaps.init()

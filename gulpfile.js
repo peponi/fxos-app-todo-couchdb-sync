@@ -13,7 +13,7 @@ var gulp        = require('gulp'),
 /**
  * GENERAL VARIABLES
  */
-env.GULP_ENVIRONMENT            = 'development'; // 'development' | 'stage' | 'live'
+env.GULP_ENVIRONMENT            = 'stage'; // 'development' | 'stage' | 'live'
 /**
  * GENERAL PATHS
  */
@@ -121,11 +121,19 @@ require(gulpTasksPath + 'test-html');
 gulp.task('copy:manifest', function() {
     gulp.src(env.GULP_WEBSITE_ROOT + 'manifest.webapp')
         .pipe(gulp.dest(env.GULP_WEBSITE_ROOT + 'build/'));
+
+    gulp.src(env.GULP_WEBSITE_ROOT + 'manifest.json')
+        .pipe(gulp.dest(env.GULP_WEBSITE_ROOT + 'build/'));
 });
 
 gulp.task('copy:appcache', function() {
     gulp.src(env.GULP_WEBSITE_ROOT + 'manifest.appcache')
         .pipe(gulp.dest(env.GULP_WEBSITE_ROOT + 'build/'));
+});
+
+gulp.task('copy:sw', function() {
+    gulp.src(env.GULP_JS_DEV_PATHS + 'sw.js')
+        .pipe(gulp.dest(env.GULP_JS_PROD_PATHS));
 });
 
 gulp.task('copy:fonts', function() {
@@ -156,10 +164,11 @@ gulp.task('copy:styles', function() {
 
 gulp.task('concate:scripts:lib', function() {
     gulp.src([
-        env.GULP_NODE_MODULES + 'fecha/fecha.min.js',
         env.GULP_NODE_MODULES + 'knockout/build/output/knockout-latest.js',
+        env.GULP_NODE_MODULES + 'fecha/fecha.min.js',
         env.GULP_NODE_MODULES + 'pouchdb/dist/pouchdb.min.js',
-        env.GULP_WEBSITE_ROOT + 'app/building-blocks/js/status.js'])
+        env.GULP_WEBSITE_ROOT + 'app/building-blocks/js/status.js',
+        env.GULP_JS_DEV_PATHS + 'libs/base64.js'])
         .pipe(concat('lib.js'))
         .pipe(gulp.dest(env.GULP_JS_PROD_PATHS));
 });
@@ -211,11 +220,11 @@ gulp.task('lint', [
     'lint:html'
 ]);
 
-gulp.task('build:styles', [/*'format:styles',*/ 'compress:styles']);
+gulp.task('build:styles', gulpsync.sync([/*'format:styles',*/'transpile:styles']));
 
 gulp.task('build', gulpsync.sync([
     'clean:static',
-    'build:styles',
+    'transpile:styles',
     [
         'concate:scripts:lib',
         'concate:scripts:app',
@@ -225,18 +234,19 @@ gulp.task('build', gulpsync.sync([
         'copy:styles',
         'copy:manifest',
         'copy:appcache',
+        'copy:sw',
         'copy:fonts',
         'copy:images',
         'copy:building-blocks:images',
         'copy:building-blocks:fonts'
     ], 
     'replace:html',
-    'create:doc.todo'
-    // [
-    //     'compress:scripts',
-    //     'compress:styles',
-    //     'compress:html'
-    // ],
+    'create:doc:todo',
+    [
+        'compress:styles',
+        //'compress:html',
+        'compress:scripts'
+    ],
     //'create:appcache' // does not work correct
 ]));
 

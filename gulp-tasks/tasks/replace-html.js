@@ -7,15 +7,25 @@ htmlreplace         = require('gulp-html-replace');
  */
 
 gulp.task('replace:html', function() {
-  return gulp.src(process.env.GULP_HTML_DEV_SOURCE)
-    .pipe(htmlreplace({
+
+    var opts = {
         'js-lib': '<script src="app/scripts/lib.js"></script>',
         'js-app': '<script src="app/scripts/app.js"></script>',
         'css': '<link rel="stylesheet" type="text/css" href="app/styles/bundle/lib.css"><link rel="stylesheet" type="text/css" href="app/styles/bundle/app.css">',
         'appcache': {
             src: 'manifest.appcache',
-            tpl: '<html manifest="%s">'
+            tpl: '<html lang="en" manifest="%s">'
         }
-    }))
-    .pipe(gulp.dest(process.env.GULP_WEBSITE_ROOT + 'build/'));
+    };
+
+    if(process.argv[3] == '--no-appcache') {
+        opts.appcache = {
+            src: '',
+            tpl: '<html lang="en">'
+        };
+    }
+
+    return gulp.src(process.env.GULP_HTML_DEV_SOURCE)
+        .pipe(htmlreplace(opts))
+        .pipe(gulp.dest(process.env.GULP_WEBSITE_ROOT + 'build/'));
 });
