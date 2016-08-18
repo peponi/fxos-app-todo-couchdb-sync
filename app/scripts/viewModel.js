@@ -508,7 +508,7 @@ var ViewModel = function() {
             id = self.state.menuBindingContext;
 
         if( btnType === 'done' ) {
-            model.todo.update(id, function(doc){
+            model.todo.update(id, function(doc) {
                 self.hideActionMenu();
                 doc.done = !doc.done;
                 return doc;
@@ -548,7 +548,15 @@ var ViewModel = function() {
         // if some todo is selected update the todo obect and skip to save a new one
         if (typeof self.state.currentOpenTodo()._id === 'string' ) {
 
-            model[type].update(self.state.currentOpenTodo()._id, formData)
+            model.todo.update(self.state.currentOpenTodo()._id, function(doc) {
+                formData.prio = model.todo.prioMap[formData.prio] || 0;  
+
+                Object.keys(formData).map(function(key) {
+                    doc[key] = formData[key];
+                });
+
+                return doc;
+            });
 
             self.state.currentOpenTodo(blankTodo);
             self.offCanvasAutoBack(formData);

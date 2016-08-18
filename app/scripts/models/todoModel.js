@@ -7,7 +7,7 @@ var TodoModel = function() {
     var type = 'todo',
         self = this;
 
-    self.map = {
+    self.prioMap = {
         'low': 0,
         'middle': 1,
         'height': 2,
@@ -25,7 +25,7 @@ var TodoModel = function() {
 
         // map the priority string to a integer value
         // easier to sort later
-        formData.prio = self.map[formData.prio] || 0;        
+        formData.prio = self.prioMap[formData.prio] || 0;        
 
         // if(formData.calender) {
         //     console.log('open calender webactivity here');
@@ -49,15 +49,9 @@ var TodoModel = function() {
         });
     };
 
-    self.update = function(id, formData) {
-        formData.prio = self.map[formData.prio] || 0;  
-
-        pm.update(type, id, function (doc) {            
-            Object.keys(formData).map(function(key) {
-                doc[key] = formData[key];
-            });            
-
-            return doc;
+    self.update = function(id, callback) {
+        pm.update(type, id, function (doc) {
+            return callback(doc);
         });
     };
 
