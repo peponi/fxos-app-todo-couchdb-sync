@@ -133,7 +133,7 @@ gulp.task('copy:appcache', function() {
 
 gulp.task('copy:sw', function() {
     gulp.src(env.GULP_JS_DEV_PATHS + 'sw.js')
-        .pipe(gulp.dest(env.GULP_JS_PROD_PATHS));
+        .pipe(gulp.dest(env.GULP_WEBSITE_ROOT + 'build/'));
 });
 
 gulp.task('copy:fonts', function() {

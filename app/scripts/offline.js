@@ -8,7 +8,7 @@ var appCache = window.applicationCache;
 // use  the serviceworker if provided
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-        .register('/app/scripts/sw.js')
+        .register('/sw.js')
         .then(function (registration) {
             // Registration was successful
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
