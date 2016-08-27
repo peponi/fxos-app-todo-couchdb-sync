@@ -47,7 +47,7 @@ so that I can outsource my brain capacity to the phone, yeai
 - [ ] install banner on FirefoxOS ✓ & iOS ✓ & Android
 - [ ] works offline (✓ appcache für iOS)
 - [x] todos can be edit
-- [ ] links in the todo description will be shown as html link in the edit mode
+- [x] links in the todo description will be shown as html link in the edit mode
 - [ ] it will show a message if a todo has been toggle with an unsolved dependency (other todo is not done)
 - [ ] group delete will show a confirm message and delete all dependet todos 
 - [x] app will run on FXOS 1.0

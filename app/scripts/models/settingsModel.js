@@ -8,8 +8,6 @@ var SettingsModel = function() {
 
     self.transaction = function(settings) {
 
-        console.info('inside settingsModel.transaction: ', settings);
-
         pm.update(type, settings.docId, function(doc) {
 
             Object.keys(settings).map(function(key) {

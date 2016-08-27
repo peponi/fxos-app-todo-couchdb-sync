@@ -1,6 +1,10 @@
-.edit-menu {
+#edit-menu {
     p {
         margin-bottom: 10px;
+    }
+
+    .menu-content a {
+        color: $border-grey;
     }
 
     [data-btn-type="delete"] {
@@ -12,4 +16,6 @@
         position: absolute;
         bottom: 0;
     }
+
+
 }

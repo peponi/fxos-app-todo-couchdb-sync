@@ -42,13 +42,13 @@ gulp.task('transpile:styles', function () {
         .pipe(
             gulpif(process.env.GULP_ENVIRONMENT === 'development',
                 gulp.dest(process.env.GULP_CSS_PROD_PATH),
-                gulp.dest(process.env.GULP_PROD_PATH + 'styles/bundle/')
+                gulp.dest(process.env.GULP_DEV_PATH + 'styles/bundle/')
             )
         );    
 });
 
 gulp.task('compress:styles', function () {
-    gulp.src(process.env.GULP_PROD_PATH  + 'styles/bundle/*.css')
+    gulp.src(process.env.GULP_DEV_PATH  + 'styles/bundle/*.css')
         .pipe(
             //gulpif(process.env.GULP_ENVIRONMENT !== 'development',
                 minifyCSS()

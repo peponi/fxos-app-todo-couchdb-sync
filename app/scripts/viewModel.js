@@ -166,6 +166,27 @@ var ViewModel = function() {
         });
     };
 
+    self.transformTextToHtmlLink = function(text) {
+        if(text.indexOf('http') > -1) {
+            console.log(text);
+            var textFragments = text.split(' ');
+
+            text = '';
+
+            textFragments.map(function(fragment, i) {
+                if(fragment.indexOf('http') > -1) {
+                    console.log(fragment);
+                    textFragments[i] = '<a href="' + fragment + '" target="_blank">' + fragment + '</a>'; 
+                }
+
+                text += textFragments[i] + ' '; 
+            });
+
+        }
+
+        return text;
+    };
+
     self.tmpFunc = function () {
         console.alert('vm.tmpFunc() is empty');
     };
