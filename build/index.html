@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en" manifest="manifest.appcache">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
@@ -176,7 +176,7 @@
                             </div>
                             <div class="table-cell vertical-top">
                                 <div class="install-banner-close-btn"
-                                    data-bind="click: hideAppInstallBanner"><img src="app/images/icons/png/cancel.png" alt=""></div>
+                                    data-bind="click: hideAppInstallBanner"><img src="app/images/icons/png/cancel.png" alt="cacle button icon"></div>
                             </div>
                         </div>
                         <div class="block">
@@ -315,7 +315,10 @@
                 <header>All Groups</header>
                     <ul data-bind="foreach: state.allGroups">
                         <li>
-                            <aside class="pack-end" data-bind=" attr: {id: doc._id}, click: $root.handleGroupDeleteBtnClick">
+                            <aside class="pack-end" 
+                                data-bind=" attr: {id: doc._id}, click: $root.showConfirm"
+                                data-text="Do you really want to delete the group and all of it's todo notes ?"
+                                data-call-after-confirm="deleteGroupAndAllOfItsTodos">
                                 <img alt="placeholder" src="app/images/input_areas/images/clear.png">
                             </aside>
                             <p data-bind="text: doc.title"></p>
@@ -600,7 +603,7 @@
             </header>
             <section class="menu-content">
                 <p><strong data-bind="text: state.currentOpenTodo().title"></strong></p>
-                <p data-bind="text: state.currentOpenTodo().desc"></p>
+                <p data-bind="html: transformTextToHtmlLink(state.currentOpenTodo().desc)"></p>
                 <p>Priority: <var data-bind="text: priorityArray[state.currentOpenTodo().prio], css: 'color-' + priorityArray[state.currentOpenTodo().prio]"></var></p>
                 <!-- ko if: state.currentOpenTodo().dependency !== 'Dependency' -->
                 <p>Dependency: <span data-bind="text: state.currentDependencyDocTitle"></span></p>
