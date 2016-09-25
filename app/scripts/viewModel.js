@@ -40,6 +40,7 @@ var ViewModel = function() {
         currentSelectedGroup: '',
         currentDependencyDocTitle: ko.observable(),
         currentOpenTodo: ko.observable(blankTodo),
+        currentClickedObject: {},
         allGroups: ko.observableArray(),
         allTodos: ko.observableArray(),
         filteredTodosWithDateInFuture: ko.observableArray(),
@@ -168,14 +169,12 @@ var ViewModel = function() {
 
     self.transformTextToHtmlLink = function(text) {
         if(text.indexOf('http') > -1) {
-            console.log(text);
             var textFragments = text.split(' ');
 
             text = '';
 
             textFragments.map(function(fragment, i) {
                 if(fragment.indexOf('http') > -1) {
-                    console.log(fragment);
                     textFragments[i] = '<a href="' + fragment + '" target="_blank">' + fragment + '</a>'; 
                 }
 
@@ -518,12 +517,6 @@ var ViewModel = function() {
         self.loadFilteredTodos();
     };
 
-    self.handleGroupDeleteBtnClick = function(data) {
-        model.group.delete(data.id, function() {
-            model.group.getAll(self.loadAll);
-        });
-    };
-
     self.handleEditMenuBtnClick = function(data, e) {
         var btnType = e.currentTarget.dataset.btnType,
             id = self.state.menuBindingContext;
@@ -718,7 +711,9 @@ var ViewModel = function() {
 
     self.showConfirm = function(data, e) {
 
-        var data = e.target.dataset;
+        self.state.currentClickedObject = data;
+
+        var data = e.currentTarget.dataset;
         
         confirmText.innerHTML = data.text;
 
@@ -726,6 +721,29 @@ var ViewModel = function() {
         self.showActionMenu();
 
         self.tmpFunc = self[data.callAfterConfirm];
+    };
+
+    self.deleteGroupAndAllOfItsTodos = function() {
+        var data = self.state.currentClickedObject,
+            groupName = data.doc.title;
+
+        model.group.delete(data.id, function() {
+            model.group.getAll(self.loadAll);
+        });
+
+        pm.getAll('todo',function(todos) {
+
+            todos.rows.filter(function(todo) {
+                return todo.doc.group === groupName; 
+            }).forEach(function(obj) {
+                model.todo.delete(obj.id, function() {});
+            });
+            
+            model.todo.getAll(self.loadAll);
+
+            self.hideActionMenu();
+            self.offCanvasAutoBack();
+        });
     };
 
     self.nukeAllDataBases = function() {

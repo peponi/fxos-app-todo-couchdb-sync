@@ -49,14 +49,14 @@ so that I can outsource my brain capacity to the phone, yeai
 - [x] todos can be edit
 - [x] links in the todo description will be shown as html link in the edit mode
 - [ ] it will show a message if a todo has been toggle with an unsolved dependency (other todo is not done)
-- [ ] group delete will show a confirm message and delete all dependet todos 
+- [x] group delete will show a confirm message and delete all dependet todos 
 - [x] app will run on FXOS 1.0
 - [ ] app will run on Android and can be pinned to desktop
 - [ ] app will run on [iOS](http://stackoverflow.com/questions/17306806/how-can-you-give-your-mobile-web-app-an-install-screen) [[1](https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)] [[2](http://brolik.com/blog/installable-web-apps-open-web/)]
-- [ ] app will run on Ubuntu Touch and can be [pinned to desktop](https://cordova.apache.org/docs/de/latest/guide/platforms/ubuntu/) [[1](http://developer.ubuntu.com/en/phone/web/)]
 
 ### Feature whishlist
 
+- [ ] app will run on Ubuntu Touch and can be [pinned to desktop](https://cordova.apache.org/docs/de/latest/guide/platforms/ubuntu/) [[1](http://developer.ubuntu.com/en/phone/web/)]
 - [x] DB export to JSON file
 - [x] read JSON file and import to DB
 - [ ] export to [CVS](https://marketplace.firefox.com/app/planr/) [1](https://github.com/corbindavenport/planr)

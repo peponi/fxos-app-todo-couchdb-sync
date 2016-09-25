@@ -337,7 +337,10 @@
                 <header>All Groups</header>
                     <ul data-bind="foreach: state.allGroups">
                         <li>
-                            <aside class="pack-end" data-bind=" attr: {id: doc._id}, click: $root.handleGroupDeleteBtnClick">
+                            <aside class="pack-end" 
+                                data-bind=" attr: {id: doc._id}, click: $root.showConfirm"
+                                data-text="Do you really want to delete the group and all of it's todo notes ?"
+                                data-call-after-confirm="deleteGroupAndAllOfItsTodos">
                                 <img alt="placeholder" src="app/images/input_areas/images/clear.png">
                             </aside>
                             <p data-bind="text: doc.title"></p>
