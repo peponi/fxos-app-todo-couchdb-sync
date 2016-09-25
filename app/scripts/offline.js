@@ -1,6 +1,7 @@
 'use strict';
 
 // https://github.com/HenrikJoreteg/appcache-serviceworker-generator
+// https://madebymike.com.au/writing/service-workers/
 
 var appCache = window.applicationCache;
 
