@@ -1,3 +1,5 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 ![screenshot](_assets/just-do-it.jpg)
 
 # My Custom Todo WebApp (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
